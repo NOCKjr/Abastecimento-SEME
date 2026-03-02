@@ -4,5 +4,5 @@ __pycache__/
 *.pyc
 
 # Variáveis de ambiente
-./env
-
+.env
+.env.*
