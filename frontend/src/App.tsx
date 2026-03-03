@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import Home from "./pages/Home";
+import Abastecimentos from "./pages/Abastecimentos";
+import NovoAbastecimento from "./pages/NovoAbastecimento";
 
 function App() {
-  const [msg, setMsg] = useState("");
-
-  // Acessa o endpoint '/hello'
-  useEffect(() => {
-    fetch(`${API_URL}/hello/`)
-      .then(res => res.json())
-      .then(data => setMsg(data.message));
-  }, []);
-
-  return <h1>{msg}</h1>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="abastecimentos" element={<Abastecimentos />} />
+          <Route path="/abastecimentos/novo" element={<NovoAbastecimento />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
