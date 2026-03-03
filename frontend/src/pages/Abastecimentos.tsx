@@ -15,7 +15,7 @@ export default function Abastecimentos() {
       <ul>
         {dados.map((item) => (
           <li key={item.id}>
-            {item.veiculo} - {item.litros}L
+            {item.data}: {item.veiculo} - {item.litros}L
           </li>
         ))}
       </ul>

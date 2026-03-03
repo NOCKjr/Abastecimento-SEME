@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     "apps.abastecimento",
-    
 ]
 
 # ======================
@@ -96,13 +95,13 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # DATABASE (Render)
 # ======================
 
-# Base de dados em produção (no render)
+# Base de dados em no render (production)
 if os.getenv("RENDER"):
     DATABASES = {
         "default": dj_database_url.config()
     }
 
-# Base de dados em desenvolvimento (local)
+# Base de dados local (development)
 else:
     DATABASES = {
         "default": {
