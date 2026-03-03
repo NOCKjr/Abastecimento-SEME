@@ -5,7 +5,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [msg, setMsg] = useState("");
-  console.log("API:", import.meta.env.VITE_API_URL);
 
   // Acessa o endpoint '/hello'
   useEffect(() => {
