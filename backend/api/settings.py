@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    "apps.abastecimento",
+    
 ]
 
 # ======================
@@ -94,12 +96,20 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # DATABASE (Render)
 # ======================
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default="sqlite:///db.sqlite3",
-        conn_max_age=600
-    )
-}
+# Base de dados em produção (no render)
+if os.getenv("RENDER"):
+    DATABASES = {
+        "default": dj_database_url.config()
+    }
+
+# Base de dados em desenvolvimento (local)
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # ======================
 # PASSWORD VALIDATION
