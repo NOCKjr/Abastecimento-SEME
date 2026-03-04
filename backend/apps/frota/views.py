@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Condutor, Veiculo
+from .serializers import VeiculoSerializer, CondutorSerializer
 
-# Create your views here.
+
+class VeiculoViewSet(ModelViewSet):
+    queryset = Veiculo.objects.all()
+    serializer_class = VeiculoSerializer
+
+
+class CondutorViewSet(ModelViewSet):
+    queryset = Condutor.objects.all()
+    serializer_class = CondutorSerializer

@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import GuiaAbastecimento
+from .serializers import GuiaAbastecimentoSerializer
 
-# Create your views here.
+
+class GuiaAbastecimentoViewSet(ModelViewSet):
+    queryset = GuiaAbastecimento.objects.all()
+    serializer_class = GuiaAbastecimentoSerializer
