@@ -6,6 +6,10 @@ urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('hello/', hello),
-    path("api/", include("apps.abastecimento.urls")),
 
+    # APIs organizadas por domínio
+    path('api/usuarios/', include('apps.usuarios.urls')),
+    path('api/cadastros/', include('apps.cadastros.urls')),
+    path('api/frota/', include('apps.frota.urls')),
+    path('api/abastecimento/', include('apps.abastecimento.urls')),
 ]
