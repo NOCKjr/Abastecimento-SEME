@@ -1,9 +1,9 @@
 # python
 venv/
+.venv
 __pycache__/
 *.pyc
 
 # Variáveis de ambiente
 .env
-
 *.sqlite3
