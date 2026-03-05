@@ -6,19 +6,23 @@ const API_URL = "/cadastros/secretarias"
 export const secretariaApi = {
 
   listar() {
-    return client.get<Secretaria[]>(API_URL)
+    return client.get<Secretaria[]>(`${API_URL}/`)
+  },
+  
+  buscar(id: number) {
+    return client.get<Secretaria>(`${API_URL}/${id}/`)
   },
 
   criar(data: Secretaria) {
-    return client.post(API_URL, data)
+    return client.post(`${API_URL}/`, data)
   },
 
   atualizar(id: number, data: Secretaria) {
-    return client.put(`${API_URL}/${id}`, data)
+    return client.put(`${API_URL}/${id}/`, data)
   },
 
   deletar(id: number) {
-    return client.delete(`${API_URL}/${id}`)
+    return client.delete(`${API_URL}/${id}/`)
   }
 
 }

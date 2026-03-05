@@ -4,9 +4,9 @@ export const ROUTES = {
 
   SECRETARIAS: "/cadastros/secretarias",
 
-  SECRETARIAS_NOVO: "/cadastros/secretarias/novo",
+  SECRETARIA_CREATE: "/cadastros/secretarias/criar",
 
-  SECRETARIAS_EDITAR: (id: number) =>
+  SECRETARIA_EDIT: (id: number) =>
     `/cadastros/secretarias/editar/${id}`
 
 };

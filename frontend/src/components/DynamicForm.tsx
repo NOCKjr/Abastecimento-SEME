@@ -1,6 +1,6 @@
 // Formulário genérico para preenchimento (criar/editar) de dados
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { FormSchema } from "../types/form"
 
 interface Props<T> {
@@ -17,6 +17,11 @@ export default function DynamicForm<T>({
 
   const [formData, setFormData] =
     useState<Partial<T>>(initialData)
+  
+  // Quando os dados mudarem, atualiza o formulário
+  useEffect(() => {
+    setFormData(initialData)
+  }, [initialData])
 
   function handleChange(
     e: React.ChangeEvent<
