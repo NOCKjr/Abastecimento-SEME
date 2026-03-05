@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+/*
+************************************
+  Formulários 
+************************************
+*/
+
+.form-field {
+  margin-bottom: 12px;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+button {
+  background: #1976d2;
+  color: white;
+}
+
+/*  */
