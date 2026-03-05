@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import DynamicForm from "../../../components/DynamicForm";
 import { secretariaFormSchema } from "../../../forms/secretaria.schema";
-import { createSecretaria } from "../../../api/client";
+import { secretariaApi } from "../../../api/secretariaApi";
 
 export default function NovaSecretariaPage() {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export default function NovaSecretariaPage() {
   async function handleSubmit(data: any) {
     try {
       // 1. Executa a chamada à API
-      await createSecretaria(data);
+      await secretariaApi.criar(data);
 
       // 2. Notifica o usuário
       alert("Secretaria criada com sucesso!");
