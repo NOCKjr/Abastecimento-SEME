@@ -10,6 +10,7 @@ export default function Layout() {
         <Link to="/cadastros/rotas">Rotas</Link> |{" "}
         <Link to="/cadastros/instituicoes">Instituições</Link> |{" "}
         <Link to="/frota/condutores">Condutores</Link> |{" "}
+        <Link to="/frota/veiculos">Veículos</Link> |{" "}
       </nav>
 
       <hr />

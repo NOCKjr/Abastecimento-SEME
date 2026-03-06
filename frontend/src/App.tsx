@@ -8,8 +8,10 @@ import RotaListPage from "./pages/cadastros/rota/RotaListPage";
 import RotaFormPage from "./pages/cadastros/rota/RotaFormPage";
 import InstituicaoListPage from "./pages/cadastros/instituicao/InstituicaoListPage";
 import InstituicaoFormPage from "./pages/cadastros/instituicao/InstituicaoFormPage";
-import CondutorListPage from "./pages/frota/condutor/InstituicaoListPage";
-import CondutorFormPage from "./pages/frota/condutor/InstituicaoFormPage";
+import CondutorListPage from "./pages/frota/condutor/CondutorListPage";
+import CondutorFormPage from "./pages/frota/condutor/CondutorFormPage";
+import VeiculoListPage from "./pages/frota/veiculo/VeiculoListPage";
+import VeiculoFormPage from "./pages/frota/veiculo/VeiculoFormPage";
 
 function App() {
   return (
@@ -75,6 +77,19 @@ function App() {
             <Route
               path="condutores/editar/:id"
               element={<CondutorFormPage />}
+            />
+
+            <Route
+              path="veiculos"
+              element={<VeiculoListPage />}
+            />
+            <Route
+              path="veiculos/criar"
+              element={<VeiculoFormPage />}
+            />
+            <Route
+              path="veiculos/editar/:id"
+              element={<VeiculoFormPage />}
             />
 
           </Route>

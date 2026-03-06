@@ -46,4 +46,15 @@ export const ROUTES = {
   CONDUTOR_EDIT: (id: number) =>
     `/frota/condutores/editar/${id}`,
 
+  // -----------------------
+  // /FROTA/VEICULOS
+  // -----------------------
+  
+  VEICULOS: "/frota/veiculos",
+
+  VEICULO_CREATE: "/frota/veiculos/criar",
+
+  VEICULO_EDIT: (id: number) =>
+    `/frota/veiculos/editar/${id}`,
+
 };

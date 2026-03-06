@@ -23,3 +23,12 @@ export interface Condutor {
   cpf: string
   secretaria: number
 }
+
+export interface Veiculo {
+  id?: number
+  placa: string
+  modelo: string
+  ano: number
+  tipo_combustivel: string
+  secretaria: number
+}
