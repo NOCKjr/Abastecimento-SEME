@@ -39,3 +39,27 @@ export interface Usuario {
   cpf: string
   senha?: string
 }
+
+export interface GuiaAbastecimento {
+  // Identificação
+  id?: number
+  data_emissao: string
+  tipo_servico: string
+  
+  // Combustível
+  tipo_combustivel: string
+  qtd_combustivel: number
+  qtd_oleo_lubrificante: number
+
+  // Quilometragem
+  hodometro: number
+  observacao: string
+  
+  // Foreign Keys
+  condutor: number
+  instituicao: number
+  rota: number
+  secretaria: number
+  usuario: number
+  veiculo: number
+}

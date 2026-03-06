@@ -68,4 +68,15 @@ export const ROUTES = {
   USUARIO_EDIT: (id: number) =>
     `/usuarios/editar/${id}`,
 
+  // -----------------------
+  // /ABASTECIMENTO/GUIAS
+  // -----------------------
+  
+  GUIAS_ABASTECIMENTO: "/abastecimento/guias",
+
+  GUIA_ABASTECIMENTO_CREATE: "/abastecimento/guias/criar",
+
+  GUIA_ABASTECIMENTO_EDIT: (id: number) =>
+    `/abastecimento/guias/editar/${id}`,
+
 };

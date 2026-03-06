@@ -14,6 +14,8 @@ import VeiculoListPage from "./pages/frota/veiculo/VeiculoListPage";
 import VeiculoFormPage from "./pages/frota/veiculo/VeiculoFormPage";
 import UsuarioListPage from "./pages/usuarios/UsuarioListPage";
 import UsuarioFormPage from "./pages/usuarios/UsuarioFormPage";
+import GuiaAbastecimentoListPage from "./pages/abastecimento/guias/GuiaAbastecimentoListPage";
+import GuiaAbastecimentoFormPage from "./pages/abastecimento/guias/GuiaAbastecimentoFormPage";
 
 function App() {
   return (
@@ -24,6 +26,18 @@ function App() {
           <Route index element={<Home />} />
 
           <Route path="abastecimento/">
+            <Route
+              path="guias"
+              element={<GuiaAbastecimentoListPage />}
+            />
+            <Route
+              path="guias/criar"
+              element={<GuiaAbastecimentoFormPage />}
+            />
+            <Route
+              path="guias/editar/:id"
+              element={<GuiaAbastecimentoFormPage />}
+            />
           </Route>
 
           <Route path="cadastros/">
