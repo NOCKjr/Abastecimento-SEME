@@ -3,7 +3,7 @@ export const ROUTES = {
   CADASTROS: "/cadastros",
 
   // -----------------------
-  // CADASTROS/SECRETARIAS
+  // /CADASTROS/SECRETARIAS
   // -----------------------
   
   SECRETARIAS: "/cadastros/secretarias",
@@ -14,7 +14,7 @@ export const ROUTES = {
     `/cadastros/secretarias/editar/${id}`,
   
   // -----------------------
-  // CADASTROS/ROTAS
+  // /CADASTROS/ROTAS
   // -----------------------
   
   ROTAS: "/cadastros/rotas",
@@ -23,5 +23,16 @@ export const ROUTES = {
 
   ROTA_EDIT: (id: number) =>
     `/cadastros/rotas/editar/${id}`,
+  
+  // -----------------------
+  // /CADASTROS/INSTITUICOES
+  // -----------------------
+  
+  INSTITUICOES: "/cadastros/instituicoes",
+
+  INSTITUICAO_CREATE: "/cadastros/instituicoes/criar",
+
+  INSTITUICAO_EDIT: (id: number) =>
+    `/cadastros/instituicoes/editar/${id}`,
 
 };
