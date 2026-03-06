@@ -4,3 +4,37 @@ Arquivo para registrar/anotar o que foi alterado em cada momento
 backend: https://abastecimento-seme-api.onrender.com/
 frontend: https://abastecimento-seme-app.onrender.com/
 
+
+05/03/2026: CRUD da rota Secretaria finalizado no back-end e front-end.
+
+*** Passo a passo para configurar CRUD de outras rotas ***
+
+(Dica: Use como exemplo os arquivos que já estão em cada pasta)
+
+1. Em `frontend/src/types/models.ts` criar o tipo do dado, com os campos da tabela 
+  no banco de dados.
+
+2. Criar um "service" para se comunicar com a api no backend.
+    2.1. Em `frontend/src/api/` criar o arquivo "<entidade>Api.ts" (seguir exemplos lá)
+    2.2. No arquivo criado, importe de `types/models.ts` o tipo criado, 
+        importe client de `client.ts`, crie as funções necessárias (listar, buscar, criar,
+        atualizar, deletar, etc.) que fazem as consultas aos endpoints correspondentes 
+        (EM RESUMO: para agilizar, pode copiar e colar o código em secretariaApi.ts e 
+        substituir o tipo (type) e a string API_URL para o endpoint correto).
+
+3. Criar um esquema do formulário em `frontend/src/forms/` com os campos do formulário.
+
+4. Criar as constantes para guardar as rotas onde as páginas serão visualizadas, 
+  em `frontend/src/routes/routes.ts`
+
+5. Verificar se no arquivo `frontend/src/App.tsx` há um router para as rotas definidas no
+  passo anterior. (Confira se as urls são iguais e estão corretas).
+
+6. Criar as páginas que o usuário visualizará, em `frontend/pages/`. Crie o TypeListPage.ts 
+  e TypeFormPage.ts (substitua "Type" pelo nome da entidade).
+
+7. Em `frontend/src/layouts/Layout.tsx` adicionar um Link para acessar a página criada no
+  passo anterior.
+
+
+
