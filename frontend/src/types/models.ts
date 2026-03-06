@@ -32,3 +32,10 @@ export interface Veiculo {
   tipo_combustivel: string
   secretaria: number
 }
+
+export interface Usuario {
+  id?: number
+  nome: string
+  cpf: string
+  senha?: string
+}

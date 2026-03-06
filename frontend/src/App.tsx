@@ -12,6 +12,8 @@ import CondutorListPage from "./pages/frota/condutor/CondutorListPage";
 import CondutorFormPage from "./pages/frota/condutor/CondutorFormPage";
 import VeiculoListPage from "./pages/frota/veiculo/VeiculoListPage";
 import VeiculoFormPage from "./pages/frota/veiculo/VeiculoFormPage";
+import UsuarioListPage from "./pages/usuarios/UsuarioListPage";
+import UsuarioFormPage from "./pages/usuarios/UsuarioFormPage";
 
 function App() {
   return (
@@ -95,6 +97,18 @@ function App() {
           </Route>
 
           <Route path="usuarios/">
+            <Route
+              path=""
+              element={<UsuarioListPage />}
+            />
+            <Route
+              path="criar"
+              element={<UsuarioFormPage />}
+            />
+            <Route
+              path="editar/:id"
+              element={<UsuarioFormPage />}
+            />
           </Route>
 
         </Route>
