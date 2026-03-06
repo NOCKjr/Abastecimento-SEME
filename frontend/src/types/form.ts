@@ -12,11 +12,18 @@ export interface FieldOption {
 }
 
 export interface FormField {
-  name: string
-  label: string
-  type: FieldType
-  required?: boolean
-  options?: FieldOption[]
+  name: string              // Nome do campo;
+  label: string             // Rótulo na tabela de listagem;
+  type: FieldType           // Tipo de dado (number, string, select, etc.);
+  endpoint?: string         // Endpoint de onde os dados desse campo são buscados (usado em selects para FK);
+  required?: boolean        // Se o campo é obrigatório ou não de ser preenchido;
+  options?: FieldOption[]   // Se for tipo 'select' ele usa isso para a lista de opções;
+  // Quando a api retornar isso como chave estrangeira em outra tabela, 
+  // 'optionLabel' é a label do campo e 'optionValue' é o seu valor.
+  // Por exemplo: identificar a instituição de id=2 pelo nome. Então:
+  // optionLabel="nome" e optionValue="Escola Fantasia".
+  optionLabel?: string
+  optionValue?: string
 }
 
 export interface FormSchema {
