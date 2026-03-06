@@ -27,11 +27,13 @@ frontend: https://abastecimento-seme-app.onrender.com/
 4. Criar as constantes para guardar as rotas onde as páginas serão visualizadas, 
   em `frontend/src/routes/routes.ts`
 
-5. Verificar se no arquivo `frontend/src/App.tsx` há um router para as rotas definidas no
-  passo anterior. (Confira se as urls são iguais e estão corretas).
+5. Criar as páginas que o usuário visualizará, em `frontend/pages/`. Crie o TypeListPage.ts 
+  e TypeFormPage.ts (substitua "Type" pelo nome da entidade). Se der Ctrl-C + Ctrl-V de 
+  outro arquivo já implementado, é importante verificar se está usando as constantes corretas
+  definidas em `src/routes/routes.ts`.
 
-6. Criar as páginas que o usuário visualizará, em `frontend/pages/`. Crie o TypeListPage.ts 
-  e TypeFormPage.ts (substitua "Type" pelo nome da entidade).
+6. Verificar se no arquivo `frontend/src/App.tsx` há um router para as rotas definidas no
+  passo anterior. (Confira se as urls são iguais e estão corretas).
 
 7. Em `frontend/src/layouts/Layout.tsx` adicionar um Link para acessar a página criada no
   passo anterior.

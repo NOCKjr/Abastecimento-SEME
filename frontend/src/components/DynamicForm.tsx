@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react"
 import type { FormSchema } from "../types/form"
+import { client } from "../api/client"
 
 interface Props<T> {
   schema: FormSchema
   initialData?: Partial<T>
   onSubmit: (data: T) => void | Promise<void>
 }
+
+// Cache global para as opções do select (se o campo for um select)
+const selectCache: Record<string, any[]> = {}
 
 export default function DynamicForm<T>({
   schema,
@@ -17,11 +21,60 @@ export default function DynamicForm<T>({
 
   const [formData, setFormData] =
     useState<Partial<T>>(initialData)
-  
+
+  const [selectOptions, setSelectOptions] =
+    useState<Record<string, any[]>>({})
+
   // Quando os dados mudarem, atualiza o formulário
   useEffect(() => {
     setFormData(initialData)
   }, [initialData])
+
+  // Carregar opções de selects via API
+  useEffect(() => {
+
+    async function loadOptions() {
+
+      for (const field of schema.fields) {
+
+        if (field.type === "select" && field.endpoint) {
+
+          // se já existe cache
+          if (selectCache[field.endpoint]) {
+
+            setSelectOptions(prev => ({
+              ...prev,
+              [field.name]: selectCache[field.endpoint!]
+            }))
+
+            continue
+          }
+
+          // senão busca da API
+          const res = await client.get(field.endpoint)
+
+          const options = res.data.map((item: any) => ({
+            label: item[field.optionLabel || "nome"],
+            value: item[field.optionValue || "id"]
+          }))
+
+          // salva no cache
+          selectCache[field.endpoint] = options
+
+          setSelectOptions(prev => ({
+            ...prev,
+            [field.name]: options
+          }))
+
+        }
+
+      }
+
+    }
+
+    loadOptions()
+
+  }, [schema])
 
   function handleChange(
     e: React.ChangeEvent<
@@ -32,7 +85,7 @@ export default function DynamicForm<T>({
   ) {
 
     const { name, value, type } = e.target
-    
+
     const newValue =
       type === "checkbox"
         ? (e.target as HTMLInputElement).checked
@@ -42,7 +95,7 @@ export default function DynamicForm<T>({
       ...formData,
       [name]: newValue
     })
-    
+
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -74,7 +127,7 @@ export default function DynamicForm<T>({
           >
             <option value="">Selecione</option>
 
-            {field.options?.map((opt: any) => (
+            {(field.options || selectOptions[field.name])?.map((opt: any) => (
               <option
                 key={opt.value}
                 value={opt.value}
@@ -117,7 +170,7 @@ export default function DynamicForm<T>({
           key={field.name}
           className="form-field"
         >
-        
+
           <label>
             {field.label}
           </label>
