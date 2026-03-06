@@ -16,3 +16,10 @@ export interface Instituicao {
   rota: number
   secretaria: number
 }
+
+export interface Condutor {
+  id?: number
+  nome_completo: string
+  cpf: string
+  secretaria: number
+}

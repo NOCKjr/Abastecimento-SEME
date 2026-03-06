@@ -9,6 +9,7 @@ export default function Layout() {
         <Link to="/cadastros/secretarias">Secretarias</Link> |{" "}
         <Link to="/cadastros/rotas">Rotas</Link> |{" "}
         <Link to="/cadastros/instituicoes">Instituições</Link> |{" "}
+        <Link to="/frota/condutores">Condutores</Link> |{" "}
       </nav>
 
       <hr />

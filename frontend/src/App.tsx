@@ -8,6 +8,8 @@ import RotaListPage from "./pages/cadastros/rota/RotaListPage";
 import RotaFormPage from "./pages/cadastros/rota/RotaFormPage";
 import InstituicaoListPage from "./pages/cadastros/instituicao/InstituicaoListPage";
 import InstituicaoFormPage from "./pages/cadastros/instituicao/InstituicaoFormPage";
+import CondutorListPage from "./pages/frota/condutor/InstituicaoListPage";
+import CondutorFormPage from "./pages/frota/condutor/InstituicaoFormPage";
 
 function App() {
   return (
@@ -62,6 +64,19 @@ function App() {
           </Route>
 
           <Route path="frota/">
+            <Route
+              path="condutores"
+              element={<CondutorListPage />}
+            />
+            <Route
+              path="condutores/criar"
+              element={<CondutorFormPage />}
+            />
+            <Route
+              path="condutores/editar/:id"
+              element={<CondutorFormPage />}
+            />
+
           </Route>
 
           <Route path="usuarios/">
