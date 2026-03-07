@@ -23,6 +23,10 @@ export const guiaAbastecimentoApi = {
 
   deletar(id: number) {
     return client.delete(`${API_URL}/${id}/`)
+  },
+
+  urlPdf(id: number): string {
+    return `${client.defaults.baseURL}${API_URL}/${id}/pdf/`
   }
 
 }
