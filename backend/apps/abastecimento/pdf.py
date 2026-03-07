@@ -1,10 +1,31 @@
 from io import BytesIO
+from decimal import Decimal
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from .models import GuiaAbastecimento
+
+
+def _format_decimal(value):
+    if value is None:
+        return "-"
+    if isinstance(value, Decimal):
+        return f"{value:.3f}"
+    return str(value)
+
+
+def _format_litros(value):
+    value_text = _format_decimal(value)
+    if value_text == "-":
+        return value_text
+    return f"{value_text} L"
+
+
+def _format_usuario(usuario):
+    full_name = usuario.get_full_name().strip()
+    return full_name or usuario.username
 
 
 def gerar_pdf_guia(guia_id):
@@ -95,12 +116,17 @@ def gerar_pdf_guia(guia_id):
     
     # ===== INFORMAÇÕES DO VEÍCULO =====
     elements.append(Paragraph("INFORMAÇÕES DO VEÍCULO", heading_style))
-    
+
+    placa = guia.veiculo.placa if guia.veiculo else "-"
+    modelo = guia.veiculo.modelo if guia.veiculo else "-"
+    ano = str(guia.veiculo.ano) if guia.veiculo else "-"
+    hodometro = f"{guia.hodometro} km" if guia.hodometro is not None else "-"
+
     dados_veiculo = [
-        ['Placa:', guia.veiculo.placa],
-        ['Modelo:', guia.veiculo.modelo],
-        ['Ano:', str(guia.veiculo.ano)],
-        ['Hodômetro:', f"{guia.hodometro} km"],
+        ['Placa:', placa],
+        ['Modelo:', modelo],
+        ['Ano:', ano],
+        ['Hodômetro:', hodometro],
     ]
     
     table_veiculo = Table(dados_veiculo, colWidths=[2.5 * inch, 4 * inch])
@@ -144,10 +170,10 @@ def gerar_pdf_guia(guia_id):
     
     # ===== QUANTIDADES =====
     elements.append(Paragraph("QUANTIDADES", heading_style))
-    
+
     dados_quantidades = [
-        ['Combustível:', f"{guia.qtd_combustivel} L"],
-        ['Óleo Lubrificante:', f"{guia.qtd_oleo_lubrificante} L"],
+        ['Combustível:', _format_litros(guia.qtd_combustivel)],
+        ['Óleo Lubrificante:', _format_litros(guia.qtd_oleo_lubrificante)],
     ]
     
     table_quantidades = Table(dados_quantidades, colWidths=[2.5 * inch, 4 * inch])
@@ -167,11 +193,13 @@ def gerar_pdf_guia(guia_id):
     
     # ===== INFORMAÇÕES ADICIONAIS =====
     elements.append(Paragraph("INFORMAÇÕES ADICIONAIS", heading_style))
-    
+
+    rota = guia.rota.descricao if guia.rota else "-"
+
     dados_adicionais = [
-        ['Rota:', guia.rota.descricao],
+        ['Rota:', rota],
         ['Instituição:', guia.instituicao.nome],
-        ['Usuário:', guia.usuario.nome],
+        ['Usuário:', _format_usuario(guia.usuario)],
     ]
     
     table_adicionais = Table(dados_adicionais, colWidths=[2.5 * inch, 4 * inch])

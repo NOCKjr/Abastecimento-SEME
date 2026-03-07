@@ -30,13 +30,13 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       name: "qtd_oleo_lubrificante",
       label: "Quantidade de Óleo Lubrificante",
       type: "number",
-      required: true
+      required: false
     },
     {
       name: "hodometro",
       label: "Hodômetro",
       type: "number",
-      required: true
+      required: false
     },
     {
       name: "observacao",
@@ -66,9 +66,9 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       name: "rota",
       label: "Rota",
       type: "select",
-      required: true,
+      required: false,
       endpoint: "cadastros/rotas/",
-      optionLabel: "sigla"
+      optionLabel: "descricao"
     },
     {
       name: "secretaria",
@@ -84,13 +84,13 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: true,
       endpoint: "usuarios/",
-      optionLabel: "nome"
+      optionLabel: "username"
     },
     {
       name: "veiculo",
       label: "Veículo",
       type: "select",
-      required: true,
+      required: false,
       endpoint: "frota/veiculos/",
       optionLabel: "placa"
     },
