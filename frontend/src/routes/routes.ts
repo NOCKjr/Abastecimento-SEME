@@ -46,4 +46,37 @@ export const ROUTES = {
   CONDUTOR_EDIT: (id: number) =>
     `/frota/condutores/editar/${id}`,
 
+  // -----------------------
+  // /FROTA/VEICULOS
+  // -----------------------
+  
+  VEICULOS: "/frota/veiculos",
+
+  VEICULO_CREATE: "/frota/veiculos/criar",
+
+  VEICULO_EDIT: (id: number) =>
+    `/frota/veiculos/editar/${id}`,
+
+  // -----------------------
+  // /USUARIOS
+  // -----------------------
+  
+  USUARIOS: "/usuarios",
+
+  USUARIO_CREATE: "/usuarios/criar",
+
+  USUARIO_EDIT: (id: number) =>
+    `/usuarios/editar/${id}`,
+
+  // -----------------------
+  // /ABASTECIMENTO/GUIAS
+  // -----------------------
+  
+  GUIAS_ABASTECIMENTO: "/abastecimento/guias",
+
+  GUIA_ABASTECIMENTO_CREATE: "/abastecimento/guias/criar",
+
+  GUIA_ABASTECIMENTO_EDIT: (id: number) =>
+    `/abastecimento/guias/editar/${id}`,
+
 };

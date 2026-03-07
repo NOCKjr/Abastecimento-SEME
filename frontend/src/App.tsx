@@ -8,8 +8,14 @@ import RotaListPage from "./pages/cadastros/rota/RotaListPage";
 import RotaFormPage from "./pages/cadastros/rota/RotaFormPage";
 import InstituicaoListPage from "./pages/cadastros/instituicao/InstituicaoListPage";
 import InstituicaoFormPage from "./pages/cadastros/instituicao/InstituicaoFormPage";
-import CondutorListPage from "./pages/frota/condutor/InstituicaoListPage";
-import CondutorFormPage from "./pages/frota/condutor/InstituicaoFormPage";
+import CondutorListPage from "./pages/frota/condutor/CondutorListPage";
+import CondutorFormPage from "./pages/frota/condutor/CondutorFormPage";
+import VeiculoListPage from "./pages/frota/veiculo/VeiculoListPage";
+import VeiculoFormPage from "./pages/frota/veiculo/VeiculoFormPage";
+import UsuarioListPage from "./pages/usuarios/UsuarioListPage";
+import UsuarioFormPage from "./pages/usuarios/UsuarioFormPage";
+import GuiaAbastecimentoListPage from "./pages/abastecimento/guias/GuiaAbastecimentoListPage";
+import GuiaAbastecimentoFormPage from "./pages/abastecimento/guias/GuiaAbastecimentoFormPage";
 
 function App() {
   return (
@@ -20,6 +26,18 @@ function App() {
           <Route index element={<Home />} />
 
           <Route path="abastecimento/">
+            <Route
+              path="guias"
+              element={<GuiaAbastecimentoListPage />}
+            />
+            <Route
+              path="guias/criar"
+              element={<GuiaAbastecimentoFormPage />}
+            />
+            <Route
+              path="guias/editar/:id"
+              element={<GuiaAbastecimentoFormPage />}
+            />
           </Route>
 
           <Route path="cadastros/">
@@ -77,9 +95,34 @@ function App() {
               element={<CondutorFormPage />}
             />
 
+            <Route
+              path="veiculos"
+              element={<VeiculoListPage />}
+            />
+            <Route
+              path="veiculos/criar"
+              element={<VeiculoFormPage />}
+            />
+            <Route
+              path="veiculos/editar/:id"
+              element={<VeiculoFormPage />}
+            />
+
           </Route>
 
           <Route path="usuarios/">
+            <Route
+              path=""
+              element={<UsuarioListPage />}
+            />
+            <Route
+              path="criar"
+              element={<UsuarioFormPage />}
+            />
+            <Route
+              path="editar/:id"
+              element={<UsuarioFormPage />}
+            />
           </Route>
 
         </Route>

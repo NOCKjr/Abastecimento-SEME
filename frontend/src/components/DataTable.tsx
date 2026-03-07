@@ -13,7 +13,7 @@ export default function DataTable<T extends { id?: number }>(
   if (!data.length) return <p>Nenhum registro</p>
 
   const columns = Object.keys(data[0])
-
+  console.log("data", data);
   return (
 
     <table>
