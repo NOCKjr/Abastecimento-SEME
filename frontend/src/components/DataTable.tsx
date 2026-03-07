@@ -4,16 +4,21 @@ interface Props<T> {
   data: T[]
   onEdit: (item: T) => void
   onDelete: (item: T) => void
+  onPdf?: (item: T) => void
 }
 
 export default function DataTable<T extends { id?: number }>(
-  { data, onEdit, onDelete }: Props<T>
+  { data, onEdit, onDelete, onPdf }: Props<T>
 ) {
 
   if (!data.length) return <p>Nenhum registro</p>
 
   const columns = Object.keys(data[0])
-  console.log("data", data);
+  const getCellValue = (item: T, col: string) => {
+    const value = (item as Record<string, unknown>)[col]
+    return value == null ? "" : String(value)
+  }
+
   return (
 
     <table>
@@ -35,11 +40,19 @@ export default function DataTable<T extends { id?: number }>(
 
             {columns.map(col =>
               <td key={col}>
-                {(item as any)[col]}
+                {getCellValue(item, col)}
               </td>
             )}
 
             <td>
+
+              {onPdf && (
+                <button
+                  onClick={() => onPdf(item)}
+                >
+                  PDF
+                </button>
+              )}
 
               <button
                 onClick={() => onEdit(item)}
