@@ -24,6 +24,8 @@ export interface FormField {
   // optionLabel="nome" e optionValue="Escola Fantasia".
   optionLabel?: string
   optionValue?: string
+  dependsOn?: string        // Nome do campo que controla o filtro deste select.
+  dependsOnParam?: string   // Nome do query param para o filtro. Se omitido, usa dependsOn.
 }
 
 export interface FormSchema {
