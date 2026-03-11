@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Rota } from "../../../types/models"
+import { rotaFormSchema } from "../../../forms/rota.schema"
 
 export default function RotaListPage() {
 
@@ -42,6 +43,7 @@ export default function RotaListPage() {
 
       <DataTable
         data={rotas}
+        schema={rotaFormSchema}
         onEdit={(item) =>
           window.location.href =
             ROUTES.ROTA_EDIT(item.id!)

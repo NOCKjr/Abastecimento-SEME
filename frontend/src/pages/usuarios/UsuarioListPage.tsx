@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { ROUTES } from "../../routes/routes"
 
 import type { Usuario } from "../../types/models"
+import { usuarioFormSchema } from "../../forms/usuario.schema"
 
 export default function UsuarioListPage() {
 
@@ -42,6 +43,7 @@ export default function UsuarioListPage() {
 
       <DataTable
         data={usuarios}
+        schema={usuarioFormSchema}
         onEdit={(item) =>
           window.location.href =
             ROUTES.USUARIO_EDIT(item.id!)

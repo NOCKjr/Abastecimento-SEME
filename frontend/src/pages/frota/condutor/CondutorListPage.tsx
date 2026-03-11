@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Condutor } from "../../../types/models"
+import { condutorFormSchema } from "../../../forms/condutor.schema"
 
 export default function CondutorListPage() {
 
@@ -42,6 +43,7 @@ export default function CondutorListPage() {
 
       <DataTable
         data={condutors}
+        schema={condutorFormSchema}
         onEdit={(item) =>
           window.location.href =
             ROUTES.CONDUTOR_EDIT(item.id!)

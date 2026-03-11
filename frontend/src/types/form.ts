@@ -24,6 +24,7 @@ export interface FormField {
   // optionLabel="nome" e optionValue="Escola Fantasia".
   optionLabel?: string
   optionValue?: string
+  hidden?:boolean
 }
 
 export interface FormSchema {

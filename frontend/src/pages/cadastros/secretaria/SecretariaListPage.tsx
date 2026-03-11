@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Secretaria } from "../../../types/models"
+import { secretariaFormSchema } from "../../../forms/secretaria.schema"
 
 export default function SecretariaListPage() {
 
@@ -42,6 +43,7 @@ export default function SecretariaListPage() {
 
       <DataTable
         data={secretarias}
+        schema={secretariaFormSchema}
         onEdit={(item) =>
           window.location.href =
             ROUTES.SECRETARIA_EDIT(item.id!)

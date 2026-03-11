@@ -36,13 +36,13 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       name: "hodometro",
       label: "Hodômetro",
       type: "number",
-      required: true
+      required: false
     },
     {
       name: "observacao",
       label: "Observação",
       type: "textarea",
-      required: true
+      required: false
     },
 
     // IDs de tabelas estrangeiras (Foreign Keys)
