@@ -3,10 +3,22 @@ import type { FormSchema } from "../types/form"
 export const usuarioFormSchema: FormSchema = {
   fields: [
     {
-      name: "nome",
-      label: "Nome",
+      name: "username",
+      label: "Usuário (login)",
       type: "text",
       required: true
+    },
+    {
+      name: "first_name",
+      label: "Primeiro nome",
+      type: "text",
+      required: false
+    },
+    {
+      name: "last_name",
+      label: "Sobrenome",
+      type: "text",
+      required: false
     },
     {
       name: "cpf",
@@ -15,10 +27,10 @@ export const usuarioFormSchema: FormSchema = {
       required: true
     },
     {
-      name: "senha",
+      name: "password",
       label: "Senha",
       type: "text",
-      required: true
+      required: false
     }
   ]
 }

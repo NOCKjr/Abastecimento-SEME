@@ -8,14 +8,12 @@ interface Props<T> {
   schema: FormSchema
   onEdit: (item: T) => void
   onDelete: (item: T) => void
+  onPdf?: (item: T) => void
 }
 
-export default function DataTable<T extends { id?: number }>({
-  data,
-  schema,
-  onEdit,
-  onDelete
-}: Props<T>) {
+export default function DataTable<T extends { id?: number }>(
+  { data, schema, onEdit, onDelete, onPdf }: Props<T>
+) {
 
   // Lista vazia
   if (!data.length)
@@ -93,19 +91,19 @@ export default function DataTable<T extends { id?: number }>({
         onChange={e => setSearch(e.target.value)}
       />
       <table>
+
         <thead>
           <tr>
             {fields.map(field => (
-              <th
-                key={field.name}
-                onClick={() =>
-                  handleSort(field.name)
-                }
-                style={{ cursor: "pointer" }}
-              >
-                {field.label}
-              </th>
-            ))}
+                <th
+                  key={field.name}
+                  onClick={() =>
+                    handleSort(field.name)
+                  }
+                  style={{ cursor: "pointer" }}>
+                  {field.label}
+                </th>
+              ))}
             <th>Ações</th>
           </tr>
         </thead>
@@ -123,6 +121,13 @@ export default function DataTable<T extends { id?: number }>({
               ))}
 
               <td>
+                {onPdf && (
+                  <button
+                    onClick={() => onPdf(item)}
+                  >
+                    PDF
+                  </button>
+                )}
                 <button onClick={() => onEdit(item)}>
                   Editar
                 </button>

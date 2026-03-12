@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import GuiaAbastecimento
 
-
 class GuiaAbastecimentoSerializer(serializers.ModelSerializer):
     condutor_nome = serializers.CharField(
         source="condutor.nome_completo",
@@ -20,24 +19,14 @@ class GuiaAbastecimentoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = GuiaAbastecimento
-        fields = [
-            "id",
-            "data_emissao",
-            "tipo_servico",
-            "tipo_combustivel",
-            "qtd_combustivel",
-            "qtd_oleo_lubrificante",
-            "hodometro",
-            "observacao",
-
-            "condutor",
-            "instituicao",
-            "rota",
-            "secretaria",
-            "usuario",
-            "veiculo",
-
-            "condutor_nome",
-            "veiculo_placa",
-            "instituicao_nome",
-        ]
+        fields = "__all__"
+        
+    # Quando o frontend consultar os dados, o DRF vai "expandir" as chaves estrangeiras
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        # Trazendo dados aninhados legíveis em vez de apenas IDs
+        response['condutor_nome'] = instance.condutor.nome_completo if instance.condutor else None
+        response['veiculo_placa'] = instance.veiculo.placa if instance.veiculo else None
+        response['secretaria_sigla'] = instance.secretaria.sigla if instance.secretaria else None
+        response['instituicao_nome'] = instance.instituicao.nome if instance.instituicao else None
+        return response

@@ -13,7 +13,7 @@ export interface Instituicao {
   id?: number
   nome: string
   tipo: string
-  rota: number
+  rota: number | null
   secretaria: number
 }
 
@@ -35,9 +35,11 @@ export interface Veiculo {
 
 export interface Usuario {
   id?: number
-  nome: string
+  username: string
+  first_name?: string
+  last_name?: string
   cpf: string
-  senha?: string
+  password?: string
 }
 
 export interface GuiaAbastecimento {
@@ -49,17 +51,17 @@ export interface GuiaAbastecimento {
   // Combustível
   tipo_combustivel: string
   qtd_combustivel: number
-  qtd_oleo_lubrificante: number
+  qtd_oleo_lubrificante?: number | null
 
   // Quilometragem
-  hodometro: number
+  hodometro?: number | null
   observacao: string
   
   // Foreign Keys
   condutor: number
   instituicao: number
-  rota: number
+  rota?: number | null
   secretaria: number
   usuario: number
-  veiculo: number
+  veiculo?: number | null
 }

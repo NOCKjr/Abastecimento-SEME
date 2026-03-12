@@ -11,14 +11,26 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
     {
       name: "tipo_servico",
       label: "Tipo de Serviço",
-      type: "text",
-      required: true
+      type: "select",
+      required: true,
+      options: [
+        { label: "Caminhonete", value: "CAMINHONETE" },
+        { label: "Ônibus", value: "ONIBUS" },
+        { label: "Roçagem", value: "ROCAGEM" },
+        { label: "Motocicleta", value: "MOTOCICLETA" },
+        { label: "Barqueiro", value: "BARQUEIRO" },
+      ]
     },
     {
       name: "tipo_combustivel",
       label: "Tipo de Combustível",
-      type: "text",
-      required: true
+      type: "select",
+      required: true,
+      options: [
+        { label: "Gasolina", value: "GASOLINA" },
+        { label: "Diesel Comum", value: "DIESEL" },
+        { label: "Diesel S10", value: "DIESEL_S10" },
+      ]
     },
     {
       name: "qtd_combustivel",
@@ -30,7 +42,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       name: "qtd_oleo_lubrificante",
       label: "Quantidade de Óleo Lubrificante",
       type: "number",
-      required: true
+      required: false
     },
     {
       name: "hodometro",
@@ -52,7 +64,9 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: true,
       endpoint: "frota/condutores/",
-      optionLabel: "nome_completo"
+      optionLabel: "nome_completo",
+      dependsOn: "secretaria",
+      dependsOnParam: "secretaria"
     },
     {
       name: "instituicao",
@@ -60,15 +74,17 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: true,
       endpoint: "cadastros/instituicoes/",
-      optionLabel: "nome"
+      optionLabel: "nome",
+      dependsOn: "secretaria",
+      dependsOnParam: "secretaria"
     },
     {
       name: "rota",
       label: "Rota",
       type: "select",
-      required: true,
+      required: false,
       endpoint: "cadastros/rotas/",
-      optionLabel: "sigla"
+      optionLabel: "descricao"
     },
     {
       name: "secretaria",
@@ -84,15 +100,17 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: true,
       endpoint: "usuarios/",
-      optionLabel: "nome"
+      optionLabel: "username"
     },
     {
       name: "veiculo",
       label: "Veículo",
       type: "select",
-      required: true,
+      required: false,
       endpoint: "frota/veiculos/",
-      optionLabel: "placa"
+      optionLabel: "placa",
+      dependsOn: "secretaria",
+      dependsOnParam: "secretaria"
     },
   ]
 }

@@ -25,6 +25,8 @@ export interface FormField {
   optionLabel?: string
   optionValue?: string
   hidden?:boolean
+  dependsOn?: string        // Nome do campo que controla o filtro deste select.
+  dependsOnParam?: string   // Nome do query param para o filtro. Se omitido, usa dependsOn.
 }
 
 export interface FormSchema {
