@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { instituicaoApi } from "../../../api/instituicaoApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Instituicao } from "../../../types/models"
 import { instituicaoFormSchema } from "../../../forms/instituicao.schema"
 
 export default function InstituicaoListPage() {
+
+  const navigate = useNavigate()
 
   const [instituicaos, setInstituicoes] =
     useState<Instituicao[]>([])
@@ -44,10 +46,9 @@ export default function InstituicaoListPage() {
       <DataTable
         data={instituicaos}
         schema={instituicaoFormSchema}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.INSTITUICAO_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(
+          ROUTES.INSTITUICAO_EDIT(item.id!)
+        )}
         onDelete={handleDelete}
       />
 

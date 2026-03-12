@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { rotaApi } from "../../../api/rotaApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Rota } from "../../../types/models"
 import { rotaFormSchema } from "../../../forms/rota.schema"
 
 export default function RotaListPage() {
+
+  const navigate = useNavigate()
 
   const [rotas, setRotas] =
     useState<Rota[]>([])
@@ -44,10 +46,7 @@ export default function RotaListPage() {
       <DataTable
         data={rotas}
         schema={rotaFormSchema}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.ROTA_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(ROUTES.ROTA_EDIT(item.id!))}
         onDelete={handleDelete}
       />
 

@@ -4,13 +4,15 @@ import axios from "axios"
 import DataTable from "../../../components/DataTable"
 import { guiaAbastecimentoApi } from "../../../api/guiaAbastecimentoApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { GuiaAbastecimento } from "../../../types/models"
 import { guiaAbastecimentoFormSchema } from "../../../forms/guiaAbastecimento.schema"
 
 export default function GuiaAbastecimentoListPage() {
+
+  const navigate = useNavigate()
 
   const [guiasAbastecimento, setGuiasAbastecimento] =
     useState<GuiaAbastecimento[]>([])
@@ -77,10 +79,9 @@ export default function GuiaAbastecimentoListPage() {
         data={guiasAbastecimento}
         schema={guiaAbastecimentoFormSchema}
         onPdf={handlePdf}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.GUIA_ABASTECIMENTO_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(
+          ROUTES.GUIA_ABASTECIMENTO_EDIT(item.id!)
+        )}
         onDelete={handleDelete}
       />
 

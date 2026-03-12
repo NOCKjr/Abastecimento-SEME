@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import DataTable from "../../components/DataTable"
 import { usuarioApi } from "../../api/usuarioApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../routes/routes"
 
 import type { Usuario } from "../../types/models"
 import { usuarioFormSchema } from "../../forms/usuario.schema"
 
 export default function UsuarioListPage() {
+
+  const navigate = useNavigate()
 
   const [usuarios, setUsuarios] =
     useState<Usuario[]>([])
@@ -44,10 +46,9 @@ export default function UsuarioListPage() {
       <DataTable
         data={usuarios}
         schema={usuarioFormSchema}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.USUARIO_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(
+          ROUTES.USUARIO_EDIT(item.id!)
+        )}
         onDelete={handleDelete}
       />
 

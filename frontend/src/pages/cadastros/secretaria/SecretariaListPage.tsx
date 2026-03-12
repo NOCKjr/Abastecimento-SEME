@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { secretariaApi } from "../../../api/secretariaApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Secretaria } from "../../../types/models"
 import { secretariaFormSchema } from "../../../forms/secretaria.schema"
 
 export default function SecretariaListPage() {
+
+  const navigate = useNavigate()
 
   const [secretarias, setSecretarias] =
     useState<Secretaria[]>([])
@@ -44,10 +46,9 @@ export default function SecretariaListPage() {
       <DataTable
         data={secretarias}
         schema={secretariaFormSchema}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.SECRETARIA_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(
+          ROUTES.SECRETARIA_EDIT(item.id!)
+        )}
         onDelete={handleDelete}
       />
 

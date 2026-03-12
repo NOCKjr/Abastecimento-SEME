@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { condutorApi } from "../../../api/condutorApi"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Condutor } from "../../../types/models"
 import { condutorFormSchema } from "../../../forms/condutor.schema"
 
 export default function CondutorListPage() {
+
+  const navigate = useNavigate()
 
   const [condutors, setInstituicoes] =
     useState<Condutor[]>([])
@@ -44,10 +46,9 @@ export default function CondutorListPage() {
       <DataTable
         data={condutors}
         schema={condutorFormSchema}
-        onEdit={(item) =>
-          window.location.href =
-            ROUTES.CONDUTOR_EDIT(item.id!)
-        }
+        onEdit={(item) => navigate(
+          ROUTES.CONDUTOR_EDIT(item.id!)
+        )}
         onDelete={handleDelete}
       />
 
