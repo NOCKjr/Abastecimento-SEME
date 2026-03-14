@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../../components/DynamicForm"
 import { veiculoFormSchema } from "../../../forms/veiculo.schema"
 import { veiculoApi } from "../../../api/veiculoApi"
+import "../../../assets/css/FormPage.css"
 
 import type { Veiculo } from "../../../types/models"
 
@@ -44,17 +45,21 @@ export default function VeiculoFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Novo"} Veículo
-      </h2>
+      <div className="form-header veiculo">
+        <h2>
+          {id ? "Editar" : "Novo"} Veículo
+        </h2>
+      </div>
 
-      <DynamicForm<Veiculo>
-        schema={veiculoFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Veiculo>
+          schema={veiculoFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

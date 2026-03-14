@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../../components/DynamicForm"
 import { condutorFormSchema } from "../../../forms/condutor.schema"
 import { condutorApi } from "../../../api/condutorApi"
+import "../../../assets/css/FormPage.css"
 
 import type { Condutor } from "../../../types/models"
 
@@ -44,17 +45,21 @@ export default function CondutorFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Novo"} Condutor
-      </h2>
+      <div className="form-header condutor">
+        <h2>
+          {id ? "Editar" : "Novo"} Condutor
+        </h2>
+      </div>
 
-      <DynamicForm<Condutor>
-        schema={condutorFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Condutor>
+          schema={condutorFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

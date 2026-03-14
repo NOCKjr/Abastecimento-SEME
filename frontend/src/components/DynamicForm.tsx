@@ -201,16 +201,19 @@ export default function DynamicForm<T>({
       case "textarea":
         return (
           <textarea
+            className="form-textarea"
             name={field.name}
             required={field.required}
             value={String(getInputValue(field.name))}
             onChange={handleChange}
+            placeholder={field.placeholder}
           />
         )
 
       case "select":
         return (
           <select
+            className="form-select"
             name={field.name}
             required={field.required}
             value={String(getInputValue(field.name))}
@@ -233,6 +236,7 @@ export default function DynamicForm<T>({
         return (
           <input
             type="checkbox"
+            className="form-input"
             name={field.name}
             checked={Boolean((formData as Record<string, unknown>)[field.name])}
             onChange={handleChange}
@@ -242,11 +246,13 @@ export default function DynamicForm<T>({
       default:
         return (
           <input
+            className="form-input"
             type={field.type}
             name={field.name}
             required={field.required}
             value={String(getInputValue(field.name))}
             onChange={handleChange}
+            placeholder={field.placeholder}
           />
         )
     }
@@ -259,10 +265,10 @@ export default function DynamicForm<T>({
 
         <div
           key={field.name}
-          className="form-field"
+          className="form-group"
         >
 
-          <label>
+          <label className="form-label">
             {field.label}
           </label>
 
@@ -272,9 +278,11 @@ export default function DynamicForm<T>({
 
       ))}
 
-      <button type="submit">
-        Salvar
-      </button>
+      <div className="form-actions">
+        <button type="submit" className="btn btn-primary">
+          💾 Salvar
+        </button>
+      </div>
 
     </form>
   )

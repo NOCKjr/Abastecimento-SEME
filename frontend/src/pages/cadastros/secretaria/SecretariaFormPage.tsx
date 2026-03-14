@@ -5,6 +5,7 @@ import DynamicForm from "../../../components/DynamicForm"
 import { secretariaFormSchema } from "../../../forms/secretaria.schema"
 
 import { secretariaApi } from "../../../api/secretariaApi"
+import "../../../assets/css/FormPage.css"
 
 import type { Secretaria } from "../../../types/models"
 
@@ -45,17 +46,21 @@ export default function SecretariaFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Nova"} Secretaria
-      </h2>
+      <div className="form-header secretaria">
+        <h2>
+          {id ? "Editar" : "Nova"} Secretaria
+        </h2>
+      </div>
 
-      <DynamicForm<Secretaria>
-        schema={secretariaFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Secretaria>
+          schema={secretariaFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

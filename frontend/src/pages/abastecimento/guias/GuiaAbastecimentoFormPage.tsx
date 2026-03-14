@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../../components/DynamicForm"
 import { guiaAbastecimentoFormSchema } from "../../../forms/guiaAbastecimento.schema"
 import { guiaAbastecimentoApi } from "../../../api/guiaAbastecimentoApi"
+import "../../../assets/css/FormPage.css"
 
 import type { GuiaAbastecimento } from "../../../types/models"
 
@@ -44,17 +45,21 @@ export default function GuiaAbastecimentoFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Nova"} Guia de Abastecimento
-      </h2>
+      <div className="form-header">
+        <h2>
+          {id ? "Editar" : "Nova"} Guia de Abastecimento
+        </h2>
+      </div>
 
-      <DynamicForm<GuiaAbastecimento>
-        schema={guiaAbastecimentoFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<GuiaAbastecimento>
+          schema={guiaAbastecimentoFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

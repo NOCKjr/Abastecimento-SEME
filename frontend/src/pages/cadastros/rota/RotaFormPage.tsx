@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../../components/DynamicForm"
 import { rotaFormSchema } from "../../../forms/rota.schema"
 import { rotaApi } from "../../../api/rotaApi"
+import "../../../assets/css/FormPage.css"
 
 import type { Rota } from "../../../types/models"
 
@@ -44,17 +45,21 @@ export default function RotaFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Nova"} Rota
-      </h2>
+      <div className="form-header rota">
+        <h2>
+          {id ? "Editar" : "Nova"} Rota
+        </h2>
+      </div>
 
-      <DynamicForm<Rota>
-        schema={rotaFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Rota>
+          schema={rotaFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

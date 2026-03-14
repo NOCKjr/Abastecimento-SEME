@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../components/DynamicForm"
 import { usuarioFormSchema } from "../../forms/usuario.schema"
 import { usuarioApi } from "../../api/usuarioApi"
+import "../../assets/css/FormPage.css"
 
 import type { Usuario } from "../../types/models"
 
@@ -44,17 +45,21 @@ export default function UsuarioFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Novo"} Usuário
-      </h2>
+      <div className="form-header usuario">
+        <h2>
+          {id ? "Editar" : "Novo"} Usuário
+        </h2>
+      </div>
 
-      <DynamicForm<Usuario>
-        schema={usuarioFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Usuario>
+          schema={usuarioFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )

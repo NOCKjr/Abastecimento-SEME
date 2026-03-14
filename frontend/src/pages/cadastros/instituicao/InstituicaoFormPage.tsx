@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import DynamicForm from "../../../components/DynamicForm"
 import { instituicaoFormSchema } from "../../../forms/instituicao.schema"
 import { instituicaoApi } from "../../../api/instituicaoApi"
+import "../../../assets/css/FormPage.css"
 
 import type { Instituicao } from "../../../types/models"
 
@@ -44,17 +45,21 @@ export default function InstituicaoFormPage() {
 
   return (
 
-    <div>
+    <div className="form-page">
 
-      <h2>
-        {id ? "Editar" : "Nova"} Instituicao
-      </h2>
+      <div className="form-header instituicao">
+        <h2>
+          {id ? "Editar" : "Nova"} Instituição
+        </h2>
+      </div>
 
-      <DynamicForm<Instituicao>
-        schema={instituicaoFormSchema}
-        initialData={data || {}}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <DynamicForm<Instituicao>
+          schema={instituicaoFormSchema}
+          initialData={data || {}}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
     </div>
   )
