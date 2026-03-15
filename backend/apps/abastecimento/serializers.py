@@ -20,6 +20,9 @@ class GuiaAbastecimentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = GuiaAbastecimento
         fields = "__all__"
+        extra_kwargs = {
+            "usuario": {"read_only": True},
+        }
         
     # Quando o frontend consultar os dados, o DRF vai "expandir" as chaves estrangeiras
     def to_representation(self, instance):

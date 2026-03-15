@@ -2,12 +2,14 @@ import logging
 from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from .models import GuiaAbastecimento
 from .pdf import gerar_pdf_guia
 from .serializers import GuiaAbastecimentoSerializer
+from apps.usuarios.permissions import GuiaAbastecimentoPermission
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +17,10 @@ logger = logging.getLogger(__name__)
 class GuiaAbastecimentoViewSet(ModelViewSet):
     queryset = GuiaAbastecimento.objects.all()
     serializer_class = GuiaAbastecimentoSerializer
+    permission_classes = [IsAuthenticated, GuiaAbastecimentoPermission]
+
+    def perform_create(self, serializer):
+        serializer.save(usuario=self.request.user)
 
     @action(detail=True, methods=["get"])
     def pdf(self, request, pk=None):
