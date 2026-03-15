@@ -84,6 +84,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated', # Bloqueia tudo por padrão
     ),
+    'EXCEPTION_HANDLER': 'api.exception_handler.custom_exception_handler',
 }
 
 # ======================

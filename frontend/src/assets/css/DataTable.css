@@ -192,3 +192,75 @@
   border: 1px solid #e2e8f0;
   background: #fff;
 }
+
+.dt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 999;
+}
+
+.dt-modal {
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+  padding: 16px 16px;
+}
+
+.dt-modal-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.dt-modal-text {
+  margin-top: 8px;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.dt-modal-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  background: #fee2e2;
+  color: #7f1d1d;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.dt-modal-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.dt-modal-actions button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.dt-modal-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dt-modal-actions .dt-modal-danger {
+  border-color: rgba(220, 38, 38, 0.35);
+  background: rgba(220, 38, 38, 0.10);
+  color: #b91c1c;
+}

@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from "react"
 import { client } from "../api/client"
 import type { FormField, FormSchema } from "../types/form"
 import "../assets/css/DataTable.css"
+import { getApiErrorMessage } from "../api/errorMessage"
 
 interface Props<T> {
   data: T[]
   schema: FormSchema
   onEdit: (item: T) => void
-  onDelete: (item: T) => void
-  onPdf?: (item: T) => void
+  onDelete: (item: T) => void | Promise<void>
+  onPdf?: (item: T) => void | Promise<void>
   canEdit?: boolean
   canDelete?: boolean
   pageSize?: number
@@ -46,6 +47,9 @@ export default function DataTable<T extends { id?: number }>({
 
   const [page, setPage] = useState(1)
   const [rowsPerPage, setRowsPerPage] = useState(pageSize)
+  const [deleteTarget, setDeleteTarget] = useState<T | null>(null)
+  const [deleteLoading, setDeleteLoading] = useState(false)
+  const [deleteError, setDeleteError] = useState("")
 
   const fields = schema.fields.filter((f) => !f.hidden)
 
@@ -192,6 +196,22 @@ export default function DataTable<T extends { id?: number }>({
     if (safePage !== page) setPage(safePage)
   }, [safePage, page])
 
+  const deleteId = (deleteTarget as any)?.id as number | undefined
+
+  async function confirmDelete() {
+    if (!deleteTarget) return
+    setDeleteError("")
+    setDeleteLoading(true)
+    try {
+      await Promise.resolve(onDelete(deleteTarget))
+      setDeleteTarget(null)
+    } catch (err: unknown) {
+      setDeleteError(getApiErrorMessage(err, "Falha ao excluir."))
+    } finally {
+      setDeleteLoading(false)
+    }
+  }
+
   return (
     <div className="datatable">
       <div className="datatable-toolbar">
@@ -257,7 +277,10 @@ export default function DataTable<T extends { id?: number }>({
                         <button
                           type="button"
                           className="dt-action dt-action-delete"
-                          onClick={() => onDelete(item)}
+                          onClick={() => {
+                            setDeleteError("")
+                            setDeleteTarget(item)
+                          }}
                           aria-label="Excluir"
                           title="Excluir"
                         >
@@ -330,6 +353,37 @@ export default function DataTable<T extends { id?: number }>({
           </div>
         </div>
       </div>
+
+      {deleteTarget && (
+        <div className="dt-modal-backdrop" role="dialog" aria-modal="true">
+          <div className="dt-modal">
+            <div className="dt-modal-title">Confirmar exclusão</div>
+            <div className="dt-modal-text">
+              Tem certeza que deseja excluir este registro{deleteId ? ` #${deleteId}` : ""}?
+            </div>
+
+            {deleteError && <div className="dt-modal-error">{deleteError}</div>}
+
+            <div className="dt-modal-actions">
+              <button
+                type="button"
+                onClick={() => setDeleteTarget(null)}
+                disabled={deleteLoading}
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                className="dt-modal-danger"
+                onClick={confirmDelete}
+                disabled={deleteLoading}
+              >
+                {deleteLoading ? "Excluindo..." : "Excluir"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
