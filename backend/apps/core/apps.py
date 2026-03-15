@@ -6,5 +6,7 @@ class CoreConfig(AppConfig):
     name = "apps.core"
 
     def ready(self):
-        from . import signals  # noqa: F401
+        from . import signals
+
+        signals.connect_model_cache_invalidation_signals()
 

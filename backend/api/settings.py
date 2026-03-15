@@ -174,3 +174,14 @@ CORS_ALLOW_ALL_ORIGINS = True
 # ======================
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
+
+# ======================
+# CACHE
+# ======================
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "abastecimento-seme",
+    }
+}

@@ -10,11 +10,12 @@ from .models import GuiaAbastecimento
 from .pdf import gerar_pdf_guia
 from .serializers import GuiaAbastecimentoSerializer
 from apps.usuarios.permissions import GuiaAbastecimentoPermission
+from apps.core.viewset_cache import ModelViewSetCacheMixin
 
 logger = logging.getLogger(__name__)
 
 
-class GuiaAbastecimentoViewSet(ModelViewSet):
+class GuiaAbastecimentoViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = GuiaAbastecimento.objects.all()
     serializer_class = GuiaAbastecimentoSerializer
     permission_classes = [IsAuthenticated, GuiaAbastecimentoPermission]

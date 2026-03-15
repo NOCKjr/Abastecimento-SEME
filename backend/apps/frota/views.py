@@ -7,9 +7,10 @@ from .models import Condutor, Veiculo, Lotacao
 from .serializers import VeiculoSerializer, CondutorSerializer, LotacaoSerializer
 from apps.usuarios.permissions import FrotaPermission
 import datetime
+from apps.core.viewset_cache import ModelViewSetCacheMixin
 
 
-class VeiculoViewSet(ModelViewSet):
+class VeiculoViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Veiculo.objects.all()
     serializer_class = VeiculoSerializer
     permission_classes = [IsAuthenticated, FrotaPermission]
@@ -22,7 +23,7 @@ class VeiculoViewSet(ModelViewSet):
         return queryset
 
 
-class CondutorViewSet(ModelViewSet):
+class CondutorViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Condutor.objects.all()
     serializer_class = CondutorSerializer
     permission_classes = [IsAuthenticated, FrotaPermission]
@@ -75,7 +76,7 @@ class CondutorViewSet(ModelViewSet):
         return Response({"lotacao": LotacaoSerializer(lotacao).data})
 
 
-class LotacaoViewSet(ModelViewSet):
+class LotacaoViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Lotacao.objects.all()
     serializer_class = LotacaoSerializer
     permission_classes = [IsAuthenticated, FrotaPermission]

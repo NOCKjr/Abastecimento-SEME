@@ -5,15 +5,16 @@ from .serializers import SecretariaSerializer, RotaSerializer, InstituicaoSerial
 from apps.usuarios.permissions import CadastrosPermission
 from apps.frota.models import Lotacao
 import datetime
+from apps.core.viewset_cache import ModelViewSetCacheMixin
 
 
-class SecretariaViewSet(ModelViewSet):
+class SecretariaViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Secretaria.objects.all()
     serializer_class = SecretariaSerializer
     permission_classes = [IsAuthenticated, CadastrosPermission]
 
 
-class RotaViewSet(ModelViewSet):
+class RotaViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Rota.objects.all()
     serializer_class = RotaSerializer
     permission_classes = [IsAuthenticated, CadastrosPermission]
@@ -55,7 +56,7 @@ class RotaViewSet(ModelViewSet):
         return queryset
 
 
-class InstituicaoViewSet(ModelViewSet):
+class InstituicaoViewSet(ModelViewSetCacheMixin, ModelViewSet):
     queryset = Instituicao.objects.all()
     serializer_class = InstituicaoSerializer
     permission_classes = [IsAuthenticated, CadastrosPermission]
