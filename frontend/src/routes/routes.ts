@@ -4,6 +4,8 @@ export const ROUTES = {
 
   PERFIL_EDIT: "/perfil/editar",
 
+  SISTEMA_DB: "/sistema/banco",
+
   CADASTROS: "/cadastros",
 
   // -----------------------

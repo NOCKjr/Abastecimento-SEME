@@ -112,6 +112,17 @@ export default function Layout() {
               </>
             )}
 
+            {me?.is_superuser && (
+              <li className="nav-item">
+                <button className="nav-dropdown-btn">Sistema</button>
+                <div className="nav-dropdown">
+                  <Link to="/sistema/banco" className="nav-dropdown-link">
+                    Banco de Dados
+                  </Link>
+                </div>
+              </li>
+            )}
+
             <li className="nav-item nav-account">
               <button className="nav-dropdown-btn nav-account-btn">
                 {displayName}

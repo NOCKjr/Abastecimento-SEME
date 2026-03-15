@@ -26,6 +26,7 @@ import { RequirePermission } from "./components/RequirePermission";
 import UsuariosPermissoesPage from "./pages/usuarios/UsuariosPermissoesPage";
 import PerfilPage from "./pages/perfil/PerfilPage";
 import PerfilEditPage from "./pages/perfil/PerfilEditPage";
+import DatabaseDangerPage from "./pages/sistema/DatabaseDangerPage";
 
 function FallbackRedirect() {
   return isAuthenticated() ? (
@@ -50,6 +51,15 @@ function App() {
 
             <Route path="perfil" element={<PerfilPage />} />
             <Route path="perfil/editar" element={<PerfilEditPage />} />
+
+            <Route
+              path="sistema/banco"
+              element={
+                <RequirePermission allow={(me) => Boolean(me.is_superuser)}>
+                  <DatabaseDangerPage />
+                </RequirePermission>
+              }
+            />
 
             <Route path="abastecimento">
               <Route

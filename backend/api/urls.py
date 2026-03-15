@@ -9,6 +9,7 @@ urlpatterns = [
     path('hello/', hello),
 
     # APIs organizadas por domínio
+    path('api/core/', include('apps.core.urls')),
     path('api/usuarios/', include('apps.usuarios.urls')),
     path('api/cadastros/', include('apps.cadastros.urls')),
     path('api/frota/', include('apps.frota.urls')),
