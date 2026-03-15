@@ -32,7 +32,7 @@ def seed_default_data_force(request):
 @api_view(["POST"])
 @permission_classes([IsSuperAdmin])
 def reset_db_and_seed_default_data(request):
-    call_command("flush", interactive=False, verbosity=0)
+    call_command("flush", interactive=False, verbosity=0, allow_cascade=True)
     call_command("migrate", verbosity=0)
     seed_force(verbosity=0)
     return Response({"detail": "Banco resetado e seed carregado."})
@@ -41,7 +41,7 @@ def reset_db_and_seed_default_data(request):
 @api_view(["POST"])
 @permission_classes([IsSuperAdmin])
 def flush_db_keep_superadmin(request):
-    call_command("flush", interactive=False, verbosity=0)
+    call_command("flush", interactive=False, verbosity=0, allow_cascade=True)
     ensure_superadmin()
     return Response({"detail": "Banco apagado (mantendo superadmin)."})
 
