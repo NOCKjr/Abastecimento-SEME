@@ -18,11 +18,28 @@ export const usuarioApi = {
   },
 
   atualizar(id: number, data: Usuario) {
+    console.log("atualizar user: ", data);
     return client.put(`${API_URL}/${id}/`, data)
   },
 
   deletar(id: number) {
     return client.delete(`${API_URL}/${id}/`)
-  }
+  },
+
+  me() {
+    return client.get<Usuario>(`${API_URL}/me/`)
+  },
+
+  listarPermissoes() {
+    return client.get<Usuario[]>(`${API_URL}/permissions/`)
+  },
+
+  atualizarPermissoes(id: number, data: Partial<Usuario>) {
+    return client.patch<Usuario>(`${API_URL}/${id}/permissions/`, data)
+  },
+
+  registrar(data: Pick<Usuario, "cpf" | "password" | "first_name" | "last_name" | "email">) {
+    return client.post<Usuario>(`${API_URL}/register/`, data)
+  },
 
 }

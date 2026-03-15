@@ -35,11 +35,20 @@ export interface Veiculo {
 
 export interface Usuario {
   id?: number
-  username: string
   first_name?: string
   last_name?: string
+  email?: string
   cpf: string
   password?: string
+
+  is_staff?: boolean
+  is_superuser?: boolean
+
+  can_write_cadastros?: boolean
+  can_write_frota?: boolean
+  can_create_guia_abastecimento?: boolean
+  can_edit_guia_abastecimento?: boolean
+  can_delete_guia_abastecimento?: boolean
 }
 
 export interface GuiaAbastecimento {
@@ -62,6 +71,6 @@ export interface GuiaAbastecimento {
   instituicao: number
   rota?: number | null
   secretaria: number
-  usuario: number
+  usuario?: number
   veiculo?: number | null
 }

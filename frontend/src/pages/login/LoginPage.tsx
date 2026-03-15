@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginService } from '../../api/login'; 
 import { isAuthenticated } from '../../auth/auth';
+import { getApiErrorMessage } from '../../api/errorMessage';
 
 export const LoginPage = () => {
   const [cpf, setCpf] = useState('');
@@ -34,8 +35,7 @@ export const LoginPage = () => {
       // Se o login der certo, redireciona para a home
       navigate('/home', { replace: true });
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Falha ao realizar login.";
-      setErrorMsg(message);
+      setErrorMsg(getApiErrorMessage(err, "Falha ao realizar login."));
     } finally {
       setLoading(false);
     }
@@ -80,6 +80,10 @@ export const LoginPage = () => {
         >
           {loading ? 'Autenticando...' : 'Entrar'}
         </button>
+
+        <p style={styles.smallText}>
+          Não tem cadastro? <Link to="/register">Criar conta</Link>
+        </p>
       </form>
     </div>
   );
@@ -92,5 +96,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   inputGroup: { marginBottom: '1rem', display: 'flex', flexDirection: 'column' },
   error: { color: 'red', fontSize: '0.85rem', marginBottom: '1rem' },
   button: { padding: '0.8rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' },
-  buttonDisabled: { padding: '0.8rem', backgroundColor: '#ccc', border: 'none', borderRadius: '4px', cursor: 'not-allowed' }
+  buttonDisabled: { padding: '0.8rem', backgroundColor: '#ccc', border: 'none', borderRadius: '4px', cursor: 'not-allowed' },
+  smallText: { marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' },
 };

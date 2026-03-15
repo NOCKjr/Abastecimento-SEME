@@ -1,18 +1,32 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "../assets/css/Layout.css";
+import { usuarioApi } from "../api/usuarioApi";
+import type { Usuario } from "../types/models";
+import { logout } from "../auth/auth";
 
 export default function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [me, setMe] = useState<Usuario | null>(null);
 
   const isActive = (path: string) => location.pathname === path;
-  const isActiveGroup = (startPath: string) => location.pathname.startsWith(startPath);
+  const isActiveGroup = (startPath: string) =>
+    location.pathname.startsWith(startPath);
+
+  useEffect(() => {
+    usuarioApi
+      .me()
+      .then((res) => setMe(res.data))
+      .catch(() => setMe(null));
+  }, []);
 
   return (
     <div className="layout-container">
       <nav className="navbar">
         <div className="navbar-content">
           <Link to="/home" className="brand-logo">
-            📦 SEME
+            SEME
           </Link>
 
           <ul className="nav-menu">
@@ -28,16 +42,16 @@ export default function Layout() {
             <li className="nav-item">
               <Link
                 to="/abastecimento/guias"
-                className={`nav-link ${isActiveGroup("/abastecimento") ? "active" : ""}`}
+                className={`nav-link ${
+                  isActiveGroup("/abastecimento") ? "active" : ""
+                }`}
               >
                 Abastecimentos
               </Link>
             </li>
 
             <li className="nav-item">
-              <button className="nav-dropdown-btn">
-                Cadastros
-              </button>
+              <button className="nav-dropdown-btn">Cadastros</button>
               <div className="nav-dropdown">
                 <Link to="/cadastros/secretarias" className="nav-dropdown-link">
                   Secretarias
@@ -52,9 +66,7 @@ export default function Layout() {
             </li>
 
             <li className="nav-item">
-              <button className="nav-dropdown-btn">
-                Frota
-              </button>
+              <button className="nav-dropdown-btn">Frota</button>
               <div className="nav-dropdown">
                 <Link to="/frota/condutores" className="nav-dropdown-link">
                   Condutores
@@ -65,13 +77,42 @@ export default function Layout() {
               </div>
             </li>
 
+            {me?.is_staff && (
+              <>
+                <li>
+                  <Link
+                    to="/usuarios"
+                    className={`nav-link ${
+                      isActiveGroup("/usuarios") ? "active" : ""
+                    }`}
+                  >
+                    Usuários
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/usuarios/permissoes"
+                    className={`nav-link ${
+                      isActive("/usuarios/permissoes") ? "active" : ""
+                    }`}
+                  >
+                    Permissões
+                  </Link>
+                </li>
+              </>
+            )}
+
             <li>
-              <Link
-                to="/usuarios"
-                className={`nav-link ${isActiveGroup("/usuarios") ? "active" : ""}`}
+              <button
+                className="nav-link"
+                type="button"
+                onClick={() => {
+                  logout();
+                  navigate("/login", { replace: true });
+                }}
               >
-                Usuários
-              </Link>
+                Sair
+              </button>
             </li>
           </ul>
         </div>
@@ -82,7 +123,9 @@ export default function Layout() {
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 Sistema de Abastecimento SEME. Todos os direitos reservados.</p>
+        <p>
+          &copy; 2026 Sistema de Abastecimento SEME. Todos os direitos reservados.
+        </p>
       </footer>
     </div>
   );

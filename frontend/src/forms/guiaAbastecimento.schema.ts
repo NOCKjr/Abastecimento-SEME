@@ -6,7 +6,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       name: "data_emissao",
       label: "Data",
       type: "date",
-      required: true
+      required: true,
     },
     {
       name: "tipo_servico",
@@ -19,7 +19,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
         { label: "Roçagem", value: "ROCAGEM" },
         { label: "Motocicleta", value: "MOTOCICLETA" },
         { label: "Barqueiro", value: "BARQUEIRO" },
-      ]
+      ],
     },
     {
       name: "tipo_combustivel",
@@ -30,34 +30,33 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
         { label: "Gasolina", value: "GASOLINA" },
         { label: "Diesel Comum", value: "DIESEL" },
         { label: "Diesel S10", value: "DIESEL_S10" },
-      ]
+      ],
     },
     {
       name: "qtd_combustivel",
       label: "Quantidade de Combustível",
       type: "number",
-      required: true
+      required: true,
     },
     {
       name: "qtd_oleo_lubrificante",
       label: "Quantidade de Óleo Lubrificante",
       type: "number",
-      required: false
+      required: false,
     },
     {
       name: "hodometro",
       label: "Hodômetro",
       type: "number",
-      required: false
+      required: false,
     },
     {
       name: "observacao",
       label: "Observação",
       type: "textarea",
-      required: false
+      required: false,
     },
 
-    // IDs de tabelas estrangeiras (Foreign Keys)
     {
       name: "condutor",
       label: "Condutor",
@@ -66,7 +65,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       endpoint: "frota/condutores/",
       optionLabel: "nome_completo",
       dependsOn: "secretaria",
-      dependsOnParam: "secretaria"
+      dependsOnParam: "secretaria",
     },
     {
       name: "instituicao",
@@ -76,7 +75,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       endpoint: "cadastros/instituicoes/",
       optionLabel: "nome",
       dependsOn: "secretaria",
-      dependsOnParam: "secretaria"
+      dependsOnParam: "secretaria",
     },
     {
       name: "rota",
@@ -84,7 +83,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: false,
       endpoint: "cadastros/rotas/",
-      optionLabel: "descricao"
+      optionLabel: "descricao",
     },
     {
       name: "secretaria",
@@ -92,15 +91,7 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       type: "select",
       required: true,
       endpoint: "cadastros/secretarias/",
-      optionLabel: "sigla"
-    },
-    {
-      name: "usuario",
-      label: "Usuário",
-      type: "select",
-      required: true,
-      endpoint: "usuarios/",
-      optionLabel: "username"
+      optionLabel: "sigla",
     },
     {
       name: "veiculo",
@@ -110,7 +101,8 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       endpoint: "frota/veiculos/",
       optionLabel: "placa",
       dependsOn: "secretaria",
-      dependsOnParam: "secretaria"
+      dependsOnParam: "secretaria",
     },
-  ]
+  ],
 }
+
