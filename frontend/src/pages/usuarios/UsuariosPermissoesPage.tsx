@@ -3,6 +3,13 @@ import { usuarioApi } from "../../api/usuarioApi";
 import type { Usuario } from "../../types/models";
 
 type EditedMap = Record<number, Partial<Usuario>>;
+type PermissionKey =
+  | "is_staff"
+  | "can_write_cadastros"
+  | "can_write_frota"
+  | "can_create_guia_abastecimento"
+  | "can_edit_guia_abastecimento"
+  | "can_delete_guia_abastecimento";
 
 export default function UsuariosPermissoesPage() {
   const [me, setMe] = useState<Usuario | null>(null);
@@ -40,11 +47,12 @@ export default function UsuariosPermissoesPage() {
     return [...users].sort((a, b) => (a.id || 0) - (b.id || 0));
   }, [users]);
 
-  const toggle = (id: number, field: keyof Usuario) => {
+  const toggle = (id: number, field: PermissionKey) => {
     setEdited((prev) => {
       const current = prev[id] || {};
-      const base = users.find((u) => u.id === id) || {};
-      const currentValue = (current[field] ?? base[field]) as boolean | undefined;
+      const base = users.find((u) => u.id === id);
+      const baseValue = base?.[field] as boolean | undefined;
+      const currentValue = (current[field] ?? baseValue) as boolean | undefined;
       return {
         ...prev,
         [id]: { ...current, [field]: !currentValue },
@@ -96,7 +104,7 @@ export default function UsuariosPermissoesPage() {
               const patch = u.id ? edited[u.id] : undefined;
               const dirty = Boolean(patch && Object.keys(patch).length > 0);
 
-              const getBool = (field: keyof Usuario) =>
+              const getBool = (field: PermissionKey) =>
                 Boolean((patch?.[field] ?? u[field]) as boolean | undefined);
 
               return (

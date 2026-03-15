@@ -23,6 +23,7 @@ export interface FormField {
   // Por exemplo: identificar a instituição de id=2 pelo nome. Então:
   // optionLabel="nome" e optionValue="Escola Fantasia".
   optionLabel?: string
+  displayLabel?: string
   optionValue?: string
   hidden?:boolean
   dependsOn?: string        // Nome do campo que controla o filtro deste select.

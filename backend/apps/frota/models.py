@@ -1,11 +1,12 @@
 from django.db import models
 
-from apps.cadastros.models import Instituicao, Rota, Secretaria
+from apps.cadastros.models import Rota, Secretaria
 
 
 class Condutor(models.Model):
     nome_completo = models.CharField(max_length=150)
     cpf = models.CharField(max_length=11)
+    ativo = models.BooleanField(default=True)
 
     secretaria = models.ForeignKey(
         Secretaria,
@@ -54,6 +55,7 @@ class Veiculo(models.Model):
 
 class Lotacao(models.Model):
     data = models.DateField()
+    ativa = models.BooleanField(default=True)
 
     condutor = models.ForeignKey(
         Condutor,
@@ -61,23 +63,9 @@ class Lotacao(models.Model):
         related_name="lotacoes",
     )
 
-    secretaria = models.ForeignKey(
-        Secretaria,
-        on_delete=models.PROTECT,
-        related_name="lotacoes",
-    )
-
     rota = models.ForeignKey(
         Rota,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="lotacoes",
-    )
-
-    instituicao = models.ForeignKey(
-        Instituicao,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         null=True,
         blank=True,
         related_name="lotacoes",

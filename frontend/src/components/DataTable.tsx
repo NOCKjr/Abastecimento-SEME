@@ -1,7 +1,6 @@
-// Tabela genérica para listar dados
-
-import { useMemo, useState } from "react"
-import type { FormSchema } from "../types/form"
+import { useEffect, useMemo, useState } from "react"
+import { client } from "../api/client"
+import type { FormField, FormSchema } from "../types/form"
 
 interface Props<T> {
   data: T[]
@@ -11,50 +10,91 @@ interface Props<T> {
   onPdf?: (item: T) => void
 }
 
-export default function DataTable<T extends { id?: number }>(
-  { data, schema, onEdit, onDelete, onPdf }: Props<T>
-) {
+type Option = { label: string; value: string | number }
 
-  // Lista vazia
-  if (!data.length)
-    return <p>Nenhum registro</p>
+const selectCache: Record<string, Option[]> = {}
+
+export default function DataTable<T extends { id?: number }>({
+  data,
+  schema,
+  onEdit,
+  onDelete,
+  onPdf,
+}: Props<T>) {
+  if (!data.length) return <p>Nenhum registro</p>
 
   const [search, setSearch] = useState("")
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortAsc, setSortAsc] = useState(true)
+  const [endpointOptions, setEndpointOptions] = useState<Record<string, Option[]>>(
+    {}
+  )
 
-  const fields = schema.fields.filter(f => !f.hidden)
+  const fields = schema.fields.filter((f) => !f.hidden)
 
-  // Formata o valor, dependento do tipo do campo ('field')
-  function formatValue(field: any, value: any) {
-
-    if (value === null || value === undefined)
-      return ""
-
-    if (field.type === "checkbox")
-      return value ? "Sim" : "Não"
-
-    if (field.type === "date")
-      return new Date(value).toLocaleDateString()
-
-    if (field.type === "select" && field.options) {
-
-      const opt = field.options.find(
-        (o: any) => o.value === value
+  useEffect(() => {
+    async function loadSelectOptions() {
+      const selectFields = fields.filter(
+        (f) => f.type === "select" && f.endpoint && !f.options
       )
 
-      return opt?.label || value
+      for (const field of selectFields) {
+        const endpoint = field.endpoint as string
+        const labelKey = (field.displayLabel || field.optionLabel || "nome") as string
+        const valueKey = (field.optionValue || "id") as string
+        const cacheKey = `${endpoint}|label=${labelKey}|value=${valueKey}`
+        const cached = selectCache[cacheKey]
+        if (cached) {
+          setEndpointOptions((prev) => ({ ...prev, [field.name]: cached }))
+          continue
+        }
+
+        try {
+          const res = await client.get(endpoint)
+          const rows = Array.isArray(res.data) ? res.data : res.data?.results ?? []
+
+          const options: Option[] = (rows as Array<Record<string, unknown>>).map(
+            (item) => ({
+              label: String(item[labelKey] ?? item[valueKey] ?? ""),
+              value: item[valueKey] as string | number,
+            })
+          )
+
+          selectCache[cacheKey] = options
+          setEndpointOptions((prev) => ({ ...prev, [field.name]: options }))
+        } catch {
+          setEndpointOptions((prev) => ({ ...prev, [field.name]: [] }))
+        }
+      }
+    }
+
+    loadSelectOptions()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [schema])
+
+  function formatValue(field: FormField, value: any) {
+    if (value === null || value === undefined) return ""
+
+    if (field.type === "checkbox") return value ? "Sim" : "Não"
+
+    if (field.type === "date") return new Date(value).toLocaleDateString()
+
+    if (field.type === "select") {
+      const options = field.options || endpointOptions[field.name]
+      if (options?.length) {
+        const opt = options.find((o) => String(o.value) === String(value))
+        return opt?.label || value
+      }
     }
 
     return value
   }
 
-  // Dados filtrados. Usa 'useMemo' para evitar recalcular filtros
   const filtered = useMemo(() => {
     let result = data
 
     if (search) {
-      result = result.filter(item =>
+      result = result.filter((item) =>
         Object.values(item as any)
           .join(" ")
           .toLowerCase()
@@ -73,10 +113,8 @@ export default function DataTable<T extends { id?: number }>(
     return result
   }, [data, search, sortField, sortAsc])
 
-  // Ordena os dados com base em 'field'
   function handleSort(field: string) {
-    if (sortField === field)
-      setSortAsc(!sortAsc)
+    if (sortField === field) setSortAsc(!sortAsc)
     else {
       setSortField(field)
       setSortAsc(true)
@@ -88,52 +126,38 @@ export default function DataTable<T extends { id?: number }>(
       <input
         placeholder="Buscar..."
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
-      <table>
 
+      <table>
         <thead>
           <tr>
-            {fields.map(field => (
-                <th
-                  key={field.name}
-                  onClick={() =>
-                    handleSort(field.name)
-                  }
-                  style={{ cursor: "pointer" }}>
-                  {field.label}
-                </th>
-              ))}
+            {fields.map((field) => (
+              <th
+                key={field.name}
+                onClick={() => handleSort(field.name)}
+                style={{ cursor: "pointer" }}
+              >
+                {field.label}
+              </th>
+            ))}
             <th>Ações</th>
           </tr>
         </thead>
 
         <tbody>
-          {filtered.map(item => (
+          {filtered.map((item) => (
             <tr key={item.id}>
-              {fields.map(field => (
+              {fields.map((field) => (
                 <td key={field.name}>
-                  {formatValue(
-                    field,
-                    (item as any)[field.name]
-                  )}
+                  {formatValue(field, (item as any)[field.name])}
                 </td>
               ))}
 
               <td>
-                {onPdf && (
-                  <button
-                    onClick={() => onPdf(item)}
-                  >
-                    PDF
-                  </button>
-                )}
-                <button onClick={() => onEdit(item)}>
-                  Editar
-                </button>
-                <button onClick={() => onDelete(item)}>
-                  Excluir
-                </button>
+                {onPdf && <button onClick={() => onPdf(item)}>PDF</button>}
+                <button onClick={() => onEdit(item)}>Editar</button>
+                <button onClick={() => onDelete(item)}>Excluir</button>
               </td>
             </tr>
           ))}

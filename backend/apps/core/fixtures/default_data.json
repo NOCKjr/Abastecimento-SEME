@@ -15,81 +15,106 @@
     "fields": { "nome": "Secretaria de Saúde", "sigla": "SAUDE" }
   },
 
-  { "model": "cadastros.rota",
-    "pk": 1,
-    "fields": { "descricao": "Rota Centro" }
-  },
-  {
-    "model": "cadastros.rota",
-    "pk": 2,
-    "fields": { "descricao": "Rota Zona Rural Norte" }
-  },
-  {
-    "model": "cadastros.rota",
-    "pk": 3,
-    "fields": { "descricao": "Rota Zona Rural Sul" }
-  },
-
   {
     "model": "cadastros.instituicao",
     "pk": 1,
-    "fields": {
-      "nome": "Escola Municipal João Alves",
-      "tipo": "ESCOLA",
-      "rota": 1,
-      "secretaria": 1
-    }
+    "fields": { "nome": "Escola Municipal João Alves", "tipo": "ESCOLA", "secretaria": 1 }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 2,
-    "fields": {
-      "nome": "Escola Municipal Maria Lima",
-      "tipo": "ESCOLA",
-      "rota": 2,
-      "secretaria": 1
-    }
+    "fields": { "nome": "Escola Municipal Maria Lima", "tipo": "ESCOLA", "secretaria": 1 }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 3,
-    "fields": {
-      "nome": "Centro de Referência (CRAS) Central",
-      "tipo": "OUTRO",
-      "rota": 1,
-      "secretaria": 2
-    }
+    "fields": { "nome": "Centro de Referência (CRAS) Central", "tipo": "OUTRO", "secretaria": 2 }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 4,
+    "fields": { "nome": "Hospital Municipal", "tipo": "HOSPITAL", "secretaria": 3 }
+  },
+
+  {
+    "model": "cadastros.rota",
+    "pk": 1,
     "fields": {
-      "nome": "Hospital Municipal",
-      "tipo": "HOSPITAL",
-      "rota": 1,
-      "secretaria": 3
+      "descricao": "Rota Centro",
+      "secretaria": 1,
+      "instituicao": 1,
+      "distancia_km": "12.50",
+      "consumo_medio": "4.500",
+      "detalhes": "Percurso urbano",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 2,
+    "fields": {
+      "descricao": "Rota Zona Rural Norte",
+      "secretaria": 1,
+      "instituicao": 2,
+      "distancia_km": "48.00",
+      "consumo_medio": "3.800",
+      "detalhes": "Estrada de terra",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 3,
+    "fields": {
+      "descricao": "Rota Zona Rural Sul",
+      "secretaria": 2,
+      "instituicao": 3,
+      "distancia_km": "22.00",
+      "consumo_medio": "5.200",
+      "detalhes": "",
+      "ativa": true
     }
   },
 
   {
     "model": "frota.condutor",
     "pk": 1,
-    "fields": { "nome_completo": "João Batista", "cpf": "12345678901", "secretaria": 1 }
+    "fields": {
+      "nome_completo": "João Batista",
+      "cpf": "12345678901",
+      "secretaria": 1,
+      "ativo": true
+    }
   },
   {
     "model": "frota.condutor",
     "pk": 2,
-    "fields": { "nome_completo": "Carlos Souza", "cpf": "23456789012", "secretaria": 1 }
+    "fields": {
+      "nome_completo": "Carlos Souza",
+      "cpf": "23456789012",
+      "secretaria": 1,
+      "ativo": true
+    }
   },
   {
     "model": "frota.condutor",
     "pk": 3,
-    "fields": { "nome_completo": "Marcos Silva", "cpf": "34567890123", "secretaria": 2 }
+    "fields": {
+      "nome_completo": "Marcos Silva",
+      "cpf": "34567890123",
+      "secretaria": 2,
+      "ativo": true
+    }
   },
   {
     "model": "frota.condutor",
     "pk": 4,
-    "fields": { "nome_completo": "Pedro Oliveira", "cpf": "45678901234", "secretaria": 3 }
+    "fields": {
+      "nome_completo": "Pedro Oliveira",
+      "cpf": "45678901234",
+      "secretaria": 3,
+      "ativo": true
+    }
   },
 
   {
@@ -142,10 +167,9 @@
     "pk": 1,
     "fields": {
       "data": "2026-03-01",
+      "ativa": true,
       "condutor": 1,
-      "secretaria": 1,
       "rota": 1,
-      "instituicao": 1,
       "veiculo": 1
     }
   },
@@ -154,10 +178,9 @@
     "pk": 2,
     "fields": {
       "data": "2026-03-01",
+      "ativa": true,
       "condutor": 2,
-      "secretaria": 1,
       "rota": 2,
-      "instituicao": 2,
       "veiculo": 2
     }
   },
@@ -166,23 +189,11 @@
     "pk": 3,
     "fields": {
       "data": "2026-03-01",
+      "ativa": true,
       "condutor": 3,
-      "secretaria": 2,
-      "rota": 1,
-      "instituicao": 3,
+      "rota": 3,
       "veiculo": 3
-    }
-  },
-  {
-    "model": "frota.lotacao",
-    "pk": 4,
-    "fields": {
-      "data": "2026-03-01",
-      "condutor": 4,
-      "secretaria": 3,
-      "rota": 1,
-      "instituicao": 4,
-      "veiculo": 4
     }
   }
 ]
+

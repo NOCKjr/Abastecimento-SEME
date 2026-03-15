@@ -80,6 +80,12 @@
   transition: all 0.3s ease;
   height: 100%;
   border-bottom: 3px solid transparent;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .nav-link:hover {
@@ -92,6 +98,10 @@
   background-color: rgba(255, 255, 255, 0.15);
   color: white;
   border-bottom-color: white;
+}
+
+.nav-menu li.nav-logout {
+  margin-left: auto;
 }
 
 /* Dropdown Button */
@@ -221,6 +231,10 @@
     width: 100%;
     flex-direction: column;
     gap: 0;
+  }
+
+  .nav-menu li.nav-logout {
+    margin-left: 0;
   }
 
   .nav-menu li,

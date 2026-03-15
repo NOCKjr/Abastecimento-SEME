@@ -16,9 +16,10 @@ class CondutorSerializer(serializers.ModelSerializer):
 class LotacaoSerializer(serializers.ModelSerializer):
     condutor_nome = serializers.CharField(source="condutor.nome_completo", read_only=True)
     veiculo_placa = serializers.CharField(source="veiculo.placa", read_only=True)
-    instituicao_nome = serializers.CharField(source="instituicao.nome", read_only=True)
-    secretaria_sigla = serializers.CharField(source="secretaria.sigla", read_only=True)
     rota_descricao = serializers.CharField(source="rota.descricao", read_only=True)
+    rota_id = serializers.IntegerField(source="rota.id", read_only=True)
+    secretaria_id = serializers.IntegerField(source="rota.secretaria_id", read_only=True)
+    instituicao_id = serializers.IntegerField(source="rota.instituicao_id", read_only=True)
 
     class Meta:
         model = Lotacao
@@ -26,17 +27,16 @@ class LotacaoSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         condutor = attrs.get("condutor") or getattr(self.instance, "condutor", None)
-        secretaria = attrs.get("secretaria") or getattr(self.instance, "secretaria", None)
+        rota = attrs.get("rota") if "rota" in attrs else getattr(self.instance, "rota", None)
         veiculo = attrs.get("veiculo") if "veiculo" in attrs else getattr(self.instance, "veiculo", None)
-        instituicao = attrs.get("instituicao") if "instituicao" in attrs else getattr(self.instance, "instituicao", None)
 
-        if condutor and secretaria and condutor.secretaria_id != secretaria.id:
-            raise serializers.ValidationError({"secretaria": "Secretaria deve ser a mesma do condutor."})
+        if self.instance is None and not rota:
+            raise serializers.ValidationError({"rota": "Este campo é obrigatório."})
 
-        if veiculo and secretaria and veiculo.secretaria_id != secretaria.id:
-            raise serializers.ValidationError({"veiculo": "Veículo deve ser da mesma secretaria da lotação."})
+        if condutor and rota and rota.secretaria_id and condutor.secretaria_id != rota.secretaria_id:
+            raise serializers.ValidationError({"rota": "Rota deve ser da mesma secretaria do condutor."})
 
-        if instituicao and secretaria and instituicao.secretaria_id != secretaria.id:
-            raise serializers.ValidationError({"instituicao": "Instituição deve ser da mesma secretaria da lotação."})
+        if veiculo and condutor and veiculo.secretaria_id != condutor.secretaria_id:
+            raise serializers.ValidationError({"veiculo": "Veículo deve ser da mesma secretaria do condutor."})
 
         return attrs

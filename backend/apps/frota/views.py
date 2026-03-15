@@ -32,6 +32,12 @@ class CondutorViewSet(ModelViewSet):
         secretaria = self.request.query_params.get("secretaria")
         if secretaria:
             queryset = queryset.filter(secretaria_id=secretaria)
+
+        ativo = self.request.query_params.get("ativo")
+        if ativo is None:
+            queryset = queryset.filter(ativo=True)
+        elif ativo != "":
+            queryset = queryset.filter(ativo=str(ativo).lower() in ("1", "true", "t", "yes", "y"))
         return queryset
 
     @action(detail=True, methods=["get"], url_path="lotacao-atual")
@@ -52,7 +58,13 @@ class CondutorViewSet(ModelViewSet):
             target_date = datetime.date.today()
 
         lotacao = (
-            Lotacao.objects.filter(condutor=condutor, data__lte=target_date)
+            Lotacao.objects.filter(
+                condutor=condutor,
+                data__lte=target_date,
+                ativa=True,
+                rota__isnull=False,
+                rota__ativa=True,
+            )
             .order_by("-data", "-id")
             .first()
         )
@@ -73,4 +85,23 @@ class LotacaoViewSet(ModelViewSet):
         condutor = self.request.query_params.get("condutor")
         if condutor:
             queryset = queryset.filter(condutor_id=condutor)
+
+        rota = self.request.query_params.get("rota")
+        if rota:
+            queryset = queryset.filter(rota_id=rota)
+
+        ativa = self.request.query_params.get("ativa")
+        if ativa is None:
+            queryset = queryset.filter(ativa=True)
+        elif ativa != "":
+            queryset = queryset.filter(ativa=str(ativa).lower() in ("1", "true", "t", "yes", "y"))
+
+        raw_data = self.request.query_params.get("data")
+        if raw_data:
+            try:
+                target_date = datetime.date.fromisoformat(raw_data)
+            except ValueError:
+                return queryset.none()
+            queryset = queryset.filter(data__lte=target_date).order_by("-data", "-id")
+
         return queryset

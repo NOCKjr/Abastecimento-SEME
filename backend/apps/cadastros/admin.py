@@ -10,12 +10,13 @@ class SecretariaAdmin(admin.ModelAdmin):
 
 @admin.register(Rota)
 class RotaAdmin(admin.ModelAdmin):
-    list_display = ("id", "descricao")
-    search_fields = ("descricao",)
+    list_display = ("id", "descricao", "secretaria", "instituicao", "ativa")
+    list_filter = ("secretaria", "ativa")
+    search_fields = ("descricao", "detalhes")
 
 
 @admin.register(Instituicao)
 class InstituicaoAdmin(admin.ModelAdmin):
-    list_display = ("id", "nome", "tipo", "rota", "secretaria")
+    list_display = ("id", "nome", "tipo", "secretaria")
     list_filter = ("secretaria", "tipo")
     search_fields = ("nome",)

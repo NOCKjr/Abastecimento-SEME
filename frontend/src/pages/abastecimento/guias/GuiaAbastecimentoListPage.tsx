@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { GuiaAbastecimento } from "../../../types/models"
-import { guiaAbastecimentoFormSchema } from "../../../forms/guiaAbastecimento.schema"
+import { guiaAbastecimentoListSchema } from "../../../forms/guiaAbastecimento.schema"
 
 export default function GuiaAbastecimentoListPage() {
 
@@ -77,7 +77,7 @@ export default function GuiaAbastecimentoListPage() {
 
       <DataTable
         data={guiasAbastecimento}
-        schema={guiaAbastecimentoFormSchema}
+        schema={guiaAbastecimentoListSchema}
         onPdf={handlePdf}
         onEdit={(item) => navigate(
           ROUTES.GUIA_ABASTECIMENTO_EDIT(item.id!)

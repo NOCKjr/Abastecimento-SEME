@@ -16,6 +16,28 @@ class Secretaria(models.Model):
 class Rota(models.Model):
     descricao = models.CharField(max_length=100)
 
+    secretaria = models.ForeignKey(
+        "Secretaria",
+        on_delete=models.PROTECT,
+        related_name="rotas",
+        null=True,
+        blank=True,
+    )
+
+    instituicao = models.ForeignKey(
+        "Instituicao",
+        on_delete=models.PROTECT,
+        related_name="rotas",
+        null=True,
+        blank=True,
+    )
+
+    distancia_km = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    consumo_medio = models.DecimalField(max_digits=8, decimal_places=3, default=0)
+
+    detalhes = models.TextField(blank=True)
+    ativa = models.BooleanField(default=True)
+
     def __str__(self):
         return self.descricao
 
@@ -35,14 +57,6 @@ class Instituicao(models.Model):
 
     nome = models.CharField(max_length=100)
     tipo = models.CharField(max_length=100, choices=TIPO_CHOICES)
-
-    rota = models.ForeignKey(
-        Rota,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="instituicoes"
-    )
 
     secretaria = models.ForeignKey(
         Secretaria,

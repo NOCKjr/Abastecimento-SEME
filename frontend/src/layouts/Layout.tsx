@@ -74,6 +74,9 @@ export default function Layout() {
                 <Link to="/frota/veiculos" className="nav-dropdown-link">
                   Veículos
                 </Link>
+                <Link to="/frota/lotacoes" className="nav-dropdown-link">
+                  Lotação
+                </Link>
               </div>
             </li>
 
@@ -102,7 +105,7 @@ export default function Layout() {
               </>
             )}
 
-            <li>
+            <li className="nav-logout">
               <button
                 className="nav-link"
                 type="button"

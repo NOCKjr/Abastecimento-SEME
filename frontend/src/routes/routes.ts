@@ -58,6 +58,17 @@ export const ROUTES = {
     `/frota/veiculos/editar/${id}`,
 
   // -----------------------
+  // /FROTA/LOTACOES
+  // -----------------------
+
+  LOTACOES: "/frota/lotacoes",
+
+  LOTACOES_CREATE: "/frota/lotacoes/criar",
+
+  LOTACOES_EDIT: (id: number) =>
+    `/frota/lotacoes/editar/${id}`,
+
+  // -----------------------
   // /USUARIOS
   // -----------------------
   

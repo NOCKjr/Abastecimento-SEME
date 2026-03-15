@@ -12,6 +12,8 @@ import CondutorListPage from "./pages/frota/condutor/CondutorListPage";
 import CondutorFormPage from "./pages/frota/condutor/CondutorFormPage";
 import VeiculoListPage from "./pages/frota/veiculo/VeiculoListPage";
 import VeiculoFormPage from "./pages/frota/veiculo/VeiculoFormPage";
+import LotacaoListPage from "./pages/frota/LotacaoListPage";
+import LotacaoFormPage from "./pages/frota/LotacaoFormPage";
 import UsuarioListPage from "./pages/usuarios/UsuarioListPage";
 import UsuarioFormPage from "./pages/usuarios/UsuarioFormPage";
 import GuiaAbastecimentoListPage from "./pages/abastecimento/guias/GuiaAbastecimentoListPage";
@@ -195,6 +197,28 @@ function App() {
                     allow={(me) => Boolean(me.is_staff || me.can_write_frota)}
                   >
                     <VeiculoFormPage />
+                  </RequirePermission>
+                }
+              />
+
+              <Route path="lotacoes" element={<LotacaoListPage />} />
+              <Route
+                path="lotacoes/criar"
+                element={
+                  <RequirePermission
+                    allow={(me) => Boolean(me.is_staff || me.can_write_frota)}
+                  >
+                    <LotacaoFormPage />
+                  </RequirePermission>
+                }
+              />
+              <Route
+                path="lotacoes/editar/:id"
+                element={
+                  <RequirePermission
+                    allow={(me) => Boolean(me.is_staff || me.can_write_frota)}
+                  >
+                    <LotacaoFormPage />
                   </RequirePermission>
                 }
               />

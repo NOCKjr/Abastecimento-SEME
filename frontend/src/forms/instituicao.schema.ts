@@ -21,16 +21,6 @@ export const instituicaoFormSchema: FormSchema = {
       required: true
     },
 
-    // IDs de tabelas estrangeiras (Foreign Keys)
-    {
-      name: "rota",
-      label: "Rota",
-      type: "select",
-      required: true,
-      endpoint: "cadastros/rotas/",
-      optionLabel: "descricao"
-    },
-
     {
       name: "secretaria",
       label: "Secretaria",

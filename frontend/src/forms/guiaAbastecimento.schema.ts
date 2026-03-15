@@ -56,6 +56,9 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       required: false,
       endpoint: "cadastros/rotas/",
       optionLabel: "descricao",
+      displayLabel: "id",
+      dependsOn: "condutor",
+      dependsOnParam: "condutor",
     },
     {
       name: "veiculo",
@@ -101,6 +104,57 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       label: "Observação",
       type: "textarea",
       required: false,
+    },
+  ],
+}
+
+export const guiaAbastecimentoListSchema: FormSchema = {
+  fields: [
+    {
+      name: "secretaria",
+      label: "Secretaria",
+      type: "select",
+      endpoint: "cadastros/secretarias/",
+      optionLabel: "sigla",
+    },
+    {
+      name: "data_emissao",
+      label: "Data",
+      type: "date",
+    },
+    {
+      name: "condutor",
+      label: "Condutor",
+      type: "select",
+      endpoint: "frota/condutores/",
+      optionLabel: "nome_completo",
+    },
+    {
+      name: "rota",
+      label: "Rota",
+      type: "select",
+      endpoint: "cadastros/rotas/",
+      optionLabel: "descricao",
+      displayLabel: "id",
+    },
+    {
+      name: "instituicao",
+      label: "Instituição",
+      type: "select",
+      endpoint: "cadastros/instituicoes/",
+      optionLabel: "nome",
+    },
+    {
+      name: "veiculo",
+      label: "Veículo",
+      type: "select",
+      endpoint: "frota/veiculos/",
+      optionLabel: "placa",
+    },
+    {
+      name: "usuario_nome",
+      label: "Usuário",
+      type: "text",
     },
   ],
 }

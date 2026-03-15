@@ -6,6 +6,7 @@ import { guiaAbastecimentoFormSchema } from "../../../forms/guiaAbastecimento.sc
 import { guiaAbastecimentoApi } from "../../../api/guiaAbastecimentoApi"
 import "../../../assets/css/FormPage.css"
 import { lotacaoApi } from "../../../api/lotacaoApi"
+import { rotaApi } from "../../../api/rotaApi"
 
 import type { GuiaAbastecimento } from "../../../types/models"
 
@@ -84,26 +85,45 @@ export default function GuiaAbastecimentoFormPage() {
           }
           onSubmit={handleSubmit}
           onFieldChange={async (nextData, change) => {
-            const shouldFetch =
-              change.name === "condutor" || change.name === "data_emissao"
-
-            if (!shouldFetch) return
-
             const dataRecord = nextData as Record<string, unknown>
             const condutorId = Number(dataRecord.condutor)
+            const dataEmissao = String(dataRecord.data_emissao || "")
             if (!Number.isFinite(condutorId) || !condutorId) return
 
-            const dataEmissao = String(dataRecord.data_emissao || "")
-            const res = await lotacaoApi.lotacaoAtual(condutorId, dataEmissao || undefined)
-            const lotacao = res.data.lotacao
-            if (!lotacao) return
+            if (change.name === "condutor" || change.name === "data_emissao") {
+              const res = await lotacaoApi.lotacaoAtual(condutorId, dataEmissao || undefined)
+              const lotacao = res.data.lotacao
+              if (!lotacao || lotacao.rota == null) return
 
-            const patch: Partial<GuiaAbastecimento> = {}
-            patch.secretaria = lotacao.secretaria
-            if (lotacao.rota != null) patch.rota = lotacao.rota
-            if (lotacao.instituicao != null) patch.instituicao = lotacao.instituicao
-            if (lotacao.veiculo != null) patch.veiculo = lotacao.veiculo
-            return patch
+              const rotaRes = await rotaApi.buscar(Number(lotacao.rota))
+              const rota = rotaRes.data
+
+              const patch: Partial<GuiaAbastecimento> = {}
+              if (rota.secretaria != null) patch.secretaria = Number(rota.secretaria)
+              if (rota.instituicao != null) patch.instituicao = Number(rota.instituicao)
+              patch.rota = Number(lotacao.rota)
+              if (lotacao.veiculo != null) patch.veiculo = Number(lotacao.veiculo)
+              return patch
+            }
+
+            if (change.name === "rota") {
+              const rotaId = Number(dataRecord.rota)
+              if (!Number.isFinite(rotaId) || !rotaId) return
+
+              const [rotaRes, lotacaoRes] = await Promise.all([
+                rotaApi.buscar(rotaId),
+                lotacaoApi.buscar(condutorId, rotaId, dataEmissao || undefined),
+              ])
+
+              const rota = rotaRes.data
+              const lotacao = lotacaoRes.data?.[0]
+
+              const patch: Partial<GuiaAbastecimento> = {}
+              if (rota.secretaria != null) patch.secretaria = Number(rota.secretaria)
+              if (rota.instituicao != null) patch.instituicao = Number(rota.instituicao)
+              if (lotacao?.veiculo != null) patch.veiculo = Number(lotacao.veiculo)
+              return patch
+            }
           }}
         />
       </div>

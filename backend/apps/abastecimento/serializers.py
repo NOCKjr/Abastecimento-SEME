@@ -32,4 +32,6 @@ class GuiaAbastecimentoSerializer(serializers.ModelSerializer):
         response['veiculo_placa'] = instance.veiculo.placa if instance.veiculo else None
         response['secretaria_sigla'] = instance.secretaria.sigla if instance.secretaria else None
         response['instituicao_nome'] = instance.instituicao.nome if instance.instituicao else None
+        usuario_nome = instance.usuario.get_full_name().strip() if instance.usuario else None
+        response['usuario_nome'] = usuario_nome if usuario_nome else (instance.usuario.cpf if instance.usuario else None)
         return response

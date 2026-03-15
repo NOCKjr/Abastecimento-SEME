@@ -7,13 +7,18 @@ export interface Secretaria {
 export interface Rota {
   id?: number
   descricao: string
+  secretaria?: number | null
+  instituicao?: number | null
+  distancia_km?: number | string
+  consumo_medio?: number | string
+  detalhes?: string
+  ativa?: boolean
 }
 
 export interface Instituicao {
   id?: number
   nome: string
   tipo: string
-  rota: number | null
   secretaria: number
 }
 
@@ -22,6 +27,7 @@ export interface Condutor {
   nome_completo: string
   cpf: string
   secretaria: number
+  ativo?: boolean
 }
 
 export interface Veiculo {
@@ -36,10 +42,9 @@ export interface Veiculo {
 export interface Lotacao {
   id?: number
   data: string
+  ativa?: boolean
   condutor: number
-  secretaria: number
   rota?: number | null
-  instituicao?: number | null
   veiculo?: number | null
 }
 
@@ -82,5 +87,6 @@ export interface GuiaAbastecimento {
   rota?: number | null
   secretaria: number
   usuario?: number
+  usuario_nome?: string
   veiculo?: number | null
 }

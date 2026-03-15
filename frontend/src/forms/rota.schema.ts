@@ -6,7 +6,50 @@ export const rotaFormSchema: FormSchema = {
       name: "descricao",
       label: "Descrição",
       type: "text",
-      required: true
-    }
-  ]
+      required: true,
+    },
+    {
+      name: "secretaria",
+      label: "Secretaria",
+      type: "select",
+      required: true,
+      endpoint: "cadastros/secretarias/",
+      optionLabel: "sigla",
+    },
+    {
+      name: "instituicao",
+      label: "Instituição",
+      type: "select",
+      required: true,
+      endpoint: "cadastros/instituicoes/",
+      optionLabel: "nome",
+      dependsOn: "secretaria",
+      dependsOnParam: "secretaria",
+    },
+    {
+      name: "distancia_km",
+      label: "Distância do percurso (km)",
+      type: "number",
+      required: true,
+    },
+    {
+      name: "consumo_medio",
+      label: "Consumo médio",
+      type: "number",
+      required: true,
+    },
+    {
+      name: "detalhes",
+      label: "Descrição (detalhes)",
+      type: "textarea",
+      required: false,
+    },
+    {
+      name: "ativa",
+      label: "Ativa",
+      type: "checkbox",
+      required: false,
+    },
+  ],
 }
+
