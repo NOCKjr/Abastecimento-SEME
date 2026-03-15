@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 
@@ -16,16 +16,31 @@ import UsuarioListPage from "./pages/usuarios/UsuarioListPage";
 import UsuarioFormPage from "./pages/usuarios/UsuarioFormPage";
 import GuiaAbastecimentoListPage from "./pages/abastecimento/guias/GuiaAbastecimentoListPage";
 import GuiaAbastecimentoFormPage from "./pages/abastecimento/guias/GuiaAbastecimentoFormPage";
+import { LoginPage } from "./pages/login/LoginPage";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { isAuthenticated } from "./auth/auth";
+
+function FallbackRedirect() {
+  return isAuthenticated() ? (
+    <Navigate to="/home" replace />
+  ) : (
+    <Navigate to="/login" replace />
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/login" element={<LoginPage />} />
 
-          <Route index element={<Home />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Navigate to="home" replace />} />
 
-          <Route path="abastecimento/">
+            <Route path="home" element={<Home />} />
+
+            <Route path="abastecimento">
             <Route
               path="guias"
               element={<GuiaAbastecimentoListPage />}
@@ -38,9 +53,9 @@ function App() {
               path="guias/editar/:id"
               element={<GuiaAbastecimentoFormPage />}
             />
-          </Route>
+            </Route>
 
-          <Route path="cadastros/">
+            <Route path="cadastros">
             <Route
               path="secretarias"
               element={<SecretariaListPage />}
@@ -79,9 +94,9 @@ function App() {
               path="instituicoes/editar/:id"
               element={<InstituicaoFormPage />}
             />
-          </Route>
+            </Route>
 
-          <Route path="frota/">
+            <Route path="frota">
             <Route
               path="condutores"
               element={<CondutorListPage />}
@@ -108,13 +123,10 @@ function App() {
               element={<VeiculoFormPage />}
             />
 
-          </Route>
+            </Route>
 
-          <Route path="usuarios/">
-            <Route
-              path=""
-              element={<UsuarioListPage />}
-            />
+            <Route path="usuarios">
+            <Route index element={<UsuarioListPage />} />
             <Route
               path="criar"
               element={<UsuarioFormPage />}
@@ -123,9 +135,12 @@ function App() {
               path="editar/:id"
               element={<UsuarioFormPage />}
             />
-          </Route>
+            </Route>
 
+          </Route>
         </Route>
+
+        <Route path="*" element={<FallbackRedirect />} />
       </Routes>
     </BrowserRouter>
   );

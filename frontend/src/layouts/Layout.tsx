@@ -11,15 +11,15 @@ export default function Layout() {
     <div className="layout-container">
       <nav className="navbar">
         <div className="navbar-content">
-          <Link to="/" className="brand-logo">
+          <Link to="/home" className="brand-logo">
             📦 SEME
           </Link>
 
           <ul className="nav-menu">
             <li>
               <Link
-                to="/"
-                className={`nav-link ${isActive("/") ? "active" : ""}`}
+                to="/home"
+                className={`nav-link ${isActive("/home") ? "active" : ""}`}
               >
                 Home
               </Link>
