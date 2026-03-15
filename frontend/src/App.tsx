@@ -24,6 +24,8 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { isAuthenticated } from "./auth/auth";
 import { RequirePermission } from "./components/RequirePermission";
 import UsuariosPermissoesPage from "./pages/usuarios/UsuariosPermissoesPage";
+import PerfilPage from "./pages/perfil/PerfilPage";
+import PerfilEditPage from "./pages/perfil/PerfilEditPage";
 
 function FallbackRedirect() {
   return isAuthenticated() ? (
@@ -45,6 +47,9 @@ function App() {
             <Route index element={<Navigate to="home" replace />} />
 
             <Route path="home" element={<Home />} />
+
+            <Route path="perfil" element={<PerfilPage />} />
+            <Route path="perfil/editar" element={<PerfilEditPage />} />
 
             <Route path="abastecimento">
               <Route

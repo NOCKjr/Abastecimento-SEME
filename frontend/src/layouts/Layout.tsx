@@ -19,7 +19,14 @@ export default function Layout() {
       .me()
       .then((res) => setMe(res.data))
       .catch(() => setMe(null));
-  }, []);
+  }, [location.pathname]);
+
+  const displayName = (() => {
+    const first = (me?.first_name || "").trim();
+    const last = (me?.last_name || "").trim();
+    const full = `${first} ${last}`.trim();
+    return full || me?.cpf || "Conta";
+  })();
 
   return (
     <div className="layout-container">
@@ -105,17 +112,25 @@ export default function Layout() {
               </>
             )}
 
-            <li className="nav-logout">
-              <button
-                className="nav-link"
-                type="button"
-                onClick={() => {
-                  logout();
-                  navigate("/login", { replace: true });
-                }}
-              >
-                Sair
+            <li className="nav-item nav-account">
+              <button className="nav-dropdown-btn nav-account-btn">
+                {displayName}
               </button>
+              <div className="nav-dropdown nav-dropdown-right">
+                <Link to="/perfil" className="nav-dropdown-link">
+                  Perfil
+                </Link>
+                <button
+                  type="button"
+                  className="nav-dropdown-link nav-dropdown-action"
+                  onClick={() => {
+                    logout();
+                    navigate("/login", { replace: true });
+                  }}
+                >
+                  Sair
+                </button>
+              </div>
             </li>
           </ul>
         </div>

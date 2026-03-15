@@ -29,6 +29,10 @@ export const usuarioApi = {
     return client.get<Usuario>(`${API_URL}/me/`)
   },
 
+  atualizarMe(data: Partial<Pick<Usuario, "first_name" | "last_name" | "email" | "password">>) {
+    return client.patch<Usuario>(`${API_URL}/me/`, data)
+  },
+
   listarPermissoes() {
     return client.get<Usuario[]>(`${API_URL}/permissions/`)
   },

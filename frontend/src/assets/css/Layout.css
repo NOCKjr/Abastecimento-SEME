@@ -100,7 +100,7 @@
   border-bottom-color: white;
 }
 
-.nav-menu li.nav-logout {
+.nav-menu li.nav-account {
   margin-left: auto;
 }
 
@@ -119,6 +119,13 @@
   gap: 6px;
   height: 100%;
   font-family: inherit;
+}
+
+.nav-account-btn {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav-dropdown-btn:hover {
@@ -153,6 +160,11 @@
   overflow: hidden;
 }
 
+.nav-dropdown.nav-dropdown-right {
+  left: auto;
+  right: 0;
+}
+
 .nav-item:hover .nav-dropdown {
   opacity: 1;
   visibility: visible;
@@ -174,6 +186,15 @@
   color: white;
   border-left-color: white;
   padding-left: 20px;
+}
+
+.nav-dropdown-action {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 /* Conteúdo Principal */
@@ -233,7 +254,7 @@
     gap: 0;
   }
 
-  .nav-menu li.nav-logout {
+  .nav-menu li.nav-account {
     margin-left: 0;
   }
 

@@ -1,5 +1,9 @@
 export const ROUTES = {
 
+  PERFIL: "/perfil",
+
+  PERFIL_EDIT: "/perfil/editar",
+
   CADASTROS: "/cadastros",
 
   // -----------------------
