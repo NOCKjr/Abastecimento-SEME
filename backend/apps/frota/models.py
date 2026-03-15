@@ -1,5 +1,6 @@
 from django.db import models
-from apps.cadastros.models import Secretaria
+
+from apps.cadastros.models import Instituicao, Rota, Secretaria
 
 
 class Condutor(models.Model):
@@ -9,7 +10,7 @@ class Condutor(models.Model):
     secretaria = models.ForeignKey(
         Secretaria,
         on_delete=models.PROTECT,
-        related_name="condutores"
+        related_name="condutores",
     )
 
     def __str__(self):
@@ -22,11 +23,11 @@ class Condutor(models.Model):
 
 class Veiculo(models.Model):
     TIPO_COMBUSTIVEL_CHOICES = [
-        ('GASOLINA', 'Gasolina'),
-        ('DIESEL_S10', 'Diesel S10'),
-        ('DIESEL', 'Diesel Comum'),
-        ('ETANOL', 'Etanol'),
-        ('GNV', 'GNV'),
+        ("GASOLINA", "Gasolina"),
+        ("DIESEL_S10", "Diesel S10"),
+        ("DIESEL", "Diesel Comum"),
+        ("ETANOL", "Etanol"),
+        ("GNV", "GNV"),
     ]
 
     placa = models.CharField(max_length=10, unique=True)
@@ -34,13 +35,13 @@ class Veiculo(models.Model):
     ano = models.IntegerField()
     tipo_combustivel = models.CharField(
         max_length=50,
-        choices=TIPO_COMBUSTIVEL_CHOICES
+        choices=TIPO_COMBUSTIVEL_CHOICES,
     )
 
     secretaria = models.ForeignKey(
         Secretaria,
         on_delete=models.PROTECT,
-        related_name="veiculos"
+        related_name="veiculos",
     )
 
     def __str__(self):
@@ -49,3 +50,58 @@ class Veiculo(models.Model):
     class Meta:
         verbose_name = "Veículo"
         verbose_name_plural = "Veículos"
+
+
+class Lotacao(models.Model):
+    data = models.DateField()
+
+    condutor = models.ForeignKey(
+        Condutor,
+        on_delete=models.PROTECT,
+        related_name="lotacoes",
+    )
+
+    secretaria = models.ForeignKey(
+        Secretaria,
+        on_delete=models.PROTECT,
+        related_name="lotacoes",
+    )
+
+    rota = models.ForeignKey(
+        Rota,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="lotacoes",
+    )
+
+    instituicao = models.ForeignKey(
+        Instituicao,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="lotacoes",
+    )
+
+    veiculo = models.ForeignKey(
+        Veiculo,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="lotacoes",
+    )
+
+    def __str__(self):
+        return f"{self.condutor} - {self.data}"
+
+    class Meta:
+        verbose_name = "Lotação"
+        verbose_name_plural = "Lotações"
+        ordering = ["-data", "-id"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["condutor", "data"],
+                name="unique_lotacao_por_condutor_e_data",
+            ),
+        ]
+

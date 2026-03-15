@@ -33,6 +33,16 @@ export interface Veiculo {
   secretaria: number
 }
 
+export interface Lotacao {
+  id?: number
+  data: string
+  condutor: number
+  secretaria: number
+  rota?: number | null
+  instituicao?: number | null
+  veiculo?: number | null
+}
+
 export interface Usuario {
   id?: number
   first_name?: string

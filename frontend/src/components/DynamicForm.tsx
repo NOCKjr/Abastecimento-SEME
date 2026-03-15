@@ -1,6 +1,6 @@
 // Formulário genérico para preenchimento (criar/editar) de dados
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { FormField, FormSchema } from "../types/form"
 import { client } from "../api/client"
 
@@ -8,6 +8,10 @@ interface Props<T> {
   schema: FormSchema
   initialData?: Partial<T>
   onSubmit: (data: T) => void | Promise<void>
+  onFieldChange?: (
+    nextData: Partial<T>,
+    change: { name: string; value: unknown; field?: FormField }
+  ) => void | Partial<T> | Promise<void | Partial<T>>
 }
 
 // Cache global para as opções do select (se o campo for um select)
@@ -16,7 +20,8 @@ const selectCache: Record<string, Array<{ label: string; value: string | number 
 export default function DynamicForm<T>({
   schema,
   initialData = {} as Partial<T>,
-  onSubmit
+  onSubmit,
+  onFieldChange,
 }: Props<T>) {
 
   const [formData, setFormData] =
@@ -24,6 +29,8 @@ export default function DynamicForm<T>({
 
   const [selectOptions, setSelectOptions] =
     useState<Record<string, Array<{ label: string; value: string | number }>>>({})
+
+  const changeSeqRef = useRef(0)
 
   // Quando os dados mudarem, atualiza o formulário
   useEffect(() => {
@@ -182,10 +189,28 @@ export default function DynamicForm<T>({
       newValue = null
     }
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: newValue,
-    }))
+    let nextData: Partial<T> | null = null
+    setFormData((prev) => {
+      nextData = {
+        ...(prev as Record<string, unknown>),
+        [name]: newValue,
+      } as Partial<T>
+      return nextData
+    })
+
+    if (onFieldChange && nextData) {
+      const seq = ++changeSeqRef.current
+      const maybePromise = onFieldChange(nextData, { name, value: newValue, field })
+      Promise.resolve(maybePromise)
+        .then((patch) => {
+          if (!patch) return
+          if (seq !== changeSeqRef.current) return
+          setFormData((prev) => ({ ...prev, ...(patch as Partial<T>) }))
+        })
+        .catch(() => {
+          // ignore
+        })
+    }
 
   }
 
