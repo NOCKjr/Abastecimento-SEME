@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 import DataTable from "../../components/DataTable"
 import { lotacaoFormSchema } from "../../forms/lotacao.schema"
@@ -10,6 +10,7 @@ import type { Lotacao } from "../../types/models"
 
 export default function LotacaoListPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [items, setItems] = useState<Lotacao[]>([])
 
   async function load() {
@@ -19,7 +20,7 @@ export default function LotacaoListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Lotacao) {
     if (!item.id) return

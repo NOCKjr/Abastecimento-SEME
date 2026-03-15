@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { usuarioApi } from "../../api/usuarioApi";
 import { getApiErrorMessage } from "../../api/errorMessage";
 import type { Usuario } from "../../types/models";
 import "../../assets/css/FormPage.css";
 
 export default function PerfilPage() {
+  const location = useLocation();
   const [me, setMe] = useState<Usuario | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -14,7 +15,7 @@ export default function PerfilPage() {
       .me()
       .then((res) => setMe(res.data))
       .catch((err) => setErrorMsg(getApiErrorMessage(err, "Falha ao carregar perfil.")));
-  }, []);
+  }, [location.key]);
 
   const nomeCompleto = useMemo(() => {
     const first = (me?.first_name || "").trim();

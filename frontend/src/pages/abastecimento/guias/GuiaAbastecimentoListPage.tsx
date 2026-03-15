@@ -4,7 +4,7 @@ import axios from "axios"
 import DataTable from "../../../components/DataTable"
 import { guiaAbastecimentoApi } from "../../../api/guiaAbastecimentoApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { GuiaAbastecimento } from "../../../types/models"
@@ -13,6 +13,7 @@ import { guiaAbastecimentoListSchema } from "../../../forms/guiaAbastecimento.sc
 export default function GuiaAbastecimentoListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [guiasAbastecimento, setGuiasAbastecimento] =
     useState<GuiaAbastecimento[]>([])
@@ -25,7 +26,7 @@ export default function GuiaAbastecimentoListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: GuiaAbastecimento) {
 

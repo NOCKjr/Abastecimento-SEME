@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { instituicaoApi } from "../../../api/instituicaoApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Instituicao } from "../../../types/models"
@@ -12,6 +12,7 @@ import { instituicaoFormSchema } from "../../../forms/instituicao.schema"
 export default function InstituicaoListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [instituicaos, setInstituicoes] =
     useState<Instituicao[]>([])
@@ -23,7 +24,7 @@ export default function InstituicaoListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Instituicao) {
 

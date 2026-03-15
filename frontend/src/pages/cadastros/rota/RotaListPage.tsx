@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { rotaApi } from "../../../api/rotaApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Rota } from "../../../types/models"
@@ -12,6 +12,7 @@ import { rotaFormSchema } from "../../../forms/rota.schema"
 export default function RotaListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [rotas, setRotas] =
     useState<Rota[]>([])
@@ -23,7 +24,7 @@ export default function RotaListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Rota) {
 

@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { secretariaApi } from "../api/secretariaApi";
 import { ROUTES } from "../routes/routes";
 import type { Secretaria } from "../types/models";
 
 export default function Home() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [secretarias, setSecretarias] = useState<Secretaria[]>([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function Home() {
       .listar()
       .then((res) => setSecretarias(res.data))
       .catch(() => setSecretarias([]));
-  }, []);
+  }, [location.key]);
 
   const siglaToId = useMemo(() => {
     const normalize = (s: string) =>

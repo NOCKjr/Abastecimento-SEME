@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { veiculoApi } from "../../../api/veiculoApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Veiculo } from "../../../types/models"
@@ -12,6 +12,7 @@ import { veiculoFormSchema } from "../../../forms/veiculo.schema"
 export default function VeiculoListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [veiculos, setVeiculos] =
     useState<Veiculo[]>([])
@@ -23,7 +24,7 @@ export default function VeiculoListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Veiculo) {
 

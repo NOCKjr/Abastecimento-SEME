@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { usuarioApi } from "../../api/usuarioApi";
 import type { Usuario } from "../../types/models";
 
@@ -12,6 +13,7 @@ type PermissionKey =
   | "can_delete_guia_abastecimento";
 
 export default function UsuariosPermissoesPage() {
+  const location = useLocation();
   const [me, setMe] = useState<Usuario | null>(null);
   const [users, setUsers] = useState<Usuario[]>([]);
   const [edited, setEdited] = useState<EditedMap>({});
@@ -41,7 +43,7 @@ export default function UsuariosPermissoesPage() {
         setErrorMsg(message);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [location.key]);
 
   const sorted = useMemo(() => {
     return [...users].sort((a, b) => (a.id || 0) - (b.id || 0));

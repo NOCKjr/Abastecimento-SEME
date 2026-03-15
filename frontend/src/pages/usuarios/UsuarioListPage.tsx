@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../components/DataTable"
 import { usuarioApi } from "../../api/usuarioApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../routes/routes"
 
 import type { Usuario } from "../../types/models"
@@ -12,6 +12,7 @@ import { usuarioFormSchema } from "../../forms/usuario.schema"
 export default function UsuarioListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [usuarios, setUsuarios] =
     useState<Usuario[]>([])
@@ -23,7 +24,7 @@ export default function UsuarioListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Usuario) {
 

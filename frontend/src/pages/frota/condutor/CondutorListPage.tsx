@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { condutorApi } from "../../../api/condutorApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Condutor } from "../../../types/models"
@@ -12,6 +12,7 @@ import { condutorFormSchema } from "../../../forms/condutor.schema"
 export default function CondutorListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [condutors, setInstituicoes] =
     useState<Condutor[]>([])
@@ -23,7 +24,7 @@ export default function CondutorListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Condutor) {
 

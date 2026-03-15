@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DataTable from "../../../components/DataTable"
 import { secretariaApi } from "../../../api/secretariaApi"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
 import type { Secretaria } from "../../../types/models"
@@ -12,6 +12,7 @@ import { secretariaFormSchema } from "../../../forms/secretaria.schema"
 export default function SecretariaListPage() {
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [secretarias, setSecretarias] =
     useState<Secretaria[]>([])
@@ -23,7 +24,7 @@ export default function SecretariaListPage() {
 
   useEffect(() => {
     load()
-  }, [])
+  }, [location.key])
 
   async function handleDelete(item: Secretaria) {
 

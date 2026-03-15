@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { usuarioApi } from "../../api/usuarioApi";
 import { getApiErrorMessage } from "../../api/errorMessage";
 import type { Usuario } from "../../types/models";
@@ -7,6 +7,7 @@ import "../../assets/css/FormPage.css";
 
 export default function PerfilEditPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [me, setMe] = useState<Usuario | null>(null);
   const [firstName, setFirstName] = useState("");
@@ -28,7 +29,7 @@ export default function PerfilEditPage() {
         setEmail(res.data.email || "");
       })
       .catch((err) => setErrorMsg(getApiErrorMessage(err, "Falha ao carregar perfil.")));
-  }, []);
+  }, [location.key]);
 
   const nomeCompleto = useMemo(() => {
     const full = `${firstName} ${lastName}`.trim();

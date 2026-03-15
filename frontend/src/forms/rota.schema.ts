@@ -34,7 +34,7 @@ export const rotaFormSchema: FormSchema = {
     },
     {
       name: "consumo_medio",
-      label: "Consumo médio",
+      label: "Consumo médio (L)",
       type: "number",
       required: true,
     },

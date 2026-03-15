@@ -8,11 +8,20 @@ interface Props<T> {
   onEdit: (item: T) => void
   onDelete: (item: T) => void
   onPdf?: (item: T) => void
+  pageSize?: number
+  pageSizeOptions?: number[]
 }
 
 type Option = { label: string; value: string | number }
 
 const selectCache: Record<string, Option[]> = {}
+
+const DECIMAL_FIELD_NAMES = new Set([
+  "qtd_combustivel",
+  "qtd_oleo_lubrificante",
+  "distancia_km",
+  "consumo_medio",
+])
 
 export default function DataTable<T extends { id?: number }>({
   data,
@@ -20,15 +29,18 @@ export default function DataTable<T extends { id?: number }>({
   onEdit,
   onDelete,
   onPdf,
+  pageSize = 10,
+  pageSizeOptions = [10, 20, 50, 100],
 }: Props<T>) {
-  if (!data.length) return <p>Nenhum registro</p>
-
   const [search, setSearch] = useState("")
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortAsc, setSortAsc] = useState(true)
   const [endpointOptions, setEndpointOptions] = useState<Record<string, Option[]>>(
     {}
   )
+
+  const [page, setPage] = useState(1)
+  const [rowsPerPage, setRowsPerPage] = useState(pageSize)
 
   const fields = schema.fields.filter((f) => !f.hidden)
 
@@ -72,12 +84,47 @@ export default function DataTable<T extends { id?: number }>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema])
 
+  useEffect(() => {
+    setRowsPerPage(pageSize)
+  }, [pageSize])
+
+  useEffect(() => {
+    setPage(1)
+  }, [rowsPerPage])
+
+  function formatDecimal(value: unknown) {
+    if (value === null || value === undefined) return ""
+
+    const raw = String(value).trim()
+    if (!raw) return ""
+
+    const match = raw.match(/^(-?\d+)(?:\.(\d+))?$/)
+    if (!match) return raw
+
+    const intPart = match[1]
+    const decPart = match[2] ?? ""
+
+    const trimmedDec = decPart.replace(/0+$/, "")
+    const finalDec = trimmedDec.length >= 2 ? trimmedDec : trimmedDec.padEnd(2, "0")
+
+    return `${intPart}.${finalDec}`
+  }
+
   function formatValue(field: FormField, value: any) {
     if (value === null || value === undefined) return ""
 
     if (field.type === "checkbox") return value ? "Sim" : "Não"
 
     if (field.type === "date") return new Date(value).toLocaleDateString()
+
+    if (field.type === "number") {
+      const shouldFormat =
+        DECIMAL_FIELD_NAMES.has(field.name) ||
+        (typeof value === "string" && value.includes(".")) ||
+        (typeof value === "number" && Number.isFinite(value) && !Number.isInteger(value))
+
+      if (shouldFormat) return formatDecimal(value)
+    }
 
     if (field.type === "select") {
       const options = field.options || endpointOptions[field.name]
@@ -113,6 +160,10 @@ export default function DataTable<T extends { id?: number }>({
     return result
   }, [data, search, sortField, sortAsc])
 
+  useEffect(() => {
+    setPage(1)
+  }, [search, sortField, sortAsc, data])
+
   function handleSort(field: string) {
     if (sortField === field) setSortAsc(!sortAsc)
     else {
@@ -121,8 +172,21 @@ export default function DataTable<T extends { id?: number }>({
     }
   }
 
+  const total = filtered.length
+  const totalPages = Math.max(1, Math.ceil(total / rowsPerPage))
+  const safePage = Math.min(Math.max(1, page), totalPages)
+  const startIndex = (safePage - 1) * rowsPerPage
+  const endIndex = Math.min(startIndex + rowsPerPage, total)
+  const pageRows = filtered.slice(startIndex, endIndex)
+
+  useEffect(() => {
+    if (safePage !== page) setPage(safePage)
+  }, [safePage, page])
+
   return (
     <div>
+      {!data.length && <p>Nenhum registro</p>}
+
       <input
         placeholder="Buscar..."
         value={search}
@@ -146,23 +210,89 @@ export default function DataTable<T extends { id?: number }>({
         </thead>
 
         <tbody>
-          {filtered.map((item) => (
-            <tr key={item.id}>
-              {fields.map((field) => (
-                <td key={field.name}>
-                  {formatValue(field, (item as any)[field.name])}
-                </td>
-              ))}
+          {pageRows.length ? (
+            pageRows.map((item) => (
+              <tr key={item.id}>
+                {fields.map((field) => (
+                  <td key={field.name}>
+                    {formatValue(field, (item as any)[field.name])}
+                  </td>
+                ))}
 
-              <td>
-                {onPdf && <button onClick={() => onPdf(item)}>PDF</button>}
-                <button onClick={() => onEdit(item)}>Editar</button>
-                <button onClick={() => onDelete(item)}>Excluir</button>
+                <td>
+                  {onPdf && <button onClick={() => onPdf(item)}>PDF</button>}
+                  <button onClick={() => onEdit(item)}>Editar</button>
+                  <button onClick={() => onDelete(item)}>Excluir</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={fields.length + 1}>
+                <p>Nenhum registro</p>
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+          alignItems: "center",
+          marginTop: 12,
+          flexWrap: "wrap",
+        }}
+      >
+        <span style={{ fontSize: 12 }}>
+          {total ? `Mostrando ${startIndex + 1}-${endIndex} de ${total}` : "0 registros"}
+        </span>
+
+        <label style={{ fontSize: 12 }}>
+          Por página:&nbsp;
+          <select
+            value={rowsPerPage}
+            onChange={(e) => setRowsPerPage(Number(e.target.value))}
+          >
+            {pageSizeOptions.map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <button type="button" onClick={() => setPage(1)} disabled={safePage <= 1}>
+            «
+          </button>
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={safePage <= 1}
+          >
+            Anterior
+          </button>
+          <span style={{ fontSize: 12 }}>
+            {safePage} / {totalPages}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={safePage >= totalPages}
+          >
+            Próxima
+          </button>
+          <button
+            type="button"
+            onClick={() => setPage(totalPages)}
+            disabled={safePage >= totalPages}
+          >
+            »
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -83,13 +83,13 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
     },
     {
       name: "qtd_combustivel",
-      label: "Quantidade de Combustível",
+      label: "Quantidade de Combustível (L)",
       type: "number",
       required: true,
     },
     {
       name: "qtd_oleo_lubrificante",
-      label: "Quantidade de Óleo Lubrificante",
+      label: "Quantidade de Óleo Lubrificante (L)",
       type: "number",
       required: false,
     },
@@ -138,6 +138,16 @@ export const guiaAbastecimentoListSchema: FormSchema = {
       displayLabel: "id",
     },
     {
+      name: "qtd_combustivel",
+      label: "Combustível (L)",
+      type: "number",
+    },
+    {
+      name: "qtd_oleo_lubrificante",
+      label: "Óleo (L)",
+      type: "number",
+    },
+    {
       name: "instituicao",
       label: "Instituição",
       type: "select",
@@ -158,3 +168,4 @@ export const guiaAbastecimentoListSchema: FormSchema = {
     },
   ],
 }
+
