@@ -1,9 +1,16 @@
 /* Layout Principal */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .layout-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: #f5f7fa;
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -14,6 +21,7 @@
   top: 0;
   z-index: 100;
   padding: 0;
+  width: 100%;
 }
 
 .navbar-content {
@@ -216,6 +224,7 @@
   margin-top: auto;
   font-size: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
 }
 
 .footer p {

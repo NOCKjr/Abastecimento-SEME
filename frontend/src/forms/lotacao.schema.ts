@@ -9,12 +9,6 @@ export const lotacaoFormSchema: FormSchema = {
       required: true,
     },
     {
-      name: "ativa",
-      label: "Ativa",
-      type: "checkbox",
-      required: false,
-    },
-    {
       name: "condutor",
       label: "Condutor",
       type: "select",
@@ -40,6 +34,12 @@ export const lotacaoFormSchema: FormSchema = {
       required: false,
       endpoint: "frota/veiculos/",
       optionLabel: "placa",
+    },
+    {
+      name: "ativa",
+      label: "Ativa",
+      type: "checkbox",
+      required: false,
     },
   ],
 }

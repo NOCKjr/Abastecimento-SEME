@@ -3,21 +3,28 @@ import axios from "axios"
 
 import DataTable from "../../../components/DataTable"
 import { guiaAbastecimentoApi } from "../../../api/guiaAbastecimentoApi"
+import { usuarioApi } from "../../../api/usuarioApi"
 
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ROUTES } from "../../../routes/routes"
 
-import type { GuiaAbastecimento } from "../../../types/models"
+import type { GuiaAbastecimento, Usuario } from "../../../types/models"
 import { guiaAbastecimentoListSchema } from "../../../forms/guiaAbastecimento.schema"
+import "../../../assets/css/ListPage.css"
 
 export default function GuiaAbastecimentoListPage() {
 
   const navigate = useNavigate()
   const location = useLocation()
 
+  const [me, setMe] = useState<Usuario | null>(null)
   const [guiasAbastecimento, setGuiasAbastecimento] =
     useState<GuiaAbastecimento[]>([])
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const canCreate = Boolean(me?.is_staff || me?.can_create_guia_abastecimento)
+  const canEdit = Boolean(me?.is_staff || me?.can_edit_guia_abastecimento)
+  const canDelete = Boolean(me?.is_staff || me?.can_delete_guia_abastecimento)
 
   async function load() {
     const response = await guiaAbastecimentoApi.listar()
@@ -26,6 +33,7 @@ export default function GuiaAbastecimentoListPage() {
 
   useEffect(() => {
     load()
+    usuarioApi.me().then((res) => setMe(res.data)).catch(() => setMe(null))
   }, [location.key])
 
   async function handleDelete(item: GuiaAbastecimento) {
@@ -39,7 +47,7 @@ export default function GuiaAbastecimentoListPage() {
   async function handlePdf(item: GuiaAbastecimento) {
 
     if (!item.id) {
-      setErrorMessage("Nao foi possivel gerar o PDF: guia sem ID valido.")
+      setErrorMessage("Não foi possível gerar o PDF: guia sem ID válido.")
       return
     }
 
@@ -50,7 +58,7 @@ export default function GuiaAbastecimentoListPage() {
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 404) {
-          setErrorMessage("Guia nao encontrada para gerar PDF.")
+          setErrorMessage("Guia não encontrada para gerar PDF.")
           return
         }
 
@@ -60,26 +68,37 @@ export default function GuiaAbastecimentoListPage() {
         }
       }
 
-      setErrorMessage("Nao foi possivel gerar o PDF agora. Tente novamente.")
+      setErrorMessage("Não foi possível gerar o PDF agora. Tente novamente.")
     }
   }
 
   return (
 
-    <div>
+    <div className="list-page">
 
-      <h2>Guias de Abastecimento</h2>
+      <div className="list-header">
+        <div>
+          <h2 className="list-title">Guias de abastecimento</h2>
+          <p className="list-subtitle">Listagem e exportação em PDF.</p>
+        </div>
 
-      <Link to={ROUTES.GUIA_ABASTECIMENTO_CREATE}>
-        Nova Guia de Abastecimento
-      </Link>
+        <div className="list-actions">
+          {canCreate && (
+            <Link className="list-create" to={ROUTES.GUIA_ABASTECIMENTO_CREATE}>
+              <span className="plus">+</span> Nova guia
+            </Link>
+          )}
+        </div>
+      </div>
 
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p style={{ color: "#b91c1c", fontWeight: 700 }}>{errorMessage}</p>}
 
       <DataTable
         data={guiasAbastecimento}
         schema={guiaAbastecimentoListSchema}
         onPdf={handlePdf}
+        canEdit={canEdit}
+        canDelete={canDelete}
         onEdit={(item) => navigate(
           ROUTES.GUIA_ABASTECIMENTO_EDIT(item.id!)
         )}
@@ -90,3 +109,4 @@ export default function GuiaAbastecimentoListPage() {
 
   )
 }
+

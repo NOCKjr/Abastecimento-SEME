@@ -5,8 +5,8 @@ const API_URL = "/frota/condutores"
 
 export const condutorApi = {
 
-  listar() {
-    return client.get<Condutor[]>(`${API_URL}/`)
+  listar(params?: { secretaria?: number; ativo?: boolean | "" }) {
+    return client.get<Condutor[]>(`${API_URL}/`, { params })
   },
   
   buscar(id: number) {

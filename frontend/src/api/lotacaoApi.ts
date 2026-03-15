@@ -2,7 +2,7 @@ import { client } from "./client"
 import type { Lotacao } from "../types/models"
 
 export const lotacaoApi = {
-  listar(params?: { condutor?: number; rota?: number; data?: string; ativa?: boolean }) {
+  listar(params?: { condutor?: number; rota?: number; data?: string; ativa?: boolean | "" }) {
     return client.get<Lotacao[]>(`/frota/lotacoes/`, { params })
   },
 

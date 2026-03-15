@@ -8,14 +8,18 @@ import { ROUTES } from "../../routes/routes"
 
 import type { Usuario } from "../../types/models"
 import { usuarioFormSchema } from "../../forms/usuario.schema"
+import "../../assets/css/ListPage.css"
 
 export default function UsuarioListPage() {
 
   const navigate = useNavigate()
   const location = useLocation()
 
+  const [me, setMe] = useState<Usuario | null>(null)
   const [usuarios, setUsuarios] =
     useState<Usuario[]>([])
+
+  const isAdmin = Boolean(me?.is_staff)
 
   async function load() {
     const response = await usuarioApi.listar()
@@ -24,6 +28,7 @@ export default function UsuarioListPage() {
 
   useEffect(() => {
     load()
+    usuarioApi.me().then((res) => setMe(res.data)).catch(() => setMe(null))
   }, [location.key])
 
   async function handleDelete(item: Usuario) {
@@ -36,17 +41,28 @@ export default function UsuarioListPage() {
 
   return (
 
-    <div>
+    <div className="list-page">
 
-      <h2>Usuários</h2>
+      <div className="list-header">
+        <div>
+          <h2 className="list-title">Usuários</h2>
+          <p className="list-subtitle">Cadastro e manutenção de usuários.</p>
+        </div>
 
-      <Link to={ROUTES.USUARIO_CREATE}>
-        Nova Usuário
-      </Link>
+        <div className="list-actions">
+          {isAdmin && (
+            <Link className="list-create" to={ROUTES.USUARIO_CREATE}>
+              <span className="plus">+</span> Novo usuário
+            </Link>
+          )}
+        </div>
+      </div>
 
       <DataTable
         data={usuarios}
         schema={usuarioFormSchema}
+        canEdit={isAdmin}
+        canDelete={isAdmin}
         onEdit={(item) => navigate(
           ROUTES.USUARIO_EDIT(item.id!)
         )}
@@ -57,3 +73,4 @@ export default function UsuarioListPage() {
 
   )
 }
+

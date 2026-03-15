@@ -5,8 +5,8 @@ const API_URL = "/cadastros/rotas"
 
 export const rotaApi = {
 
-  listar() {
-    return client.get<Rota[]>(`${API_URL}/`)
+  listar(params?: { secretaria?: number; instituicao?: number; ativa?: boolean | ""; condutor?: number; data?: string }) {
+    return client.get<Rota[]>(`${API_URL}/`, { params })
   },
   
   buscar(id: number) {

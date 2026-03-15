@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { client } from "../api/client"
 import type { FormField, FormSchema } from "../types/form"
+import "../assets/css/DataTable.css"
 
 interface Props<T> {
   data: T[]
@@ -8,6 +9,8 @@ interface Props<T> {
   onEdit: (item: T) => void
   onDelete: (item: T) => void
   onPdf?: (item: T) => void
+  canEdit?: boolean
+  canDelete?: boolean
   pageSize?: number
   pageSizeOptions?: number[]
 }
@@ -29,6 +32,8 @@ export default function DataTable<T extends { id?: number }>({
   onEdit,
   onDelete,
   onPdf,
+  canEdit = true,
+  canDelete = true,
   pageSize = 10,
   pageSizeOptions = [10, 20, 50, 100],
 }: Props<T>) {
@@ -45,6 +50,7 @@ export default function DataTable<T extends { id?: number }>({
   const fields = schema.fields.filter((f) => !f.hidden)
 
   useEffect(() => {
+    setSearch("")
     async function loadSelectOptions() {
       const selectFields = fields.filter(
         (f) => f.type === "select" && f.endpoint && !f.options
@@ -113,7 +119,10 @@ export default function DataTable<T extends { id?: number }>({
   function formatValue(field: FormField, value: any) {
     if (value === null || value === undefined) return ""
 
-    if (field.type === "checkbox") return value ? "Sim" : "Não"
+    if (field.type === "checkbox") {
+      const yes = Boolean(value)
+      return <span className={`dt-badge ${yes ? "dt-badge-yes" : "dt-badge-no"}`}>{yes ? "Sim" : "Não"}</span>
+    }
 
     if (field.type === "date") return new Date(value).toLocaleDateString()
 
@@ -184,113 +193,141 @@ export default function DataTable<T extends { id?: number }>({
   }, [safePage, page])
 
   return (
-    <div>
-      {!data.length && <p>Nenhum registro</p>}
+    <div className="datatable">
+      <div className="datatable-toolbar">
+        <input
+          className="datatable-search"
+          placeholder="Buscar..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-      <input
-        placeholder="Buscar..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="datatable-tablewrap">
+        <table className="datatable-table">
+          <thead>
+            <tr>
+              {fields.map((field) => (
+                <th key={field.name} onClick={() => handleSort(field.name)}>
+                  {field.label}
+                  {sortField === field.name && (
+                    <span className="dt-sort">{sortAsc ? "▲" : "▼"}</span>
+                  )}
+                </th>
+              ))}
+              <th style={{ cursor: "default" }}>Ações</th>
+            </tr>
+          </thead>
 
-      <table>
-        <thead>
-          <tr>
-            {fields.map((field) => (
-              <th
-                key={field.name}
-                onClick={() => handleSort(field.name)}
-                style={{ cursor: "pointer" }}
-              >
-                {field.label}
-              </th>
-            ))}
-            <th>Ações</th>
-          </tr>
-        </thead>
+          <tbody>
+            {pageRows.length ? (
+              pageRows.map((item) => (
+                <tr key={item.id}>
+                  {fields.map((field) => (
+                    <td key={field.name}>
+                      {formatValue(field, (item as any)[field.name])}
+                    </td>
+                  ))}
 
-        <tbody>
-          {pageRows.length ? (
-            pageRows.map((item) => (
-              <tr key={item.id}>
-                {fields.map((field) => (
-                  <td key={field.name}>
-                    {formatValue(field, (item as any)[field.name])}
+                  <td>
+                    <div className="dt-actions">
+                      {onPdf && (
+                        <button
+                          type="button"
+                          className="dt-action dt-action-pdf"
+                          onClick={() => onPdf(item)}
+                          aria-label="Abrir PDF"
+                          title="PDF"
+                        >
+                          <span aria-hidden="true">📄</span>
+                        </button>
+                      )}
+                      {canEdit && (
+                        <button
+                          type="button"
+                          className="dt-action dt-action-edit"
+                          onClick={() => onEdit(item)}
+                          aria-label="Editar"
+                          title="Editar"
+                        >
+                          <span aria-hidden="true">✏️</span>
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button
+                          type="button"
+                          className="dt-action dt-action-delete"
+                          onClick={() => onDelete(item)}
+                          aria-label="Excluir"
+                          title="Excluir"
+                        >
+                          <span aria-hidden="true">🗑️</span>
+                        </button>
+                      )}
+                    </div>
                   </td>
-                ))}
-
-                <td>
-                  {onPdf && <button onClick={() => onPdf(item)}>PDF</button>}
-                  <button onClick={() => onEdit(item)}>Editar</button>
-                  <button onClick={() => onDelete(item)}>Excluir</button>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={fields.length + 1}>
+                  <p style={{ padding: 12 }}>{data.length ? "Nenhum registro" : "Sem dados"}</p>
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={fields.length + 1}>
-                <p>Nenhum registro</p>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          alignItems: "center",
-          marginTop: 12,
-          flexWrap: "wrap",
-        }}
-      >
+      <div className="datatable-footer">
         <span style={{ fontSize: 12 }}>
           {total ? `Mostrando ${startIndex + 1}-${endIndex} de ${total}` : "0 registros"}
         </span>
 
-        <label style={{ fontSize: 12 }}>
-          Por página:&nbsp;
-          <select
-            value={rowsPerPage}
-            onChange={(e) => setRowsPerPage(Number(e.target.value))}
-          >
-            {pageSizeOptions.map((n) => (
-              <option key={n} value={n}>
-                {n}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+          <label style={{ fontSize: 12 }}>
+            Por página:&nbsp;
+            <select
+              value={rowsPerPage}
+              onChange={(e) => setRowsPerPage(Number(e.target.value))}
+            >
+              {pageSizeOptions.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
 
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <button type="button" onClick={() => setPage(1)} disabled={safePage <= 1}>
-            «
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-            disabled={safePage <= 1}
-          >
-            Anterior
-          </button>
-          <span style={{ fontSize: 12 }}>
-            {safePage} / {totalPages}
-          </span>
-          <button
-            type="button"
-            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-            disabled={safePage >= totalPages}
-          >
-            Próxima
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage(totalPages)}
-            disabled={safePage >= totalPages}
-          >
-            »
-          </button>
+          <div className="dt-page">
+            <button type="button" onClick={() => setPage(1)} disabled={safePage <= 1}>
+              «
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={safePage <= 1}
+            >
+              Anterior
+            </button>
+            <span style={{ fontSize: 12 }}>
+              {safePage} / {totalPages}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={safePage >= totalPages}
+            >
+              Próxima
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage(totalPages)}
+              disabled={safePage >= totalPages}
+            >
+              »
+            </button>
+          </div>
         </div>
       </div>
     </div>
