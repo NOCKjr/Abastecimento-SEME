@@ -113,3 +113,32 @@ class UsuarioPermissionsSerializer(serializers.ModelSerializer):
             "can_delete_guia_abastecimento",
         )
         read_only_fields = ("id", "cpf", "is_superuser")
+
+
+class UsuarioSelfUpdateSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False, allow_blank=True)
+
+    class Meta:
+        model = Usuario
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "password",
+        )
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop("password", None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        if password:
+            try:
+                validate_password(password, instance)
+            except DjangoValidationError as e:
+                raise serializers.ValidationError({"password": list(e.messages)})
+            instance.set_password(password)
+
+        instance.save()
+        return instance

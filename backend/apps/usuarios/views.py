@@ -4,7 +4,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from .models import Usuario
-from .serializers import UsuarioSerializer, UsuarioRegisterSerializer, UsuarioPermissionsSerializer
+from .serializers import (
+    UsuarioSerializer,
+    UsuarioRegisterSerializer,
+    UsuarioPermissionsSerializer,
+    UsuarioSelfUpdateSerializer,
+)
 
 class UsuarioViewSet(ModelViewSet):
     queryset = Usuario.objects.all()
@@ -18,10 +23,16 @@ class UsuarioViewSet(ModelViewSet):
             return [IsAdminUser()]
         return super().get_permissions()
 
-    @action(detail=False, methods=["get"])
+    @action(detail=False, methods=["get", "patch"])
     def me(self, request):
-        serializer = UsuarioPermissionsSerializer(request.user)
-        return Response(serializer.data)
+        if request.method == "GET":
+            serializer = UsuarioPermissionsSerializer(request.user)
+            return Response(serializer.data)
+
+        serializer = UsuarioSelfUpdateSerializer(request.user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(UsuarioPermissionsSerializer(user).data)
 
     @action(detail=False, methods=["get"], url_path="permissions")
     def permissions_list(self, request):
