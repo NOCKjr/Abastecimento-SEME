@@ -18,7 +18,6 @@ export const usuarioApi = {
   },
 
   atualizar(id: number, data: Usuario) {
-    console.log("atualizar user: ", data);
     return client.put(`${API_URL}/${id}/`, data)
   },
 

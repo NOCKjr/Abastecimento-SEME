@@ -1,0 +1,140 @@
+[
+  {
+    "model": "cadastros.secretaria",
+    "pk": 1,
+    "fields": { "nome": "Secretaria Municipal de Educação", "sigla": "SEME" }
+  },
+  {
+    "model": "cadastros.secretaria",
+    "pk": 2,
+    "fields": { "nome": "Secretaria de Assistência Social", "sigla": "SEMAS" }
+  },
+  {
+    "model": "cadastros.secretaria",
+    "pk": 3,
+    "fields": { "nome": "Secretaria de Saúde", "sigla": "SAUDE" }
+  },
+
+  { "model": "cadastros.rota",
+    "pk": 1,
+    "fields": { "descricao": "Rota Centro" }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 2,
+    "fields": { "descricao": "Rota Zona Rural Norte" }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 3,
+    "fields": { "descricao": "Rota Zona Rural Sul" }
+  },
+
+  {
+    "model": "cadastros.instituicao",
+    "pk": 1,
+    "fields": {
+      "nome": "Escola Municipal João Alves",
+      "tipo": "ESCOLA",
+      "rota": 1,
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 2,
+    "fields": {
+      "nome": "Escola Municipal Maria Lima",
+      "tipo": "ESCOLA",
+      "rota": 2,
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 3,
+    "fields": {
+      "nome": "Centro de Referência (CRAS) Central",
+      "tipo": "OUTRO",
+      "rota": 1,
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 4,
+    "fields": {
+      "nome": "Hospital Municipal",
+      "tipo": "HOSPITAL",
+      "rota": 1,
+      "secretaria": 3
+    }
+  },
+
+  {
+    "model": "frota.condutor",
+    "pk": 1,
+    "fields": { "nome_completo": "João Batista", "cpf": "12345678901", "secretaria": 1 }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 2,
+    "fields": { "nome_completo": "Carlos Souza", "cpf": "23456789012", "secretaria": 1 }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 3,
+    "fields": { "nome_completo": "Marcos Silva", "cpf": "34567890123", "secretaria": 2 }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 4,
+    "fields": { "nome_completo": "Pedro Oliveira", "cpf": "45678901234", "secretaria": 3 }
+  },
+
+  {
+    "model": "frota.veiculo",
+    "pk": 1,
+    "fields": {
+      "placa": "QWE1A23",
+      "modelo": "Ônibus Escolar",
+      "ano": 2019,
+      "tipo_combustivel": "DIESEL",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 2,
+    "fields": {
+      "placa": "RTY2B45",
+      "modelo": "Micro-ônibus",
+      "ano": 2021,
+      "tipo_combustivel": "DIESEL",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 3,
+    "fields": {
+      "placa": "UIO3C67",
+      "modelo": "Van Social",
+      "ano": 2018,
+      "tipo_combustivel": "DIESEL",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 4,
+    "fields": {
+      "placa": "PAS4D89",
+      "modelo": "Ambulância",
+      "ano": 2022,
+      "tipo_combustivel": "DIESEL",
+      "secretaria": 3
+    }
+  }
+]
+
