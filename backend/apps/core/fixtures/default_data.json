@@ -2,50 +2,217 @@
   {
     "model": "cadastros.secretaria",
     "pk": 1,
-    "fields": { "nome": "Secretaria Municipal de Educação", "sigla": "SEME" }
+    "fields": {
+      "nome": "Secretaria Municipal de Educação",
+      "sigla": "SEME"
+    }
   },
   {
     "model": "cadastros.secretaria",
     "pk": 2,
-    "fields": { "nome": "Secretaria de Assistência Social", "sigla": "SEMAS" }
+    "fields": {
+      "nome": "Secretaria Municipal de Meio Ambiente",
+      "sigla": "SEMA"
+    }
   },
   {
     "model": "cadastros.secretaria",
     "pk": 3,
-    "fields": { "nome": "Secretaria de Saúde", "sigla": "SAUDE" }
+    "fields": {
+      "nome": "Secretaria Municipal de Saúde",
+      "sigla": "SAÚDE"
+    }
   },
-
   {
     "model": "cadastros.instituicao",
     "pk": 1,
-    "fields": { "nome": "Escola Municipal João Alves", "tipo": "ESCOLA", "secretaria": 1 }
+    "fields": {
+      "nome": "Educação - Instituição 01",
+      "tipo": "ESCOLA",
+      "secretaria": 1
+    }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 2,
-    "fields": { "nome": "Escola Municipal Maria Lima", "tipo": "ESCOLA", "secretaria": 1 }
+    "fields": {
+      "nome": "Educação - Instituição 02",
+      "tipo": "CRECHE",
+      "secretaria": 1
+    }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 3,
-    "fields": { "nome": "Centro de Referência (CRAS) Central", "tipo": "OUTRO", "secretaria": 2 }
+    "fields": {
+      "nome": "Educação - Instituição 03",
+      "tipo": "UPA",
+      "secretaria": 1
+    }
   },
   {
     "model": "cadastros.instituicao",
     "pk": 4,
-    "fields": { "nome": "Hospital Municipal", "tipo": "HOSPITAL", "secretaria": 3 }
+    "fields": {
+      "nome": "Educação - Instituição 04",
+      "tipo": "HOSPITAL",
+      "secretaria": 1
+    }
   },
-
+  {
+    "model": "cadastros.instituicao",
+    "pk": 5,
+    "fields": {
+      "nome": "Educação - Instituição 05",
+      "tipo": "OUTRO",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 6,
+    "fields": {
+      "nome": "Educação - Instituição 06",
+      "tipo": "ESCOLA",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 7,
+    "fields": {
+      "nome": "Educação - Instituição 07",
+      "tipo": "CRECHE",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 8,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 08",
+      "tipo": "UPA",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 9,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 09",
+      "tipo": "HOSPITAL",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 10,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 10",
+      "tipo": "OUTRO",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 11,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 11",
+      "tipo": "ESCOLA",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 12,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 12",
+      "tipo": "CRECHE",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 13,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 13",
+      "tipo": "UPA",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 14,
+    "fields": {
+      "nome": "Meio Ambiente - Instituição 14",
+      "tipo": "HOSPITAL",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 15,
+    "fields": {
+      "nome": "Saúde - Instituição 15",
+      "tipo": "OUTRO",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 16,
+    "fields": {
+      "nome": "Saúde - Instituição 16",
+      "tipo": "ESCOLA",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 17,
+    "fields": {
+      "nome": "Saúde - Instituição 17",
+      "tipo": "CRECHE",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 18,
+    "fields": {
+      "nome": "Saúde - Instituição 18",
+      "tipo": "UPA",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 19,
+    "fields": {
+      "nome": "Saúde - Instituição 19",
+      "tipo": "HOSPITAL",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "cadastros.instituicao",
+    "pk": 20,
+    "fields": {
+      "nome": "Saúde - Instituição 20",
+      "tipo": "OUTRO",
+      "secretaria": 3
+    }
+  },
   {
     "model": "cadastros.rota",
     "pk": 1,
     "fields": {
-      "descricao": "Rota Centro",
+      "descricao": "Rota 01",
       "secretaria": 1,
       "instituicao": 1,
-      "distancia_km": "12.50",
-      "consumo_medio": "4.500",
-      "detalhes": "Percurso urbano",
+      "distancia_km": "7.25",
+      "consumo_medio": "3.850",
+      "detalhes": "Percurso padrão para testes",
       "ativa": true
     }
   },
@@ -53,12 +220,12 @@
     "model": "cadastros.rota",
     "pk": 2,
     "fields": {
-      "descricao": "Rota Zona Rural Norte",
+      "descricao": "Rota 02",
       "secretaria": 1,
       "instituicao": 2,
-      "distancia_km": "48.00",
-      "consumo_medio": "3.800",
-      "detalhes": "Estrada de terra",
+      "distancia_km": "9.50",
+      "consumo_medio": "4.200",
+      "detalhes": "Percurso padrão para testes",
       "ativa": true
     }
   },
@@ -66,22 +233,242 @@
     "model": "cadastros.rota",
     "pk": 3,
     "fields": {
-      "descricao": "Rota Zona Rural Sul",
-      "secretaria": 2,
+      "descricao": "Rota 03",
+      "secretaria": 1,
       "instituicao": 3,
-      "distancia_km": "22.00",
-      "consumo_medio": "5.200",
-      "detalhes": "",
+      "distancia_km": "11.75",
+      "consumo_medio": "4.550",
+      "detalhes": "Percurso padrão para testes",
       "ativa": true
     }
   },
-
+  {
+    "model": "cadastros.rota",
+    "pk": 4,
+    "fields": {
+      "descricao": "Rota 04",
+      "secretaria": 1,
+      "instituicao": 4,
+      "distancia_km": "14.00",
+      "consumo_medio": "4.900",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 5,
+    "fields": {
+      "descricao": "Rota 05",
+      "secretaria": 1,
+      "instituicao": 5,
+      "distancia_km": "16.25",
+      "consumo_medio": "5.250",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 6,
+    "fields": {
+      "descricao": "Rota 06",
+      "secretaria": 1,
+      "instituicao": 6,
+      "distancia_km": "18.50",
+      "consumo_medio": "5.600",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 7,
+    "fields": {
+      "descricao": "Rota 07",
+      "secretaria": 1,
+      "instituicao": 7,
+      "distancia_km": "20.75",
+      "consumo_medio": "3.500",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 8,
+    "fields": {
+      "descricao": "Rota 08",
+      "secretaria": 2,
+      "instituicao": 8,
+      "distancia_km": "23.00",
+      "consumo_medio": "3.850",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 9,
+    "fields": {
+      "descricao": "Rota 09",
+      "secretaria": 2,
+      "instituicao": 9,
+      "distancia_km": "25.25",
+      "consumo_medio": "4.200",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 10,
+    "fields": {
+      "descricao": "Rota 10",
+      "secretaria": 2,
+      "instituicao": 10,
+      "distancia_km": "27.50",
+      "consumo_medio": "4.550",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 11,
+    "fields": {
+      "descricao": "Rota 11",
+      "secretaria": 2,
+      "instituicao": 11,
+      "distancia_km": "29.75",
+      "consumo_medio": "4.900",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 12,
+    "fields": {
+      "descricao": "Rota 12",
+      "secretaria": 2,
+      "instituicao": 12,
+      "distancia_km": "32.00",
+      "consumo_medio": "5.250",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 13,
+    "fields": {
+      "descricao": "Rota 13",
+      "secretaria": 2,
+      "instituicao": 13,
+      "distancia_km": "34.25",
+      "consumo_medio": "5.600",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 14,
+    "fields": {
+      "descricao": "Rota 14",
+      "secretaria": 2,
+      "instituicao": 14,
+      "distancia_km": "36.50",
+      "consumo_medio": "3.500",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 15,
+    "fields": {
+      "descricao": "Rota 15",
+      "secretaria": 3,
+      "instituicao": 15,
+      "distancia_km": "38.75",
+      "consumo_medio": "3.850",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 16,
+    "fields": {
+      "descricao": "Rota 16",
+      "secretaria": 3,
+      "instituicao": 16,
+      "distancia_km": "41.00",
+      "consumo_medio": "4.200",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 17,
+    "fields": {
+      "descricao": "Rota 17",
+      "secretaria": 3,
+      "instituicao": 17,
+      "distancia_km": "43.25",
+      "consumo_medio": "4.550",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 18,
+    "fields": {
+      "descricao": "Rota 18",
+      "secretaria": 3,
+      "instituicao": 18,
+      "distancia_km": "45.50",
+      "consumo_medio": "4.900",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 19,
+    "fields": {
+      "descricao": "Rota 19",
+      "secretaria": 3,
+      "instituicao": 19,
+      "distancia_km": "47.75",
+      "consumo_medio": "5.250",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
+  {
+    "model": "cadastros.rota",
+    "pk": 20,
+    "fields": {
+      "descricao": "Rota 20",
+      "secretaria": 3,
+      "instituicao": 20,
+      "distancia_km": "50.00",
+      "consumo_medio": "5.600",
+      "detalhes": "Percurso padrão para testes",
+      "ativa": true
+    }
+  },
   {
     "model": "frota.condutor",
     "pk": 1,
     "fields": {
-      "nome_completo": "João Batista",
-      "cpf": "12345678901",
+      "nome_completo": "Condutor 01",
+      "cpf": "12345000001",
       "secretaria": 1,
       "ativo": true
     }
@@ -90,8 +477,8 @@
     "model": "frota.condutor",
     "pk": 2,
     "fields": {
-      "nome_completo": "Carlos Souza",
-      "cpf": "23456789012",
+      "nome_completo": "Condutor 02",
+      "cpf": "12345000002",
       "secretaria": 1,
       "ativo": true
     }
@@ -100,9 +487,9 @@
     "model": "frota.condutor",
     "pk": 3,
     "fields": {
-      "nome_completo": "Marcos Silva",
-      "cpf": "34567890123",
-      "secretaria": 2,
+      "nome_completo": "Condutor 03",
+      "cpf": "12345000003",
+      "secretaria": 1,
       "ativo": true
     }
   },
@@ -110,20 +497,179 @@
     "model": "frota.condutor",
     "pk": 4,
     "fields": {
-      "nome_completo": "Pedro Oliveira",
-      "cpf": "45678901234",
+      "nome_completo": "Condutor 04",
+      "cpf": "12345000004",
+      "secretaria": 1,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 5,
+    "fields": {
+      "nome_completo": "Condutor 05",
+      "cpf": "12345000005",
+      "secretaria": 1,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 6,
+    "fields": {
+      "nome_completo": "Condutor 06",
+      "cpf": "12345000006",
+      "secretaria": 1,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 7,
+    "fields": {
+      "nome_completo": "Condutor 07",
+      "cpf": "12345000007",
+      "secretaria": 1,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 8,
+    "fields": {
+      "nome_completo": "Condutor 08",
+      "cpf": "12345000008",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 9,
+    "fields": {
+      "nome_completo": "Condutor 09",
+      "cpf": "12345000009",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 10,
+    "fields": {
+      "nome_completo": "Condutor 10",
+      "cpf": "12345000010",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 11,
+    "fields": {
+      "nome_completo": "Condutor 11",
+      "cpf": "12345000011",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 12,
+    "fields": {
+      "nome_completo": "Condutor 12",
+      "cpf": "12345000012",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 13,
+    "fields": {
+      "nome_completo": "Condutor 13",
+      "cpf": "12345000013",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 14,
+    "fields": {
+      "nome_completo": "Condutor 14",
+      "cpf": "12345000014",
+      "secretaria": 2,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 15,
+    "fields": {
+      "nome_completo": "Condutor 15",
+      "cpf": "12345000015",
       "secretaria": 3,
       "ativo": true
     }
   },
-
+  {
+    "model": "frota.condutor",
+    "pk": 16,
+    "fields": {
+      "nome_completo": "Condutor 16",
+      "cpf": "12345000016",
+      "secretaria": 3,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 17,
+    "fields": {
+      "nome_completo": "Condutor 17",
+      "cpf": "12345000017",
+      "secretaria": 3,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 18,
+    "fields": {
+      "nome_completo": "Condutor 18",
+      "cpf": "12345000018",
+      "secretaria": 3,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 19,
+    "fields": {
+      "nome_completo": "Condutor 19",
+      "cpf": "12345000019",
+      "secretaria": 3,
+      "ativo": true
+    }
+  },
+  {
+    "model": "frota.condutor",
+    "pk": 20,
+    "fields": {
+      "nome_completo": "Condutor 20",
+      "cpf": "12345000020",
+      "secretaria": 3,
+      "ativo": true
+    }
+  },
   {
     "model": "frota.veiculo",
     "pk": 1,
     "fields": {
-      "placa": "QWE1A23",
-      "modelo": "Ônibus Escolar",
-      "ano": 2019,
+      "placa": "TST01A1",
+      "modelo": "Veículo 01",
+      "ano": 2016,
       "tipo_combustivel": "DIESEL",
       "secretaria": 1
     }
@@ -132,8 +678,52 @@
     "model": "frota.veiculo",
     "pk": 2,
     "fields": {
-      "placa": "RTY2B45",
-      "modelo": "Micro-ônibus",
+      "placa": "TST02A2",
+      "modelo": "Veículo 02",
+      "ano": 2017,
+      "tipo_combustivel": "DIESEL_S10",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 3,
+    "fields": {
+      "placa": "TST03A3",
+      "modelo": "Veículo 03",
+      "ano": 2018,
+      "tipo_combustivel": "GASOLINA",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 4,
+    "fields": {
+      "placa": "TST04A4",
+      "modelo": "Veículo 04",
+      "ano": 2019,
+      "tipo_combustivel": "ETANOL",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 5,
+    "fields": {
+      "placa": "TST05A5",
+      "modelo": "Veículo 05",
+      "ano": 2020,
+      "tipo_combustivel": "GNV",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 6,
+    "fields": {
+      "placa": "TST06A6",
+      "modelo": "Veículo 06",
       "ano": 2021,
       "tipo_combustivel": "DIESEL",
       "secretaria": 1
@@ -141,27 +731,158 @@
   },
   {
     "model": "frota.veiculo",
-    "pk": 3,
+    "pk": 7,
     "fields": {
-      "placa": "UIO3C67",
-      "modelo": "Van Social",
-      "ano": 2018,
+      "placa": "TST07A7",
+      "modelo": "Veículo 07",
+      "ano": 2022,
+      "tipo_combustivel": "DIESEL_S10",
+      "secretaria": 1
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 8,
+    "fields": {
+      "placa": "TST08A8",
+      "modelo": "Veículo 08",
+      "ano": 2023,
+      "tipo_combustivel": "GASOLINA",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 9,
+    "fields": {
+      "placa": "TST09A9",
+      "modelo": "Veículo 09",
+      "ano": 2024,
+      "tipo_combustivel": "ETANOL",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 10,
+    "fields": {
+      "placa": "TST10A0",
+      "modelo": "Veículo 10",
+      "ano": 2015,
+      "tipo_combustivel": "GNV",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 11,
+    "fields": {
+      "placa": "TST11A1",
+      "modelo": "Veículo 11",
+      "ano": 2016,
       "tipo_combustivel": "DIESEL",
       "secretaria": 2
     }
   },
   {
     "model": "frota.veiculo",
-    "pk": 4,
+    "pk": 12,
     "fields": {
-      "placa": "PAS4D89",
-      "modelo": "Ambulância",
-      "ano": 2022,
+      "placa": "TST12A2",
+      "modelo": "Veículo 12",
+      "ano": 2017,
+      "tipo_combustivel": "DIESEL_S10",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 13,
+    "fields": {
+      "placa": "TST13A3",
+      "modelo": "Veículo 13",
+      "ano": 2018,
+      "tipo_combustivel": "GASOLINA",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 14,
+    "fields": {
+      "placa": "TST14A4",
+      "modelo": "Veículo 14",
+      "ano": 2019,
+      "tipo_combustivel": "ETANOL",
+      "secretaria": 2
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 15,
+    "fields": {
+      "placa": "TST15A5",
+      "modelo": "Veículo 15",
+      "ano": 2020,
+      "tipo_combustivel": "GNV",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 16,
+    "fields": {
+      "placa": "TST16A6",
+      "modelo": "Veículo 16",
+      "ano": 2021,
       "tipo_combustivel": "DIESEL",
       "secretaria": 3
     }
   },
-
+  {
+    "model": "frota.veiculo",
+    "pk": 17,
+    "fields": {
+      "placa": "TST17A7",
+      "modelo": "Veículo 17",
+      "ano": 2022,
+      "tipo_combustivel": "DIESEL_S10",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 18,
+    "fields": {
+      "placa": "TST18A8",
+      "modelo": "Veículo 18",
+      "ano": 2023,
+      "tipo_combustivel": "GASOLINA",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 19,
+    "fields": {
+      "placa": "TST19A9",
+      "modelo": "Veículo 19",
+      "ano": 2024,
+      "tipo_combustivel": "ETANOL",
+      "secretaria": 3
+    }
+  },
+  {
+    "model": "frota.veiculo",
+    "pk": 20,
+    "fields": {
+      "placa": "TST20A0",
+      "modelo": "Veículo 20",
+      "ano": 2015,
+      "tipo_combustivel": "GNV",
+      "secretaria": 3
+    }
+  },
   {
     "model": "frota.lotacao",
     "pk": 1,
@@ -194,6 +915,572 @@
       "rota": 3,
       "veiculo": 3
     }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 4,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 4,
+      "rota": 4,
+      "veiculo": 4
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 5,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 5,
+      "rota": 5,
+      "veiculo": 5
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 6,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 6,
+      "rota": 6,
+      "veiculo": 6
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 7,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 7,
+      "rota": 7,
+      "veiculo": 7
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 8,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 8,
+      "rota": 8,
+      "veiculo": 8
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 9,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 9,
+      "rota": 9,
+      "veiculo": 9
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 10,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 10,
+      "rota": 10,
+      "veiculo": 10
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 11,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 11,
+      "rota": 11,
+      "veiculo": 11
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 12,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 12,
+      "rota": 12,
+      "veiculo": 12
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 13,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 13,
+      "rota": 13,
+      "veiculo": 13
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 14,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 14,
+      "rota": 14,
+      "veiculo": 14
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 15,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 15,
+      "rota": 15,
+      "veiculo": 15
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 16,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 16,
+      "rota": 16,
+      "veiculo": 16
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 17,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 17,
+      "rota": 17,
+      "veiculo": 17
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 18,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 18,
+      "rota": 18,
+      "veiculo": 18
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 19,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 19,
+      "rota": 19,
+      "veiculo": 19
+    }
+  },
+  {
+    "model": "frota.lotacao",
+    "pk": 20,
+    "fields": {
+      "data": "2026-03-01",
+      "ativa": true,
+      "condutor": 20,
+      "rota": 20,
+      "veiculo": 20
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 1,
+    "fields": {
+      "data_emissao": "2026-03-01",
+      "tipo_servico": "ONIBUS",
+      "tipo_combustivel": "DIESEL",
+      "qtd_combustivel": "31.750",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 10125,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 1,
+      "instituicao": 1,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 1,
+      "veiculo": 1
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 2,
+    "fields": {
+      "data_emissao": "2026-03-02",
+      "tipo_servico": "CAMINHONETE",
+      "tipo_combustivel": "DIESEL_S10",
+      "qtd_combustivel": "33.500",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 10250,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 2,
+      "instituicao": 2,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 2,
+      "veiculo": 2
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 3,
+    "fields": {
+      "data_emissao": "2026-03-03",
+      "tipo_servico": "ROCAGEM",
+      "tipo_combustivel": "GASOLINA",
+      "qtd_combustivel": "35.250",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 10375,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 3,
+      "instituicao": 3,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 3,
+      "veiculo": 3
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 4,
+    "fields": {
+      "data_emissao": "2026-03-04",
+      "tipo_servico": "MOTOCICLETA",
+      "tipo_combustivel": "ETANOL",
+      "qtd_combustivel": "37.000",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 10500,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 4,
+      "instituicao": 4,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 4,
+      "veiculo": 4
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 5,
+    "fields": {
+      "data_emissao": "2026-03-05",
+      "tipo_servico": "BARQUEIRO",
+      "tipo_combustivel": "GNV",
+      "qtd_combustivel": "38.750",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 10625,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 5,
+      "instituicao": 5,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 5,
+      "veiculo": 5
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 6,
+    "fields": {
+      "data_emissao": "2026-03-06",
+      "tipo_servico": "ONIBUS",
+      "tipo_combustivel": "DIESEL",
+      "qtd_combustivel": "40.500",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 10750,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 6,
+      "instituicao": 6,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 6,
+      "veiculo": 6
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 7,
+    "fields": {
+      "data_emissao": "2026-03-07",
+      "tipo_servico": "CAMINHONETE",
+      "tipo_combustivel": "DIESEL_S10",
+      "qtd_combustivel": "42.250",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 10875,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 7,
+      "instituicao": 7,
+      "secretaria": 1,
+      "usuario": 1,
+      "rota": 7,
+      "veiculo": 7
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 8,
+    "fields": {
+      "data_emissao": "2026-03-08",
+      "tipo_servico": "ROCAGEM",
+      "tipo_combustivel": "GASOLINA",
+      "qtd_combustivel": "44.000",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 11000,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 8,
+      "instituicao": 8,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 8,
+      "veiculo": 8
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 9,
+    "fields": {
+      "data_emissao": "2026-03-09",
+      "tipo_servico": "MOTOCICLETA",
+      "tipo_combustivel": "ETANOL",
+      "qtd_combustivel": "45.750",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 11125,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 9,
+      "instituicao": 9,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 9,
+      "veiculo": 9
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 10,
+    "fields": {
+      "data_emissao": "2026-03-10",
+      "tipo_servico": "BARQUEIRO",
+      "tipo_combustivel": "GNV",
+      "qtd_combustivel": "47.500",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 11250,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 10,
+      "instituicao": 10,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 10,
+      "veiculo": 10
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 11,
+    "fields": {
+      "data_emissao": "2026-03-11",
+      "tipo_servico": "ONIBUS",
+      "tipo_combustivel": "DIESEL",
+      "qtd_combustivel": "49.250",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 11375,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 11,
+      "instituicao": 11,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 11,
+      "veiculo": 11
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 12,
+    "fields": {
+      "data_emissao": "2026-03-12",
+      "tipo_servico": "CAMINHONETE",
+      "tipo_combustivel": "DIESEL_S10",
+      "qtd_combustivel": "51.000",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 11500,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 12,
+      "instituicao": 12,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 12,
+      "veiculo": 12
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 13,
+    "fields": {
+      "data_emissao": "2026-03-13",
+      "tipo_servico": "ROCAGEM",
+      "tipo_combustivel": "GASOLINA",
+      "qtd_combustivel": "52.750",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 11625,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 13,
+      "instituicao": 13,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 13,
+      "veiculo": 13
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 14,
+    "fields": {
+      "data_emissao": "2026-03-14",
+      "tipo_servico": "MOTOCICLETA",
+      "tipo_combustivel": "ETANOL",
+      "qtd_combustivel": "54.500",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 11750,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 14,
+      "instituicao": 14,
+      "secretaria": 2,
+      "usuario": 1,
+      "rota": 14,
+      "veiculo": 14
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 15,
+    "fields": {
+      "data_emissao": "2026-03-15",
+      "tipo_servico": "BARQUEIRO",
+      "tipo_combustivel": "GNV",
+      "qtd_combustivel": "56.250",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 11875,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 15,
+      "instituicao": 15,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 15,
+      "veiculo": 15
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 16,
+    "fields": {
+      "data_emissao": "2026-03-16",
+      "tipo_servico": "ONIBUS",
+      "tipo_combustivel": "DIESEL",
+      "qtd_combustivel": "58.000",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 12000,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 16,
+      "instituicao": 16,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 16,
+      "veiculo": 16
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 17,
+    "fields": {
+      "data_emissao": "2026-03-17",
+      "tipo_servico": "CAMINHONETE",
+      "tipo_combustivel": "DIESEL_S10",
+      "qtd_combustivel": "59.750",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 12125,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 17,
+      "instituicao": 17,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 17,
+      "veiculo": 17
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 18,
+    "fields": {
+      "data_emissao": "2026-03-18",
+      "tipo_servico": "ROCAGEM",
+      "tipo_combustivel": "GASOLINA",
+      "qtd_combustivel": "61.500",
+      "qtd_oleo_lubrificante": "2.000",
+      "hodometro": 12250,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 18,
+      "instituicao": 18,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 18,
+      "veiculo": 18
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 19,
+    "fields": {
+      "data_emissao": "2026-03-19",
+      "tipo_servico": "MOTOCICLETA",
+      "tipo_combustivel": "ETANOL",
+      "qtd_combustivel": "63.250",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 12375,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 19,
+      "instituicao": 19,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 19,
+      "veiculo": 19
+    }
+  },
+  {
+    "model": "abastecimento.guiaabastecimento",
+    "pk": 20,
+    "fields": {
+      "data_emissao": "2026-03-20",
+      "tipo_servico": "BARQUEIRO",
+      "tipo_combustivel": "GNV",
+      "qtd_combustivel": "65.000",
+      "qtd_oleo_lubrificante": "0.000",
+      "hodometro": 12500,
+      "observacao": "Registro padrão gerado em fixture",
+      "condutor": 20,
+      "instituicao": 20,
+      "secretaria": 3,
+      "usuario": 1,
+      "rota": 20,
+      "veiculo": 20
+    }
   }
 ]
-
