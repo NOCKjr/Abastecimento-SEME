@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "../assets/css/Layout.css";
+import logoImg from "../assets/logo ditram - transparente branco.png";
 import { usuarioApi } from "../api/usuarioApi";
 import type { Usuario } from "../types/models";
 import { logout } from "../auth/auth";
@@ -33,7 +34,11 @@ export default function Layout() {
       <nav className="navbar">
         <div className="navbar-content">
           <Link to="/home" className="brand-logo">
-            SEME
+            <img 
+              src={logoImg} 
+              alt="Logo DiTraM" 
+              className="navbar-logo-img" 
+            />
           </Link>
 
           <ul className="nav-menu">
@@ -153,7 +158,7 @@ export default function Layout() {
 
       <footer className="footer">
         <p>
-          &copy; 2026 Sistema de Abastecimento SEME. Todos os direitos reservados.
+          &copy; 2026 Sistema de Abastecimento DITRAM. Todos os direitos reservados.
         </p>
       </footer>
     </div>
