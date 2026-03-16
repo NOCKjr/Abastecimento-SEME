@@ -1,5 +1,7 @@
+import os
 from io import BytesIO
 from decimal import Decimal
+from django.conf import settings
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib import colors
@@ -66,7 +68,31 @@ def _draw_signature_line(pdf: canvas.Canvas, x_center: float, y: float, width_mm
 def _draw_guia_impressao_copy(pdf: canvas.Canvas, guia: GuiaAbastecimento, y_bottom: float, y_top: float):
     page_w, _ = A4
     x_left = 18 * mm
+    x_right = page_w - 18 * mm
     x_center = page_w / 2
+    
+    # Configuração de Estilo e Imagens
+    
+    # Altura e largura do brasão no PDF
+    logo_size = 22 * mm 
+    y_logo = y_top - 25 * mm
+    
+    # Configuração da linha (espessura e cor)
+    pdf.setLineWidth(0.5)
+    line_offset = 1.5 * mm # Distância abaixo da linha de base do texto
+
+    # Caminhos das imagens
+    # Assume que a imagem está em: backend/staticfiles/ditram/assets/img/brasao.png
+    path_brasao_esq = os.path.join(settings.BASE_DIR, 'staticfiles', 'ditram', 'assets', 'img', 'brasao_ditram.png')
+    path_brasao_dir = os.path.join(settings.BASE_DIR, 'staticfiles', 'ditram', 'assets', 'img', 'brasao_prefeitura.png')
+
+    if os.path.exists(path_brasao_esq):
+        # Brasão Esquerdo
+        pdf.drawImage(path_brasao_esq, x_left, y_logo, width=logo_size, height=logo_size, preserveAspectRatio=True, mask='auto')
+    
+    if os.path.exists(path_brasao_dir):
+        # Brasão Direito
+        pdf.drawImage(path_brasao_dir, x_right - logo_size, y_logo, width=logo_size, height=logo_size, preserveAspectRatio=True, mask='auto')
 
     tipo_servico_raw = (guia.tipo_servico or "").upper().strip()
     tipo_servico_display = _get_choice_display(guia, "tipo_servico")
@@ -76,11 +102,13 @@ def _draw_guia_impressao_copy(pdf: canvas.Canvas, guia: GuiaAbastecimento, y_bot
     escola_services = {"CAMINHONETE", "ONIBUS", "MOTOCICLETA", "CARRO", "BARQUEIRO"}
 
     if tipo_servico_raw in {"ROCAGEM", "COROTE"}:
-        label_nome = "Nome do Responsável"
+        label_servico = "Responsável"
     elif tipo_servico_raw == "BARQUEIRO":
-        label_nome = "Nome do Catraeiro"
+        label_servico = "Catraeiro"
     else:
-        label_nome = "Nome do condutor"
+        label_servico = "condutor"
+    
+    label_nome = f"Nome do {label_servico}"
 
     if tipo_servico_raw in escola_services:
         label_instituicao = "Escola Atendida"
@@ -97,11 +125,32 @@ def _draw_guia_impressao_copy(pdf: canvas.Canvas, guia: GuiaAbastecimento, y_bot
     placa = guia.veiculo.placa if guia.veiculo else ""
     veiculo_text = (f"{modelo} - {placa}").strip()
     veiculo_text = veiculo_text.strip("-").strip() or "-"
+    observacao = guia.observacao
+    hodometro = guia.hodometro
 
     periodo = ""
     if tipo_servico_raw in {"CAMINHONETE", "ONIBUS"}:
         periodo = "30"
-
+    
+    # Função auxiliar para desenhar Rótulo + Valor com linha apenas no Valor
+    def draw_field_with_line(pdf, x, y, label, value, font_name="Helvetica", font_size=11, line_width_extra=0):
+        # 1. Desenha o Rótulo
+        pdf.setFont(f"{font_name}-Bold", font_size)
+        pdf.drawString(x, y, label)
+        
+        # 2. Calcula a largura do rótulo para saber onde o valor começa
+        label_width = pdf.stringWidth(label, f"{font_name}-Bold", font_size)
+        x_value = x + label_width + 2 * mm # Pequeno espaço entre ':' e o valor
+        
+        # 3. Desenha o Valor
+        pdf.setFont(font_name, font_size)
+        pdf.drawString(x_value, y, str(value))
+        
+        # 4. Desenha a linha apenas sob o valor (até a margem ou largura fixa)
+        x_end = x_right if line_width_extra == 0 else x_value + line_width_extra
+        pdf.setLineWidth(0.5)
+        pdf.line(x_value, y - line_offset, x_end, y - line_offset)
+    
     y = y_top - 14 * mm
     pdf.setFont("Helvetica-Bold", 12)
     pdf.drawCentredString(x_center, y, "GUIA PARA LIBERAÇÃO DE ABASTECIMENTO")
@@ -110,36 +159,44 @@ def _draw_guia_impressao_copy(pdf: canvas.Canvas, guia: GuiaAbastecimento, y_bot
     pdf.setFont("Helvetica-Oblique", 11)
     pdf.drawCentredString(x_center, y, f"{tipo_servico_display}")
 
-    y -= 11 * mm
-    pdf.setFont("Helvetica", 11)
-    pdf.drawString(x_left, y, f"Data: {data_emissao}")
+    y -= 14 * mm
+    draw_field_with_line(pdf, x_left, y, "Data: ", data_emissao, line_width_extra=30 * mm)
 
     y -= 8 * mm
-    pdf.drawString(x_left, y, f"{label_nome}: {nome_condutor}")
+    draw_field_with_line(pdf, x_left, y, f"{label_nome}: ", nome_condutor)
 
     if tipo_servico_raw in vehicle_services:
         y -= 8 * mm
-        pdf.drawString(x_left, y, f"Modelo/placa do Veículo: {veiculo_text}")
+        draw_field_with_line(pdf, x_left, y, "Modelo/placa do Veículo: ", veiculo_text)
 
     y -= 8 * mm
-    pdf.drawString(x_left, y, f"{label_instituicao}: {instituicao}")
+    draw_field_with_line(pdf, x_left, y, f"{label_instituicao}: ", instituicao)
 
     y -= 8 * mm
-    pdf.drawString(x_left, y, f"Quantidade de Litros: {litros} L {tipo_combustivel_display}")
+    litros_val = f"{litros} L {tipo_combustivel_display}"
+    draw_field_with_line(pdf, x_left, y, "Quantidade de Litros: ", litros_val, line_width_extra=50 * mm)
 
     if tipo_servico_raw != "ROCAGEM":
         y -= 8 * mm
-        pdf.drawString(x_left, y, f"Período de uso (em dias): {periodo}")
+        draw_field_with_line(pdf, x_left, y, "Período de uso (em dias): ", periodo, line_width_extra=50 * mm)
 
-    y_sig_coord = y_bottom + 44 * mm
+    if tipo_servico_raw in {"CAMINHONETE", "ONIBUS", "MOTOCICLETA", "CARRO"}:
+        y -= 8 * mm
+        draw_field_with_line(pdf, x_left, y, "Hodômetro: ", hodometro, line_width_extra=50 * mm)
+    
+    y -= 8 * mm
+    draw_field_with_line(pdf, x_left, y, "Observação: ", observacao)
+
+
+    y_sig_coord = y_bottom + 38 * mm
     pdf.setFont("Helvetica", 10)
     _draw_signature_line(pdf, x_center, y_sig_coord)
     pdf.drawCentredString(x_center, y_sig_coord - 6 * mm, "Duan de Souza Soares")
-    pdf.drawCentredString(x_center, y_sig_coord - 11 * mm, "Coordenador de Transporte Escolar")
+    pdf.drawCentredString(x_center, y_sig_coord - 11 * mm, "Diretor de Transporte Municipal")
 
-    y_sig_cond = y_bottom + 20 * mm
+    y_sig_cond = y_bottom + 14 * mm
     _draw_signature_line(pdf, x_center, y_sig_cond)
-    pdf.drawCentredString(x_center, y_sig_cond - 6 * mm, "Assinatura do Condutor")
+    pdf.drawCentredString(x_center, y_sig_cond - 6 * mm, f"Assinatura do {label_servico}")
 
 
 def gerar_pdf_guia(guia_id):
