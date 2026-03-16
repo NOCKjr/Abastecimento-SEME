@@ -4,10 +4,21 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ======================
+# PROFILE / ENV LOADING
+# ======================
+
+DJANGO_PROFILE = os.getenv("DJANGO_PROFILE", "dev").strip().lower()
+if DJANGO_PROFILE not in {"dev", "prod", "validation"}:
+    DJANGO_PROFILE = "dev"
+
 # Variáveis de ambiente
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+
+    # Tenta carregar primeiro `.env.<profile>` e depois `.env`
+    load_dotenv(BASE_DIR / f".env.{DJANGO_PROFILE}", override=False)
+    load_dotenv(BASE_DIR / ".env", override=False)
 except:
     pass
 
@@ -17,9 +28,16 @@ except:
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = os.getenv("DEBUG", "False") == "True"
+if "DEBUG" in os.environ:
+    DEBUG = os.getenv("DEBUG", "False") == "True"
+else:
+    DEBUG = DJANGO_PROFILE == "dev"
 
-ALLOWED_HOSTS = ["*"]
+allowed_hosts_env = os.getenv("ALLOWED_HOSTS", "").strip()
+if allowed_hosts_env:
+    ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_env.split(",") if h.strip()]
+else:
+    ALLOWED_HOSTS = ["*"]
 
 # ======================
 # SECURITY (PRODUCTION)
@@ -110,23 +128,26 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 # ======================
-# DATABASE (Render)
+# DATABASE
 # ======================
 
-# Base de dados em no render (production)
-if os.getenv("RENDER"):
-    DATABASES = {
-        "default": dj_database_url.config()
-    }
+DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
 
-# Base de dados local (development)
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+if DJANGO_PROFILE == "dev":
+    if DATABASE_URL:
+        DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=0)}
+    else:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": BASE_DIR / "db.sqlite3",
+            }
         }
-    }
+else:
+    if not DATABASE_URL:
+        raise RuntimeError("DATABASE_URL é obrigatório para DJANGO_PROFILE=prod/validation")
+
+    DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)}
 
 # ======================
 # PASSWORD VALIDATION
@@ -168,7 +189,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS
 # ======================
 
-CORS_ALLOW_ALL_ORIGINS = True
+cors_allowed_origins_env = os.getenv("CORS_ALLOWED_ORIGINS", "").strip()
+if cors_allowed_origins_env:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [o.strip() for o in cors_allowed_origins_env.split(",") if o.strip()]
+else:
+    CORS_ALLOW_ALL_ORIGINS = True
+
+csrf_trusted_env = os.getenv("CSRF_TRUSTED_ORIGINS", "").strip()
+if csrf_trusted_env:
+    CSRF_TRUSTED_ORIGINS = [o.strip() for o in csrf_trusted_env.split(",") if o.strip()]
 
 # ======================
 # AUTH

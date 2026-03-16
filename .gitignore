@@ -6,4 +6,5 @@ __pycache__/
 
 # Variáveis de ambiente
 .env
+.env.*
 *.sqlite3
