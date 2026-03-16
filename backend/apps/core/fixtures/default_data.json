@@ -24,6 +24,14 @@
     }
   },
   {
+    "model": "cadastros.secretaria",
+    "pk": 4,
+    "fields": {
+      "nome": "Secretaria Municipal de Administração e Finanças",
+      "sigla": "SEMAF"
+    }
+  },
+  {
     "model": "cadastros.instituicao",
     "pk": 1,
     "fields": {

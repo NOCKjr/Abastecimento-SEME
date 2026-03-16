@@ -61,19 +61,25 @@ export default function Home() {
       sigla: "SEME",
       badgeClass: "seme",
       descricao: "Criar uma guia com a secretaria SEME pré-selecionada.",
-      display: "SEME",
+      display: "Secretaria Municipal de Educação",
     },
     {
       sigla: "SAUDE",
       badgeClass: "saude",
       descricao: "Criar uma guia com a secretaria SAÚDE pré-selecionada.",
-      display: "SAÚDE",
+      display: "Secretaria Municipal de Saúde",
     },
     {
       sigla: "SEMA",
       badgeClass: "sema",
       descricao: "Criar uma guia com a secretaria SEMA pré-selecionada.",
-      display: "SEMA",
+      display: "Secretaria Municipal de Assistência Social",
+    },
+    {
+      sigla: "SEMAF",
+      badgeClass: "semaf",
+      descricao: "Criar uma guia com a secretaria SEMAF pré-selecionada.",
+      display: "Secretaria Municipal de Administração e Finanças",
     },
   ] as const;
 
