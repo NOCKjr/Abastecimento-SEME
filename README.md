@@ -55,16 +55,6 @@ npm run build             # usa .env.production
 npm run build:validation  # usa .env.validation
 ```
 
-#### SPA (rotas) e 404 ao acessar URL diretamente
-
-Como o frontend usa `BrowserRouter`, o servidor precisa reescrever rotas (ex.: `/cadastros/rota`) para `index.html`.
-
-Para facilitar deploy em static hosting (incluindo Render), este repositório inclui arquivos que vão para a pasta `dist`
-no build do Vite:
-
-- `frontend/public/_redirects` (regra `/* -> /index.html`)
-- `frontend/public/static.json` (regra `rewrites` para `index.html`)
-
 [![Figma Design](https://img.shields.io/badge/Figma-Design-blue?logo=figma&logoColor=white)](https://www.figma.com/design/iyTMnJRem5A4SyjrpKxiOO/SEME?node-id=0-1&t=aqXvkX3mVawrXngo-1)
 
 ---
