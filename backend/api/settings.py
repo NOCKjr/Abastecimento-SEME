@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import dj_database_url
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'apps.core.apps.CoreConfig',
     'apps.abastecimento',
@@ -103,6 +105,29 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated', # Bloqueia tudo por padrão
     ),
     'EXCEPTION_HANDLER': 'api.exception_handler.custom_exception_handler',
+}
+
+# ======================
+# SIMPLE JWT
+# ======================
+
+SIMPLE_JWT = {
+    # Tempo que o utilizador pode navegar sem precisar de usar o refresh token
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    
+    # Tempo total que o utilizador pode ficar logado (7 dias)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    
+    # Se True, ao usar o refresh token para obter um novo access, 
+    # o utilizador recebe também um NOVO refresh token (renova a validade de 7 dias)
+    'ROTATE_REFRESH_TOKENS': False,
+    
+    # Se True, o refresh token anterior vai para uma "lista negra" e deixa de funcionar
+    'BLACKLIST_AFTER_ROTATION': False,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY, # Usa a chave configurada no nas varíaveis de ambiente
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 # ======================
