@@ -124,6 +124,7 @@ class UsuarioSelfUpdateSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
+            "cpf",
             "password",
         )
 

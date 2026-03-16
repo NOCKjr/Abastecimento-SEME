@@ -24,6 +24,15 @@ export default function PerfilPage() {
     return full || me?.cpf || "";
   }, [me]);
 
+  const formatCPF = (value: string) => {
+    return value
+      .replace(/\D/g, "") // Remove tudo que não é dígito
+      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após os 3 primeiros dígitos
+      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após os 6 primeiros dígitos
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2") // Coloca traço após os 9 primeiros dígitos
+      .slice(0, 14); // Limita o tamanho ao formato 000.000.000-00
+  };
+
   return (
     <div className="form-page">
       <div className="form-header usuario">
@@ -45,7 +54,7 @@ export default function PerfilPage() {
 
               <div className="form-group">
                 <label className="form-label">CPF</label>
-                <input className="form-input" readOnly value={me.cpf} />
+                <input className="form-input" readOnly value={formatCPF(me.cpf)} />
               </div>
 
               <div className="form-group">

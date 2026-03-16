@@ -13,6 +13,7 @@ export default function PerfilEditPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
@@ -26,6 +27,7 @@ export default function PerfilEditPage() {
         setMe(res.data);
         setFirstName(res.data.first_name || "");
         setLastName(res.data.last_name || "");
+        setCpf(formatCPF(res.data.cpf) || "");
         setEmail(res.data.email || "");
       })
       .catch((err) => setErrorMsg(getApiErrorMessage(err, "Falha ao carregar perfil.")));
@@ -35,6 +37,15 @@ export default function PerfilEditPage() {
     const full = `${firstName} ${lastName}`.trim();
     return full || me?.cpf || "";
   }, [firstName, lastName, me]);
+
+  const formatCPF = (value: string) => {
+    return value
+      .replace(/\D/g, "") // Remove tudo que não é dígito
+      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após os 3 primeiros dígitos
+      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após os 6 primeiros dígitos
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2") // Coloca traço após os 9 primeiros dígitos
+      .slice(0, 14); // Limita o tamanho ao formato 000.000.000-00
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,7 +60,11 @@ export default function PerfilEditPage() {
 
     setLoading(true);
     try {
+      // Envia o CPF limpo (apenas números) para o backend
+      const cpfLimpo = cpf.replace(/\D/g, "");
+
       await usuarioApi.atualizarMe({
+        cpf: cpfLimpo || undefined,
         first_name: firstName || undefined,
         last_name: lastName || undefined,
         email: email || undefined,
@@ -80,7 +95,12 @@ export default function PerfilEditPage() {
             <div className="form-grid">
               <div className="form-group">
                 <label className="form-label">CPF</label>
-                <input className="form-input" readOnly value={me.cpf} />
+                <input
+                  className="form-input"
+                  value={cpf}
+                  placeholder="000.000.000-00"
+                  onChange={(e) => setCpf(formatCPF(e.target.value))}
+                />
               </div>
 
               <div className="form-group">

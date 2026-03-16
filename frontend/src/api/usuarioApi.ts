@@ -29,7 +29,7 @@ export const usuarioApi = {
     return client.get<Usuario>(`${API_URL}/me/`)
   },
 
-  atualizarMe(data: Partial<Pick<Usuario, "first_name" | "last_name" | "email" | "password">>) {
+  atualizarMe(data: Partial<Pick<Usuario, "cpf" | "first_name" | "last_name" | "email" | "password">>) {
     return client.patch<Usuario>(`${API_URL}/me/`, data)
   },
 
