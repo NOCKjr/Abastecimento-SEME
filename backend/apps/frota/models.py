@@ -8,12 +8,6 @@ class Condutor(models.Model):
     cpf = models.CharField(max_length=11)
     ativo = models.BooleanField(default=True)
 
-    secretaria = models.ForeignKey(
-        Secretaria,
-        on_delete=models.PROTECT,
-        related_name="condutores",
-    )
-
     def __str__(self):
         return self.nome_completo
 

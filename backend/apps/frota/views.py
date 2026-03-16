@@ -29,16 +29,35 @@ class CondutorViewSet(ModelViewSetCacheMixin, ModelViewSet):
     permission_classes = [IsAuthenticated, FrotaPermission]
 
     def get_queryset(self):
+        # Inicia com o queryset base (apenas ativos por padrão)
         queryset = super().get_queryset()
+        
+        # 1. Filtro por Rota (Necessário para o seu novo schema de formulário)
+        # Retorna condutores que possuem uma lotação ativa naquela rota
+        rota = self.request.query_params.get("rota")
+        if rota:
+            queryset = queryset.filter(
+                lotacoes__rota_id=rota,
+                lotacoes__ativa=True
+            ).distinct()
+
+        # 2. Filtro por Secretaria (Indireto via Rota)
+        # Se quiser filtrar condutores de uma secretaria, buscamos via lotação -> rota
         secretaria = self.request.query_params.get("secretaria")
         if secretaria:
-            queryset = queryset.filter(secretaria_id=secretaria)
+            queryset = queryset.filter(
+                lotacoes__rota__secretaria_id=secretaria,
+                lotacoes__ativa=True
+            ).distinct()
 
+        # 3. Filtro de Ativo (Lógica original mantida)
         ativo = self.request.query_params.get("ativo")
         if ativo is None:
             queryset = queryset.filter(ativo=True)
         elif ativo != "":
-            queryset = queryset.filter(ativo=str(ativo).lower() in ("1", "true", "t", "yes", "y"))
+            is_ativo = str(ativo).lower() in ("1", "true", "t", "yes", "y")
+            queryset = queryset.filter(ativo=is_ativo)
+            
         return queryset
 
     @action(detail=True, methods=["get"], url_path="lotacao-atual")

@@ -207,7 +207,6 @@ def gerar_pdf_guia(guia_id):
     try:
         guia = GuiaAbastecimento.objects.select_related(
             "veiculo",
-            "condutor__secretaria",
             "rota",
             "instituicao",
             "usuario",
@@ -356,7 +355,6 @@ def gerar_pdf_guia_detalhado(guia_id):
     dados_condutor = [
         ['Nome:', guia.condutor.nome_completo],
         ['CPF:', guia.condutor.cpf],
-        ['Secretaria:', guia.condutor.secretaria.sigla],
     ]
     
     table_condutor = Table(dados_condutor, colWidths=[2.5 * inch, 4 * inch])

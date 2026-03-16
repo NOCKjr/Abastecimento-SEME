@@ -35,7 +35,7 @@
     "model": "cadastros.instituicao",
     "pk": 1,
     "fields": {
-      "nome": "Educação - Instituição 01",
+      "nome": "Escola Municipal Monteiro Lobato",
       "tipo": "ESCOLA",
       "secretaria": 1
     }
@@ -44,7 +44,7 @@
     "model": "cadastros.instituicao",
     "pk": 2,
     "fields": {
-      "nome": "Educação - Instituição 02",
+      "nome": "Creche Casulo Pintando o Sete",
       "tipo": "CRECHE",
       "secretaria": 1
     }
@@ -53,8 +53,8 @@
     "model": "cadastros.instituicao",
     "pk": 3,
     "fields": {
-      "nome": "Educação - Instituição 03",
-      "tipo": "UPA",
+      "nome": "CMEI Primeiros Passos",
+      "tipo": "CRECHE",
       "secretaria": 1
     }
   },
@@ -62,8 +62,8 @@
     "model": "cadastros.instituicao",
     "pk": 4,
     "fields": {
-      "nome": "Educação - Instituição 04",
-      "tipo": "HOSPITAL",
+      "nome": "Escola de Ensino Fundamental Novo Tempo",
+      "tipo": "ESCOLA",
       "secretaria": 1
     }
   },
@@ -71,7 +71,7 @@
     "model": "cadastros.instituicao",
     "pk": 5,
     "fields": {
-      "nome": "Educação - Instituição 05",
+      "nome": "Biblioteca Municipal Central",
       "tipo": "OUTRO",
       "secretaria": 1
     }
@@ -80,7 +80,7 @@
     "model": "cadastros.instituicao",
     "pk": 6,
     "fields": {
-      "nome": "Educação - Instituição 06",
+      "nome": "Escola Rural Boa Vista",
       "tipo": "ESCOLA",
       "secretaria": 1
     }
@@ -89,7 +89,7 @@
     "model": "cadastros.instituicao",
     "pk": 7,
     "fields": {
-      "nome": "Educação - Instituição 07",
+      "nome": "Creche Municipal Tia Anastácia",
       "tipo": "CRECHE",
       "secretaria": 1
     }
@@ -98,8 +98,8 @@
     "model": "cadastros.instituicao",
     "pk": 8,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 08",
-      "tipo": "UPA",
+      "nome": "Viveiro Municipal de Mudas",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -107,8 +107,8 @@
     "model": "cadastros.instituicao",
     "pk": 9,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 09",
-      "tipo": "HOSPITAL",
+      "nome": "Aterro Sanitário Municipal",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -116,7 +116,7 @@
     "model": "cadastros.instituicao",
     "pk": 10,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 10",
+      "nome": "Parque de Exposições",
       "tipo": "OUTRO",
       "secretaria": 2
     }
@@ -125,8 +125,8 @@
     "model": "cadastros.instituicao",
     "pk": 11,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 11",
-      "tipo": "ESCOLA",
+      "nome": "Centro de Triagem de Recicláveis",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -134,8 +134,8 @@
     "model": "cadastros.instituicao",
     "pk": 12,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 12",
-      "tipo": "CRECHE",
+      "nome": "Horta Comunitária Sul",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -143,8 +143,8 @@
     "model": "cadastros.instituicao",
     "pk": 13,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 13",
-      "tipo": "UPA",
+      "nome": "Base de Fiscalização Ambiental",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -152,8 +152,8 @@
     "model": "cadastros.instituicao",
     "pk": 14,
     "fields": {
-      "nome": "Meio Ambiente - Instituição 14",
-      "tipo": "HOSPITAL",
+      "nome": "Departamento de Parques e Jardins",
+      "tipo": "OUTRO",
       "secretaria": 2
     }
   },
@@ -161,7 +161,7 @@
     "model": "cadastros.instituicao",
     "pk": 15,
     "fields": {
-      "nome": "Saúde - Instituição 15",
+      "nome": "Centro de Especialidades Médicas",
       "tipo": "OUTRO",
       "secretaria": 3
     }
@@ -170,8 +170,8 @@
     "model": "cadastros.instituicao",
     "pk": 16,
     "fields": {
-      "nome": "Saúde - Instituição 16",
-      "tipo": "ESCOLA",
+      "nome": "Vigilância Sanitária",
+      "tipo": "OUTRO",
       "secretaria": 3
     }
   },
@@ -179,8 +179,8 @@
     "model": "cadastros.instituicao",
     "pk": 17,
     "fields": {
-      "nome": "Saúde - Instituição 17",
-      "tipo": "CRECHE",
+      "nome": "Posto de Saúde Central",
+      "tipo": "UPA",
       "secretaria": 3
     }
   },
@@ -188,7 +188,7 @@
     "model": "cadastros.instituicao",
     "pk": 18,
     "fields": {
-      "nome": "Saúde - Instituição 18",
+      "nome": "UPA 24 Horas Vila Nova",
       "tipo": "UPA",
       "secretaria": 3
     }
@@ -197,7 +197,7 @@
     "model": "cadastros.instituicao",
     "pk": 19,
     "fields": {
-      "nome": "Saúde - Instituição 19",
+      "nome": "Hospital Municipal Dr. José Frota",
       "tipo": "HOSPITAL",
       "secretaria": 3
     }
@@ -206,7 +206,7 @@
     "model": "cadastros.instituicao",
     "pk": 20,
     "fields": {
-      "nome": "Saúde - Instituição 20",
+      "nome": "Centro de Vacinação Municipal",
       "tipo": "OUTRO",
       "secretaria": 3
     }
@@ -215,12 +215,12 @@
     "model": "cadastros.rota",
     "pk": 1,
     "fields": {
-      "descricao": "Rota 01",
+      "descricao": "Transporte Escolar - Zona Rural Sul",
       "secretaria": 1,
       "instituicao": 1,
       "distancia_km": "7.25",
       "consumo_medio": "3.850",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Percurso de terra com 12 paradas fixas",
       "ativa": true
     }
   },
@@ -228,12 +228,12 @@
     "model": "cadastros.rota",
     "pk": 2,
     "fields": {
-      "descricao": "Rota 02",
+      "descricao": "Linha Creches Centro-Norte",
       "secretaria": 1,
       "instituicao": 2,
       "distancia_km": "9.50",
       "consumo_medio": "4.200",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Trajeto urbano pavimentado",
       "ativa": true
     }
   },
@@ -241,12 +241,12 @@
     "model": "cadastros.rota",
     "pk": 3,
     "fields": {
-      "descricao": "Rota 03",
+      "descricao": "Coleta Materiais Pedagógicos",
       "secretaria": 1,
       "instituicao": 3,
       "distancia_km": "11.75",
       "consumo_medio": "4.550",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Logística interna entre almoxarifado e CMEI",
       "ativa": true
     }
   },
@@ -254,12 +254,12 @@
     "model": "cadastros.rota",
     "pk": 4,
     "fields": {
-      "descricao": "Rota 04",
+      "descricao": "Ronda Escolar Regional Oeste",
       "secretaria": 1,
       "instituicao": 4,
       "distancia_km": "14.00",
       "consumo_medio": "4.900",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Vigilância patrimonial de unidades escolares",
       "ativa": true
     }
   },
@@ -267,12 +267,12 @@
     "model": "cadastros.rota",
     "pk": 5,
     "fields": {
-      "descricao": "Rota 05",
+      "descricao": "Circuito Bibliotecas Itinerantes",
       "secretaria": 1,
       "instituicao": 5,
       "distancia_km": "16.25",
       "consumo_medio": "5.250",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Distribuição quinzenal de acervo",
       "ativa": true
     }
   },
@@ -280,12 +280,12 @@
     "model": "cadastros.rota",
     "pk": 6,
     "fields": {
-      "descricao": "Rota 06",
+      "descricao": "Transporte Docente - Ramal da Esperança",
       "secretaria": 1,
       "instituicao": 6,
       "distancia_km": "18.50",
       "consumo_medio": "5.600",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Saída às 06:30 da sede",
       "ativa": true
     }
   },
@@ -293,12 +293,12 @@
     "model": "cadastros.rota",
     "pk": 7,
     "fields": {
-      "descricao": "Rota 07",
+      "descricao": "Entrega Merenda Escolar Polo I",
       "secretaria": 1,
       "instituicao": 7,
       "distancia_km": "20.75",
       "consumo_medio": "3.500",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Caminhão refrigerado",
       "ativa": true
     }
   },
@@ -306,12 +306,12 @@
     "model": "cadastros.rota",
     "pk": 8,
     "fields": {
-      "descricao": "Rota 08",
+      "descricao": "Fiscalização de Desmatamento",
       "secretaria": 2,
       "instituicao": 8,
       "distancia_km": "23.00",
       "consumo_medio": "3.850",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Rota em áreas de preservação permanente",
       "ativa": true
     }
   },
@@ -319,12 +319,12 @@
     "model": "cadastros.rota",
     "pk": 9,
     "fields": {
-      "descricao": "Rota 09",
+      "descricao": "Transporte de Resíduos Classe A",
       "secretaria": 2,
       "instituicao": 9,
       "distancia_km": "25.25",
       "consumo_medio": "4.200",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Destinação final no aterro sanitário",
       "ativa": true
     }
   },
@@ -332,12 +332,12 @@
     "model": "cadastros.rota",
     "pk": 10,
     "fields": {
-      "descricao": "Rota 10",
+      "descricao": "Manutenção Praças Setor Leste",
       "secretaria": 2,
       "instituicao": 10,
       "distancia_km": "27.50",
       "consumo_medio": "4.550",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Equipe de poda e jardinagem",
       "ativa": true
     }
   },
@@ -345,12 +345,12 @@
     "model": "cadastros.rota",
     "pk": 11,
     "fields": {
-      "descricao": "Rota 11",
+      "descricao": "Monitoramento de Nascentes",
       "secretaria": 2,
       "instituicao": 11,
       "distancia_km": "29.75",
       "consumo_medio": "4.900",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Coleta de amostras de água",
       "ativa": true
     }
   },
@@ -358,12 +358,12 @@
     "model": "cadastros.rota",
     "pk": 12,
     "fields": {
-      "descricao": "Rota 12",
+      "descricao": "Abastecimento Hortas Escolares",
       "secretaria": 2,
       "instituicao": 12,
       "distancia_km": "32.00",
       "consumo_medio": "5.250",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Transporte de adubo e insumos orgânicos",
       "ativa": true
     }
   },
@@ -371,12 +371,12 @@
     "model": "cadastros.rota",
     "pk": 13,
     "fields": {
-      "descricao": "Rota 13",
+      "descricao": "Patrulha Ambiental Urbana",
       "secretaria": 2,
       "instituicao": 13,
       "distancia_km": "34.25",
       "consumo_medio": "5.600",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Atendimento de denúncias via canal 156",
       "ativa": true
     }
   },
@@ -384,12 +384,12 @@
     "model": "cadastros.rota",
     "pk": 14,
     "fields": {
-      "descricao": "Rota 14",
+      "descricao": "Vistoria Árvores Urbanas - Centro",
       "secretaria": 2,
       "instituicao": 14,
       "distancia_km": "36.50",
       "consumo_medio": "3.500",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Equipe de engenheiros agrônomos",
       "ativa": true
     }
   },
@@ -397,12 +397,12 @@
     "model": "cadastros.rota",
     "pk": 15,
     "fields": {
-      "descricao": "Rota 15",
+      "descricao": "Transporte de Pacientes Hemodiálise",
       "secretaria": 3,
       "instituicao": 15,
       "distancia_km": "38.75",
       "consumo_medio": "3.850",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Micro-ônibus adaptado",
       "ativa": true
     }
   },
@@ -410,12 +410,12 @@
     "model": "cadastros.rota",
     "pk": 16,
     "fields": {
-      "descricao": "Rota 16",
+      "descricao": "Bloqueio Epidemiológico - Dengue",
       "secretaria": 3,
       "instituicao": 16,
       "distancia_km": "41.00",
       "consumo_medio": "4.200",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Aplicação de inseticida (fumacê)",
       "ativa": true
     }
   },
@@ -423,12 +423,12 @@
     "model": "cadastros.rota",
     "pk": 17,
     "fields": {
-      "descricao": "Rota 17",
+      "descricao": "Suporte Unidades Básicas Rurais",
       "secretaria": 3,
       "instituicao": 17,
       "distancia_km": "43.25",
       "consumo_medio": "4.550",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Entrega de medicamentos e vacinas",
       "ativa": true
     }
   },
@@ -436,12 +436,12 @@
     "model": "cadastros.rota",
     "pk": 18,
     "fields": {
-      "descricao": "Rota 18",
+      "descricao": "Emergência 192 - Unidade Alfa",
       "secretaria": 3,
       "instituicao": 18,
       "distancia_km": "45.50",
       "consumo_medio": "4.900",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Prontidão para socorro imediato",
       "ativa": true
     }
   },
@@ -449,12 +449,12 @@
     "model": "cadastros.rota",
     "pk": 19,
     "fields": {
-      "descricao": "Rota 19",
+      "descricao": "Transferência Inter-Hospitalar",
       "secretaria": 3,
       "instituicao": 19,
       "distancia_km": "47.75",
       "consumo_medio": "5.250",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Remoção de pacientes críticos",
       "ativa": true
     }
   },
@@ -462,12 +462,12 @@
     "model": "cadastros.rota",
     "pk": 20,
     "fields": {
-      "descricao": "Rota 20",
+      "descricao": "Vacinação em Domicílio - Idosos",
       "secretaria": 3,
       "instituicao": 20,
       "distancia_km": "50.00",
       "consumo_medio": "5.600",
-      "detalhes": "Percurso padrão para testes",
+      "detalhes": "Campanha anual de gripe",
       "ativa": true
     }
   },
@@ -475,9 +475,8 @@
     "model": "frota.condutor",
     "pk": 1,
     "fields": {
-      "nome_completo": "Condutor 01",
+      "nome_completo": "Ricardo Silva Pereira",
       "cpf": "12345000001",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -485,9 +484,8 @@
     "model": "frota.condutor",
     "pk": 2,
     "fields": {
-      "nome_completo": "Condutor 02",
+      "nome_completo": "Ana Cláudia Martins",
       "cpf": "12345000002",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -495,9 +493,8 @@
     "model": "frota.condutor",
     "pk": 3,
     "fields": {
-      "nome_completo": "Condutor 03",
+      "nome_completo": "Marcos Antônio Santos",
       "cpf": "12345000003",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -505,9 +502,8 @@
     "model": "frota.condutor",
     "pk": 4,
     "fields": {
-      "nome_completo": "Condutor 04",
+      "nome_completo": "Juliana Souza Lima",
       "cpf": "12345000004",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -515,9 +511,8 @@
     "model": "frota.condutor",
     "pk": 5,
     "fields": {
-      "nome_completo": "Condutor 05",
+      "nome_completo": "Fernando Oliveira Cruz",
       "cpf": "12345000005",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -525,9 +520,8 @@
     "model": "frota.condutor",
     "pk": 6,
     "fields": {
-      "nome_completo": "Condutor 06",
+      "nome_completo": "Patrícia Gomes Ferreira",
       "cpf": "12345000006",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -535,9 +529,8 @@
     "model": "frota.condutor",
     "pk": 7,
     "fields": {
-      "nome_completo": "Condutor 07",
+      "nome_completo": "Luiz Gustavo Mendes",
       "cpf": "12345000007",
-      "secretaria": 1,
       "ativo": true
     }
   },
@@ -545,9 +538,8 @@
     "model": "frota.condutor",
     "pk": 8,
     "fields": {
-      "nome_completo": "Condutor 08",
+      "nome_completo": "Beatriz Rocha Cavalcanti",
       "cpf": "12345000008",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -555,9 +547,8 @@
     "model": "frota.condutor",
     "pk": 9,
     "fields": {
-      "nome_completo": "Condutor 09",
+      "nome_completo": "Carlos Eduardo Xavier",
       "cpf": "12345000009",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -565,9 +556,8 @@
     "model": "frota.condutor",
     "pk": 10,
     "fields": {
-      "nome_completo": "Condutor 10",
+      "nome_completo": "Sônia Maria Albuquerque",
       "cpf": "12345000010",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -575,9 +565,8 @@
     "model": "frota.condutor",
     "pk": 11,
     "fields": {
-      "nome_completo": "Condutor 11",
+      "nome_completo": "Renato Augusto Machado",
       "cpf": "12345000011",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -585,9 +574,8 @@
     "model": "frota.condutor",
     "pk": 12,
     "fields": {
-      "nome_completo": "Condutor 12",
+      "nome_completo": "Mônica Helena Silveira",
       "cpf": "12345000012",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -595,9 +583,8 @@
     "model": "frota.condutor",
     "pk": 13,
     "fields": {
-      "nome_completo": "Condutor 13",
+      "nome_completo": "Wellington Jose Barros",
       "cpf": "12345000013",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -605,9 +592,8 @@
     "model": "frota.condutor",
     "pk": 14,
     "fields": {
-      "nome_completo": "Condutor 14",
+      "nome_completo": "Daniela Freitas Viana",
       "cpf": "12345000014",
-      "secretaria": 2,
       "ativo": true
     }
   },
@@ -615,9 +601,8 @@
     "model": "frota.condutor",
     "pk": 15,
     "fields": {
-      "nome_completo": "Condutor 15",
+      "nome_completo": "Paulo Roberto Moreira",
       "cpf": "12345000015",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -625,9 +610,8 @@
     "model": "frota.condutor",
     "pk": 16,
     "fields": {
-      "nome_completo": "Condutor 16",
+      "nome_completo": "Fernanda Torres Neves",
       "cpf": "12345000016",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -635,9 +619,8 @@
     "model": "frota.condutor",
     "pk": 17,
     "fields": {
-      "nome_completo": "Condutor 17",
+      "nome_completo": "Jorge Luis Barbosa",
       "cpf": "12345000017",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -645,9 +628,8 @@
     "model": "frota.condutor",
     "pk": 18,
     "fields": {
-      "nome_completo": "Condutor 18",
+      "nome_completo": "Eliana Castro Peixoto",
       "cpf": "12345000018",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -655,9 +637,8 @@
     "model": "frota.condutor",
     "pk": 19,
     "fields": {
-      "nome_completo": "Condutor 19",
+      "nome_completo": "Marcelo Dantas Silva",
       "cpf": "12345000019",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -665,9 +646,8 @@
     "model": "frota.condutor",
     "pk": 20,
     "fields": {
-      "nome_completo": "Condutor 20",
+      "nome_completo": "Cláudia Regina Amaral",
       "cpf": "12345000020",
-      "secretaria": 3,
       "ativo": true
     }
   },
@@ -675,8 +655,8 @@
     "model": "frota.veiculo",
     "pk": 1,
     "fields": {
-      "placa": "TST01A1",
-      "modelo": "Veículo 01",
+      "placa": "BRA2E24",
+      "modelo": "Mercedes-Benz OF 1721 (Escolar)",
       "ano": 2016,
       "tipo_combustivel": "DIESEL",
       "secretaria": 1
@@ -686,8 +666,8 @@
     "model": "frota.veiculo",
     "pk": 2,
     "fields": {
-      "placa": "TST02A2",
-      "modelo": "Veículo 02",
+      "placa": "KRM4J12",
+      "modelo": "Volkswagen Constellation 24.280",
       "ano": 2017,
       "tipo_combustivel": "DIESEL_S10",
       "secretaria": 1
@@ -697,8 +677,8 @@
     "model": "frota.veiculo",
     "pk": 3,
     "fields": {
-      "placa": "TST03A3",
-      "modelo": "Veículo 03",
+      "placa": "LPT9I55",
+      "modelo": "Fiat Fiorino 1.4 Hard Working",
       "ano": 2018,
       "tipo_combustivel": "GASOLINA",
       "secretaria": 1
@@ -708,8 +688,8 @@
     "model": "frota.veiculo",
     "pk": 4,
     "fields": {
-      "placa": "TST04A4",
-      "modelo": "Veículo 04",
+      "placa": "OXX3C88",
+      "modelo": "Chevrolet Onix 1.0 Joy",
       "ano": 2019,
       "tipo_combustivel": "ETANOL",
       "secretaria": 1
@@ -719,8 +699,8 @@
     "model": "frota.veiculo",
     "pk": 5,
     "fields": {
-      "placa": "TST05A5",
-      "modelo": "Veículo 05",
+      "placa": "PQL7B11",
+      "modelo": "Renault Logan 1.6 Expression",
       "ano": 2020,
       "tipo_combustivel": "GNV",
       "secretaria": 1
@@ -730,8 +710,8 @@
     "model": "frota.veiculo",
     "pk": 6,
     "fields": {
-      "placa": "TST06A6",
-      "modelo": "Veículo 06",
+      "placa": "RRT1A09",
+      "modelo": "Iveco Daily 55C17",
       "ano": 2021,
       "tipo_combustivel": "DIESEL",
       "secretaria": 1
@@ -741,8 +721,8 @@
     "model": "frota.veiculo",
     "pk": 7,
     "fields": {
-      "placa": "TST07A7",
-      "modelo": "Veículo 07",
+      "placa": "SAM5D32",
+      "modelo": "Ford Cargo 1119",
       "ano": 2022,
       "tipo_combustivel": "DIESEL_S10",
       "secretaria": 1
@@ -752,8 +732,8 @@
     "model": "frota.veiculo",
     "pk": 8,
     "fields": {
-      "placa": "TST08A8",
-      "modelo": "Veículo 08",
+      "placa": "TKB8F44",
+      "modelo": "Toyota Hilux 4x4 Diesel",
       "ano": 2023,
       "tipo_combustivel": "GASOLINA",
       "secretaria": 2
@@ -763,8 +743,8 @@
     "model": "frota.veiculo",
     "pk": 9,
     "fields": {
-      "placa": "TST09A9",
-      "modelo": "Veículo 09",
+      "placa": "UUA2G77",
+      "modelo": "Mitsubishi L200 Triton",
       "ano": 2024,
       "tipo_combustivel": "ETANOL",
       "secretaria": 2
@@ -774,8 +754,8 @@
     "model": "frota.veiculo",
     "pk": 10,
     "fields": {
-      "placa": "TST10A0",
-      "modelo": "Veículo 10",
+      "placa": "VVI0H21",
+      "modelo": "Fiat Uno Way 1.0",
       "ano": 2015,
       "tipo_combustivel": "GNV",
       "secretaria": 2
@@ -785,8 +765,8 @@
     "model": "frota.veiculo",
     "pk": 11,
     "fields": {
-      "placa": "TST11A1",
-      "modelo": "Veículo 11",
+      "placa": "WWM4K90",
+      "modelo": "Scania P310 B8X2",
       "ano": 2016,
       "tipo_combustivel": "DIESEL",
       "secretaria": 2
@@ -796,8 +776,8 @@
     "model": "frota.veiculo",
     "pk": 12,
     "fields": {
-      "placa": "TST12A2",
-      "modelo": "Veículo 12",
+      "placa": "XXY5L33",
+      "modelo": "Mercedes-Benz Sprinter 415",
       "ano": 2017,
       "tipo_combustivel": "DIESEL_S10",
       "secretaria": 2
@@ -807,8 +787,8 @@
     "model": "frota.veiculo",
     "pk": 13,
     "fields": {
-      "placa": "TST13A3",
-      "modelo": "Veículo 13",
+      "placa": "YYZ9M44",
+      "modelo": "Honda NXR 160 Bros",
       "ano": 2018,
       "tipo_combustivel": "GASOLINA",
       "secretaria": 2
@@ -818,8 +798,8 @@
     "model": "frota.veiculo",
     "pk": 14,
     "fields": {
-      "placa": "TST14A4",
-      "modelo": "Veículo 14",
+      "placa": "ZZR3N11",
+      "modelo": "Yamaha XTZ 250 Lander",
       "ano": 2019,
       "tipo_combustivel": "ETANOL",
       "secretaria": 2
@@ -829,8 +809,8 @@
     "model": "frota.veiculo",
     "pk": 15,
     "fields": {
-      "placa": "TST15A5",
-      "modelo": "Veículo 15",
+      "placa": "ABC1D22",
+      "modelo": "Hyundai HB20 1.6",
       "ano": 2020,
       "tipo_combustivel": "GNV",
       "secretaria": 3
@@ -840,8 +820,8 @@
     "model": "frota.veiculo",
     "pk": 16,
     "fields": {
-      "placa": "TST16A6",
-      "modelo": "Veículo 16",
+      "placa": "DEF3E33",
+      "modelo": "Renault Master Ambulância",
       "ano": 2021,
       "tipo_combustivel": "DIESEL",
       "secretaria": 3
@@ -851,8 +831,8 @@
     "model": "frota.veiculo",
     "pk": 17,
     "fields": {
-      "placa": "TST17A7",
-      "modelo": "Veículo 17",
+      "placa": "GHI5F44",
+      "modelo": "Peugeot Partner Rapid",
       "ano": 2022,
       "tipo_combustivel": "DIESEL_S10",
       "secretaria": 3
@@ -862,8 +842,8 @@
     "model": "frota.veiculo",
     "pk": 18,
     "fields": {
-      "placa": "TST18A8",
-      "modelo": "Veículo 18",
+      "placa": "JKL7G55",
+      "modelo": "Volkswagen Voyage 1.6",
       "ano": 2023,
       "tipo_combustivel": "GASOLINA",
       "secretaria": 3
@@ -873,8 +853,8 @@
     "model": "frota.veiculo",
     "pk": 19,
     "fields": {
-      "placa": "TST19A9",
-      "modelo": "Veículo 19",
+      "placa": "MNO9H66",
+      "modelo": "Toyota Corolla Altis",
       "ano": 2024,
       "tipo_combustivel": "ETANOL",
       "secretaria": 3
@@ -884,8 +864,8 @@
     "model": "frota.veiculo",
     "pk": 20,
     "fields": {
-      "placa": "TST20A0",
-      "modelo": "Veículo 20",
+      "placa": "PQR1I77",
+      "modelo": "Fiat Cronos 1.3 Drive",
       "ano": 2015,
       "tipo_combustivel": "GNV",
       "secretaria": 3
@@ -1121,7 +1101,7 @@
       "qtd_combustivel": "31.750",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 10125,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Revisão preventiva de filtros e lubrificação",
       "condutor": 1,
       "instituicao": 1,
       "secretaria": 1,
@@ -1140,7 +1120,7 @@
       "qtd_combustivel": "33.500",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 10250,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Abastecimento para viagem intermunicipal",
       "condutor": 2,
       "instituicao": 2,
       "secretaria": 1,
@@ -1159,7 +1139,7 @@
       "qtd_combustivel": "35.250",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 10375,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Uso em galão para equipamentos de jardinagem",
       "condutor": 3,
       "instituicao": 3,
       "secretaria": 1,
@@ -1178,7 +1158,7 @@
       "qtd_combustivel": "37.000",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 10500,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Ronda patrimonial noturna",
       "condutor": 4,
       "instituicao": 4,
       "secretaria": 1,
@@ -1197,7 +1177,7 @@
       "qtd_combustivel": "38.750",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 10625,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Transporte fluvial de merenda",
       "condutor": 5,
       "instituicao": 5,
       "secretaria": 1,
@@ -1216,7 +1196,7 @@
       "qtd_combustivel": "40.500",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 10750,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Reparo no sistema de freios",
       "condutor": 6,
       "instituicao": 6,
       "secretaria": 1,
@@ -1235,7 +1215,7 @@
       "qtd_combustivel": "42.250",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 10875,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Transporte de mobiliário escolar",
       "condutor": 7,
       "instituicao": 7,
       "secretaria": 1,
@@ -1254,7 +1234,7 @@
       "qtd_combustivel": "44.000",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 11000,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Limpeza de encostas",
       "condutor": 8,
       "instituicao": 8,
       "secretaria": 2,
@@ -1273,7 +1253,7 @@
       "qtd_combustivel": "45.750",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 11125,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Troca de óleo efetuada",
       "condutor": 9,
       "instituicao": 9,
       "secretaria": 2,
@@ -1292,7 +1272,7 @@
       "qtd_combustivel": "47.500",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 11250,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Fiscalização de pesca predatória",
       "condutor": 10,
       "instituicao": 10,
       "secretaria": 2,
@@ -1311,7 +1291,7 @@
       "qtd_combustivel": "49.250",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 11375,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Transporte de brigadistas",
       "condutor": 11,
       "instituicao": 11,
       "secretaria": 2,
@@ -1330,7 +1310,7 @@
       "qtd_combustivel": "51.000",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 11500,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Manutenção preventiva 10k km",
       "condutor": 12,
       "instituicao": 12,
       "secretaria": 2,
@@ -1349,7 +1329,7 @@
       "qtd_combustivel": "52.750",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 11625,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Poda de árvores via pública",
       "condutor": 13,
       "instituicao": 13,
       "secretaria": 2,
@@ -1368,7 +1348,7 @@
       "qtd_combustivel": "54.500",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 11750,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Entrega de notificações ambientais",
       "condutor": 14,
       "instituicao": 14,
       "secretaria": 2,
@@ -1387,7 +1367,7 @@
       "qtd_combustivel": "56.250",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 11875,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Limpeza de margens de rios",
       "condutor": 15,
       "instituicao": 15,
       "secretaria": 3,
@@ -1406,7 +1386,7 @@
       "qtd_combustivel": "58.000",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 12000,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Atendimento odontológico itinerante",
       "condutor": 16,
       "instituicao": 16,
       "secretaria": 3,
@@ -1425,7 +1405,7 @@
       "qtd_combustivel": "59.750",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 12125,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Logística de insumos hospitalares",
       "condutor": 17,
       "instituicao": 17,
       "secretaria": 3,
@@ -1444,7 +1424,7 @@
       "qtd_combustivel": "61.500",
       "qtd_oleo_lubrificante": "2.000",
       "hodometro": 12250,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Combate a focos de mosquito",
       "condutor": 18,
       "instituicao": 18,
       "secretaria": 3,
@@ -1463,7 +1443,7 @@
       "qtd_combustivel": "63.250",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 12375,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Entrega de exames laboratoriais",
       "condutor": 19,
       "instituicao": 19,
       "secretaria": 3,
@@ -1482,7 +1462,7 @@
       "qtd_combustivel": "65.000",
       "qtd_oleo_lubrificante": "0.000",
       "hodometro": 12500,
-      "observacao": "Registro padrão gerado em fixture",
+      "observacao": "Atendimento médico em comunidades ribeirinhas",
       "condutor": 20,
       "instituicao": 20,
       "secretaria": 3,

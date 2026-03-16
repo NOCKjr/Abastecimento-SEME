@@ -13,16 +13,6 @@ export const condutorFormSchema: FormSchema = {
       label: "CPF",
       type: "text",
       required: true
-    },
-
-    // IDs de tabelas estrangeiras (Foreign Keys)
-    {
-      name: "secretaria",
-      label: "Secretaria",
-      type: "select",
-      required: true,
-      endpoint: "cadastros/secretarias/",
-      optionLabel: "sigla"
     }
   ]
 }

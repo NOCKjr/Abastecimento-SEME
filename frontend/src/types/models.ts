@@ -26,7 +26,6 @@ export interface Condutor {
   id?: number
   nome_completo: string
   cpf: string
-  secretaria: number
   ativo?: boolean
 }
 

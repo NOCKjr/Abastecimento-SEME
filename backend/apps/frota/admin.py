@@ -11,6 +11,5 @@ class VeiculoAdmin(admin.ModelAdmin):
 
 @admin.register(Condutor)
 class CondutorAdmin(admin.ModelAdmin):
-    list_display = ("id", "nome_completo", "cpf", "secretaria")
+    list_display = ("id", "nome_completo", "cpf")
     search_fields = ("nome_completo", "cpf")
-    list_filter = ("secretaria",)

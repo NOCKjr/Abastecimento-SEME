@@ -9,6 +9,8 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       required: true,
       endpoint: "cadastros/secretarias/",
       optionLabel: "sigla",
+      // Ao mudar a secretaria, resetamos os dependentes
+      autoSelectFirst: true, 
     },
     {
       name: "data_emissao",
@@ -32,12 +34,31 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       ],
     },
     {
+      name: "rota",
+      label: "Rota",
+      type: "select",
+      required: true,
+      endpoint: "cadastros/rotas/",
+      optionLabel: "descricao",
+      displayLabel: "id",
+      // LÓGICA: Rota depende da Secretaria
+      dependsOn: "secretaria",
+      dependsOnParam: "secretaria",
+      disabledUntilParentSelected: true,
+      autoSelectFirst: true,
+    },
+    {
       name: "condutor",
       label: "Condutor",
       type: "select",
       required: true,
       endpoint: "frota/condutores/",
       optionLabel: "nome_completo",
+      // LÓGICA: Condutor agora depende da Rota (filtragem via backend)
+      dependsOn: "rota",
+      dependsOnParam: "rota",
+      disabledUntilParentSelected: true,
+      autoSelectFirst: true,
     },
     {
       name: "instituicao",
@@ -48,17 +69,8 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       optionLabel: "nome",
       dependsOn: "secretaria",
       dependsOnParam: "secretaria",
-    },
-    {
-      name: "rota",
-      label: "Rota",
-      type: "select",
-      required: false,
-      endpoint: "cadastros/rotas/",
-      optionLabel: "descricao",
-      displayLabel: "id",
-      dependsOn: "condutor",
-      dependsOnParam: "condutor",
+      disabledUntilParentSelected: true,
+      autoSelectFirst: true,
     },
     {
       name: "veiculo",
@@ -69,6 +81,8 @@ export const guiaAbastecimentoFormSchema: FormSchema = {
       optionLabel: "placa",
       dependsOn: "secretaria",
       dependsOnParam: "secretaria",
+      disabledUntilParentSelected: true,
+      autoSelectFirst: true,
     },
     {
       name: "tipo_combustivel",
