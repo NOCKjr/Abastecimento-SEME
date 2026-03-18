@@ -180,7 +180,7 @@ def _draw_guia_impressao_copy(pdf: canvas.Canvas, guia: GuiaAbastecimento, y_bot
         y -= 8 * mm
         draw_field_with_line(pdf, x_left, y, "Período de uso (em dias): ", periodo, line_width_extra=50 * mm)
 
-    if tipo_servico_raw in {"CAMINHONETE", "ONIBUS", "MOTOCICLETA", "CARRO"}:
+    if tipo_servico_raw in vehicle_services:
         y -= 8 * mm
         draw_field_with_line(pdf, x_left, y, "Hodômetro: ", hodometro, line_width_extra=50 * mm)
     
